@@ -1,4 +1,10 @@
-# MediDoc
+# 🏥 MediDoc 🏥
+
+<div align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png" width="450" height="100">
+</div>
+
+💻 Bienvenido al repositorio del proyecto **MediDoc** 💻
 
 MediDoc es una aplicación móvil construida con Flutter que tiene como objetivo mejorar la experiencia de gestión de la salud personal. Ofrece una interfaz intuitiva y fácil de usar que permite a los usuarios mantener un registro de sus medicaciones, citas médicas, y más.
 
