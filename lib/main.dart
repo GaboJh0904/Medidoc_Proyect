@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'navBar.dart';
 
 void main() {
-  runApp(const MyApp());
+  //runApp(const MyApp());
+  runApp(NavbarOptions());
 }
 
 class MyApp extends StatelessWidget {
