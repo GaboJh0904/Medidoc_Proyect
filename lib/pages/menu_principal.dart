@@ -54,49 +54,85 @@ class MyCustomButtonColumn extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        MyCustomButton(text: "Opcion Uno"),
-        SizedBox(height: 8),
-        MyCustomButton(text: "Opcion Dos"),
-        SizedBox(height: 8),
-        MyCustomButton(text: "Opcion Tres"),
-        SizedBox(height: 8),
-        MyCustomButton(text: "Opcion Cuatro"),
+        MyCustomButton(text: "Opcion Uno", onPressed: () {  },),
+        SizedBox(height: 22),
+        MyCustomButton(text: "Opcion Dos", onPressed: () {  },),
+        SizedBox(height: 22),
+        MyCustomButton(text: "Opcion Tres", onPressed: () {  },),
+        SizedBox(height: 22),
+        MyCustomButton(text: "Opcion Cuatro", onPressed: () {  },),
       ],
     );
   }
 }
 
-class MyCustomButton extends StatelessWidget {
+class MyCustomButton extends StatefulWidget {
   final String text;
+  final VoidCallback? onPressed;
+  final double width;
+  final double height;
 
-  MyCustomButton({required this.text});
+  MyCustomButton({required this.text, required this.onPressed, this.width = 250.0, this.height = 80.0, });
+
+  @override
+  _MyCustomButtonState createState() => _MyCustomButtonState();
+}
+
+class _MyCustomButtonState extends State<MyCustomButton> {
+  bool isPressed = false;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 120, vertical: 40),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
-        gradient: LinearGradient(
-          colors: [Color(0xFF6F35A5), Color(0xFFB388FF)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 6,
-            offset: Offset(0, 2),
+    return GestureDetector(
+      onTapDown: (_) {
+        setState(() {
+          isPressed = true;
+        });
+      },
+      onTapUp: (_) {
+        setState(() {
+          isPressed = false;
+        });
+        // Aquí llamarías a la función que deseas que se ejecute al presionar.
+        widget.onPressed?.call();
+      },
+      onTapCancel: () {
+        setState(() {
+          isPressed = false;
+        });
+      },
+      child: SizedBox(
+        width: widget.width, // Usa el ancho pasado al widget
+        height: widget.height,
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 200), // Duración de la animación
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            gradient: LinearGradient(
+              colors: isPressed
+                  ? [Colors.purple, Colors.purpleAccent] // Colores cuando está presionado
+                  : [Color(0xFF6F35A5), Color(0xFFB388FF)], // Colores originales
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                spreadRadius: isPressed ? 0 : 2, // Eliminar sombra cuando está presionado
+                blurRadius: isPressed ? 0 : 6,
+                offset: isPressed ? Offset(0, 0) : Offset(0, 2),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
+          child: Text(
+            widget.text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
         ),
       ),
     );
