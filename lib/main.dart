@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'navBar.dart';
 import 'package:medidoc_proyect/pages/menu_principal.dart';
 
 void main() {
-  //runApp(const MyApp());
-  runApp(NavbarOptions());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

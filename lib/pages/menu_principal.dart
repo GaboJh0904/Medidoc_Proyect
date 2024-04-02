@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medidoc_proyect/pages/navBar.dart';
 
 class MenuPrincipal extends StatelessWidget {
   @override
@@ -8,7 +9,10 @@ class MenuPrincipal extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.menu),
           onPressed: () {
-            Scaffold.of(context).openDrawer();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NavbarOptions()),
+            );
           },
         ),
         backgroundColor: Colors.transparent,
@@ -36,7 +40,6 @@ class MenuPrincipal extends StatelessWidget {
                 Navigator.pop(context);
               },
             ),
-            // Agrega más items según sea necesario
           ],
         ),
       ),
