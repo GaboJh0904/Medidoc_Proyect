@@ -6,43 +6,9 @@ class MenuPrincipal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => NavbarOptions()),
-            );
-          },
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        title: Text('Medidoc'),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              child: Text('Encabezado del Menú', style: TextStyle(color: Colors.white)),
-              decoration: BoxDecoration(
-                color: Color(0xFF6F35A5),
-              ),
-            ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: NavbarOptions(),
       backgroundColor: Colors.white,
       body: Center(
         child: MyCustomButtonColumn(),
@@ -50,6 +16,7 @@ class MenuPrincipal extends StatelessWidget {
     );
   }
 }
+
 
 class MyCustomButtonColumn extends StatelessWidget {
   @override

@@ -1,93 +1,105 @@
 import 'package:flutter/material.dart';
 
-
-Color purpleAccentWithOpacity = Colors.deepPurpleAccent.withOpacity(0.3);
 class NavbarOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Opciones Medidoc'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-
-              const Icon(
-                Icons.account_circle_sharp,
-                size: 200,
-                color: Colors.black54,
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.account_circle_sharp,
+                    size: 80,
+                    color: Colors.white,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'medidoc@ucb.edu.bo',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 20),//espacio
-              const Text(
-                'medidoc@ucb.edu.bo',
-                style: TextStyle(fontSize: 22, color: Colors.deepPurpleAccent),
-              ),
-              const SizedBox(height: 20), //espacio
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30.0),
-                child:Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-
-                    OptionButton(
-                      icon: Icons.fingerprint,
-                      label: 'Uso de huella',
-                      onPressed: () {
-                        print("Uso de huella");
-                      },
-                    ),
-                    OptionButton(
-                      icon: Icons.g_mobiledata,
-                      label: 'Correo electronico',
-                      onPressed: () {
-                        print("Correo electronico");
-                      },
-                    ),
-                    OptionButton(
-                      icon: Icons.privacy_tip_outlined,
-                      label: 'Politica de privacidad',
-                      onPressed: () {
-                        print("Politica de privacidad");
-                      },
-                    ),
-                    OptionButton(
-                      icon: Icons.settings,
-                      label: 'Configuración',
-                      onPressed: () {
-                        print("Configuración");
-                      },
-                    ),
-                    OptionButton(
-                      icon: Icons.card_membership,
-                      label: 'Identificador del dispositivo',
-                      onPressed: () {
-                        print("Identificador del dispositivo");
-                      },
-                    ),
-                    OptionButton(
-                      icon: Icons.medical_services_rounded,
-                      label: 'Medicaciones',
-                      onPressed: () {
-                        print("Medicaciones");
-                      },
-                    ),
-                    OptionButton(
-                      icon: Icons.exit_to_app,
-                      label: 'Cerrar sesion',
-                      onPressed: () {
-                        print("Cerrar sesion");
-                      },
-                    ),
-                  ],
-
-                ),
-              ),
-            ],
+            ),
+            decoration: BoxDecoration(
+              color: Colors.deepPurpleAccent,
+            ),
           ),
-        ),
+
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.0),
+            child:Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              OptionButton(
+                icon: Icons.fingerprint,
+                label: 'Uso de huella',
+                onPressed: () {
+                  print("Uso de huella");
+                  Navigator.pop(context);
+                },
+              ),
+              OptionButton(
+                icon: Icons.g_mobiledata,
+                label: 'Correo electrónico',
+                onPressed: () {
+                  print("Correo electrónico");
+                  Navigator.pop(context);
+                },
+              ),
+              OptionButton(
+                icon: Icons.privacy_tip_outlined,
+                label: 'Política de privacidad',
+                onPressed: () {
+                  print("Política de privacidad");
+                  Navigator.pop(context);
+                },
+              ),
+              OptionButton(
+                icon: Icons.settings,
+                label: 'Configuración',
+                onPressed: () {
+                  print("Configuración");
+                  Navigator.pop(context);
+                },
+              ),
+              OptionButton(
+                icon: Icons.card_membership,
+                label: 'Identificador del dispositivo',
+                onPressed: () {
+                  print("Identificador del dispositivo");
+                  Navigator.pop(context);
+                },
+              ),
+              OptionButton(
+                icon: Icons.medical_services_rounded,
+                label: 'Medicaciones',
+                onPressed: () {
+                  print("Medicaciones");
+                  Navigator.pop(context);
+                },
+              ),
+              OptionButton(
+                icon: Icons.exit_to_app,
+                label: 'Cerrar sesión',
+                onPressed: () {
+                  print("Cerrar sesión");
+                  Navigator.pop(context);
+                },
+              ),
+
+
+            ],
+            ),
+          ),
+        ],
       ),
     );
   }
