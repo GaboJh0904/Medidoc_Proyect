@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:medidoc_proyect/pages/asistente_page.dart';
 import 'package:medidoc_proyect/pages/Inicio.dart';
-import 'package:medidoc_proyect/pages/menu_principal.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +13,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Medidoc',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Inicio(),
+
+      routes: {
+        '/':(context)=> MenuPrincipal(),
+        '/asistente':(context) => AsistentePage()
+      },
     );
   }
 }
