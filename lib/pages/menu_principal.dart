@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medidoc_proyect/pages/asistente_page.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
 
 class MenuPrincipal extends StatelessWidget {
@@ -11,12 +12,28 @@ class MenuPrincipal extends StatelessWidget {
       drawer: NavbarOptions(),
       backgroundColor: Colors.white,
       body: Center(
-        child: MyCustomButtonColumn(),
+        child: Navigator(
+          onGenerateRoute: ((settings) {
+            return MaterialPageRoute(
+              builder: (context) => _buildContent(context, settings),
+            );
+          }),
+        ),
       ),
     );
   }
 }
 
+Widget _buildContent(BuildContext context, RouteSettings settings) {
+  switch (settings.name) {
+    case '/':
+      return MyCustomButtonColumn();
+    case '/asistente':
+      return AsistentePage();
+    default:
+      return Container();
+  }
+}
 
 class MyCustomButtonColumn extends StatelessWidget {
   @override
@@ -24,13 +41,28 @@ class MyCustomButtonColumn extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        MyCustomButton(text: "Opcion Uno", onPressed: () {  },),
+        MyCustomButton(
+          text: "Asistente Personal",
+          onPressed: () {
+            Navigator.pushNamed(
+                context, '/asistente');
+          },
+        ),
         SizedBox(height: 22),
-        MyCustomButton(text: "Opcion Dos", onPressed: () {  },),
+        MyCustomButton(
+          text: "Opcion Dos",
+          onPressed: () {},
+        ),
         SizedBox(height: 22),
-        MyCustomButton(text: "Opcion Tres", onPressed: () {  },),
+        MyCustomButton(
+          text: "Opcion Tres",
+          onPressed: () {},
+        ),
         SizedBox(height: 22),
-        MyCustomButton(text: "Opcion Cuatro", onPressed: () {  },),
+        MyCustomButton(
+          text: "Opcion Cuatro",
+          onPressed: () {},
+        ),
       ],
     );
   }
@@ -42,7 +74,12 @@ class MyCustomButton extends StatefulWidget {
   final double width;
   final double height;
 
-  MyCustomButton({required this.text, required this.onPressed, this.width = 250.0, this.height = 80.0, });
+  MyCustomButton({
+    required this.text,
+    required this.onPressed,
+    this.width = 250.0,
+    this.height = 80.0,
+  });
 
   @override
   _MyCustomButtonState createState() => _MyCustomButtonState();
@@ -81,15 +118,22 @@ class _MyCustomButtonState extends State<MyCustomButton> {
             borderRadius: BorderRadius.circular(30),
             gradient: LinearGradient(
               colors: isPressed
-                  ? [Colors.purple, Colors.purpleAccent] // Colores cuando está presionado
-                  : [Color(0xFF6F35A5), Color(0xFFB388FF)], // Colores originales
+                  ? [
+                      Colors.purple,
+                      Colors.purpleAccent
+                    ] // Colores cuando está presionado
+                  : [
+                      Color(0xFF6F35A5),
+                      Color(0xFFB388FF)
+                    ], // Colores originales
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.2),
-                spreadRadius: isPressed ? 0 : 2, // Eliminar sombra cuando está presionado
+                spreadRadius:
+                    isPressed ? 0 : 2, // Eliminar sombra cuando está presionado
                 blurRadius: isPressed ? 0 : 6,
                 offset: isPressed ? Offset(0, 0) : Offset(0, 2),
               ),
