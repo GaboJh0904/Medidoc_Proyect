@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medidoc_proyect/pages/Inicio.dart';
 import 'package:medidoc_proyect/pages/menu_principal.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MenuPrincipal(),
+      home: Inicio(),
     );
   }
 }
