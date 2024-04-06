@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
 
       routes: {
-        '/':(context)=> MenuPrincipal(),
+        '/':(context)=> Inicio(),
         '/asistente':(context) => AsistentePage()
       },
     );

@@ -27,10 +27,14 @@ class MenuPrincipal extends StatelessWidget {
 Widget _buildContent(BuildContext context, RouteSettings settings) {
   switch (settings.name) {
     case '/':
-      return Expanded(
-        child: Center(
-          child: MyCustomButtonColumn()
-        ),
+      return Column(
+        children: [
+          Expanded(
+            child: Center(
+                child: MyCustomButtonColumn()
+            ),
+          ),
+        ],
       );
     case '/asistente':
       return AsistentePage();
