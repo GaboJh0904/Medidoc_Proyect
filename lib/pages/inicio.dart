@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:medidoc_proyect/pages/biometrico.dart';
 import 'package:medidoc_proyect/pages/menu_principal.dart';
 
 class Inicio extends StatefulWidget {
@@ -33,53 +34,58 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     final alturaPantalla = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Container(
-        color: Colors.blue[200],
-        child: Stack(
-          children: [
-            CapaOla(
-              animacion: controladorAnimacion,
-              proporcionAltura: 0.1,
-              velocidad: 1.0,
-              desfase: pi,
-              color: Colors.blue[600]!.withOpacity(0.7),
-              inicioY: alturaPantalla * 0.3,
-            ),
-            CapaOla(
-              animacion: controladorAnimacion,
-              proporcionAltura: 0.15,
-              velocidad: 1.1,
-              desfase: pi / 2,
-              color: Colors.indigoAccent[200]!.withOpacity(0.7),
-              inicioY: alturaPantalla * 0.1,
-            ),
-            CapaOla(
-              animacion: controladorAnimacion,
-              proporcionAltura: 0.1,
-              velocidad: 1.0,
-              desfase: pi / 3,
-              color: Colors.blue[500]!.withOpacity(0.7),
-              inicioY: alturaPantalla * 0.6,
-            ),
-            CapaOla(
-              animacion: controladorAnimacion,
-              proporcionAltura: 0.1,
-              velocidad: 1.3,
-              desfase: pi / 3,
-              color: Colors.blue[100]!.withOpacity(0.7),
-              inicioY: alturaPantalla * 0.8,
-            ),
-            Center(
-              child: Text(
-                'Doctor Toc',
-                style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+      body: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) => BioPag())); // Modifica esto por tu destino
+        },
+        child: Container(
+          color: Colors.blue[200],
+          child: Stack(
+            children: [
+              CapaOla(
+                animacion: controladorAnimacion,
+                proporcionAltura: 0.1,
+                velocidad: 1.0,
+                desfase: pi,
+                color: Colors.blue[600]!.withOpacity(0.7),
+                inicioY: alturaPantalla * 0.3,
+              ),
+              CapaOla(
+                animacion: controladorAnimacion,
+                proporcionAltura: 0.15,
+                velocidad: 1.1,
+                desfase: pi / 2,
+                color: Colors.indigoAccent[200]!.withOpacity(0.7),
+                inicioY: alturaPantalla * 0.1,
+              ),
+              CapaOla(
+                animacion: controladorAnimacion,
+                proporcionAltura: 0.1,
+                velocidad: 1.0,
+                desfase: pi / 3,
+                color: Colors.blue[500]!.withOpacity(0.7),
+                inicioY: alturaPantalla * 0.6,
+              ),
+              CapaOla(
+                animacion: controladorAnimacion,
+                proporcionAltura: 0.1,
+                velocidad: 1.3,
+                desfase: pi / 3,
+                color: Colors.blue[100]!.withOpacity(0.7),
+                inicioY: alturaPantalla * 0.8,
+              ),
+              Center(
+                child: Text(
+                  'Doctor Toc',
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

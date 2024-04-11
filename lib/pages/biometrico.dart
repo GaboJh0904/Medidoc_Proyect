@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medidoc_proyect/logica_Autorizacion.dart';
+import 'package:medidoc_proyect/pages/asistente_page.dart';
+import 'package:medidoc_proyect/pages/menu_principal.dart';
 
 class BioPag extends StatefulWidget {
   const BioPag({super.key});
@@ -45,8 +47,9 @@ class _BioPagState extends State<BioPag> {
               onPressed: (){
                 setState(() {
                   autorizacion=false;
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => MenuPrincipal()));
                 });
-              }, child: const Text('Remover Autorizacion')) 
+              }, child: const Text('Entrar')) 
           ],
         ),)
 
