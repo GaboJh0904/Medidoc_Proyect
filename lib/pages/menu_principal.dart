@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medidoc_proyect/pages/asistente_page.dart';
+import 'package:medidoc_proyect/pages/formulario.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
 
 class MenuPrincipal extends StatelessWidget {
@@ -38,6 +39,8 @@ Widget _buildContent(BuildContext context, RouteSettings settings) {
       );
     case '/asistente':
       return AsistentePage();
+    case '/formulario':
+      return Formulario();
     default:
       return Container();
   }
@@ -58,8 +61,11 @@ class MyCustomButtonColumn extends StatelessWidget {
         ),
         SizedBox(height: 22),
         MyCustomButton(
-          text: "Opcion Dos",
-          onPressed: () {},
+          text: "Formulario",
+          onPressed: () {
+            Navigator.pushNamed(
+                context, '/formulario');
+          },
         ),
         SizedBox(height: 22),
         MyCustomButton(
