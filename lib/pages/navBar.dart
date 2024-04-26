@@ -1,136 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:medidoc_proyect/pages/ajustes.dart';
 
 class NavbarOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.account_circle_sharp,
-                    size: 80,
-                    color: Colors.white,
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'medidoc@ucb.edu.bo',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            decoration: BoxDecoration(
-              color: Colors.deepPurpleAccent,
-            ),
-          ),
-
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5.0),
-            child:Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              OptionButton(
-                icon: Icons.fingerprint,
-                label: 'Uso de huella',
-                onPressed: () {
-                  print("Uso de huella");
-                  Navigator.pop(context);
+      child: Container(
+        color: Colors.purple, // Color de fondo del Drawer
+        child: Center( // Centra el contenido
+          child: Column(
+            mainAxisSize: MainAxisSize.min, // Centra los elementos verticalmente
+            children: <Widget>[
+              SizedBox(height: 8), // Espacio antes del primer elemento
+              _buildDrawerOption(
+                title: 'Inicio',
+                onTap: () {
+                  // Actualiza la navegación aquí
                 },
               ),
-              OptionButton(
-                icon: Icons.g_mobiledata,
-                label: 'Correo electrónico',
-                onPressed: () {
-                  print("Correo electrónico");
-                  Navigator.pop(context);
+              _buildDrawerOption(
+                title: 'Ajustes',
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Ajustes()));
                 },
               ),
-              OptionButton(
-                icon: Icons.privacy_tip_outlined,
-                label: 'Política de privacidad',
-                onPressed: () {
-                  print("Política de privacidad");
-                  Navigator.pop(context);
+              _buildDrawerOption(
+                title: 'Ayudante',
+                onTap: () {
+                  // Actualiza la navegación aquí
                 },
               ),
-              OptionButton(
-                icon: Icons.settings,
-                label: 'Configuración',
-                onPressed: () {
-                  print("Configuración");
-                  Navigator.pop(context);
+              _buildDrawerOption(
+                title: 'Salir',
+                onTap: () {
+                  // Actualiza la navegación aquí
                 },
               ),
-              OptionButton(
-                icon: Icons.card_membership,
-                label: 'Identificador del dispositivo',
-                onPressed: () {
-                  print("Identificador del dispositivo");
-                  Navigator.pop(context);
-                },
-              ),
-              OptionButton(
-                icon: Icons.medical_services_rounded,
-                label: 'Medicaciones',
-                onPressed: () {
-                  print("Medicaciones");
-                  Navigator.pop(context);
-                },
-              ),
-              OptionButton(
-                icon: Icons.exit_to_app,
-                label: 'Cerrar sesión',
-                onPressed: () {
-                  print("Cerrar sesión");
-                  Navigator.pop(context);
-                },
-              ),
-
-
+              SizedBox(height: 8), // Espacio después del último elemento
             ],
-            ),
           ),
-        ],
+        ),
       ),
     );
   }
-}
 
-class OptionButton extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final VoidCallback onPressed;
-
-  const OptionButton({
-    required this.icon,
-    required this.label,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton.icon(
-      onPressed: onPressed,
-      icon: Icon(
-          icon,
-          size: 40,
+  Widget _buildDrawerOption({required String title, required VoidCallback onTap}) {
+    return Container(
+      margin: EdgeInsets.all(4.0), // Margen alrededor de cada botón
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.white), // Borde del botón color blanco
       ),
-      label: Text(
-        label,
-        style: const TextStyle(fontSize: 22)
-      ),
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all(Colors.deepPurpleAccent),
-
+      child: ListTile(
+        title: Text(
+          title,
+          style: TextStyle(color: Colors.white), // Texto de color blanco
+          textAlign: TextAlign.center, // Alineación del texto al centro
+        ),
+        onTap: onTap,
       ),
     );
   }
