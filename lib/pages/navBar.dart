@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medidoc_proyect/pages/ajustes.dart';
+import 'package:medidoc_proyect/pages/menu_principal.dart';
 
 class NavbarOptions extends StatelessWidget {
   @override
@@ -16,6 +17,7 @@ class NavbarOptions extends StatelessWidget {
                 title: 'Inicio',
                 onTap: () {
                   // Actualiza la navegación aquí
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MenuPrincipal()));
                 },
               ),
               _buildDrawerOption(
