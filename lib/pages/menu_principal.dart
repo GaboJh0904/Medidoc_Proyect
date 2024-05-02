@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:medidoc_proyect/pages/TutorialesPA.dart';
 import 'package:medidoc_proyect/pages/asistente_page.dart';
 import 'package:medidoc_proyect/pages/formulario.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
+import 'package:medidoc_proyect/pages/historialMedico.dart';
+import 'package:medidoc_proyect/pages/TutorialesPA.dart';
 
 class MenuPrincipal extends StatelessWidget {
   @override
@@ -87,9 +90,22 @@ class MyCustomButtonGrid extends StatelessWidget {
     "Consulta en casa", "Chat asistente", "Calendario", // Asegúrate de tener 15 títulos
   ];
 
-  void Function() _getActionForItem(String item) {
+  void Function() _getActionForItem(String item, BuildContext context) {
     // Aquí puedes definir lo que cada opción debe hacer
     return () {
+      if (item == 'Historial médico') {
+        print("Redireccionar a la página de historial médico");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HistorialMedicoPage()),
+        );
+      } else if (item == 'Tutoriales de primeros auxilios'){
+        print("Redireccionar a la Tutoriales de primeros auxilios");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => TutorialesPA()),
+        );
+      }
       print('Se seleccionó: $item');
       // Aquí iría la lógica para cada acción
     };
@@ -108,7 +124,7 @@ class MyCustomButtonGrid extends StatelessWidget {
       itemCount: options.length,
       itemBuilder: (context, index) {
         return GestureDetector(
-          onTap: _getActionForItem(options[index]),
+          onTap: _getActionForItem(options[index], context),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.purple,
