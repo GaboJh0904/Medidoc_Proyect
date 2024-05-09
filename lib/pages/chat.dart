@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_to_text.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:url_launcher/url_launcher.dart';
 
 class ChatBot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Nombre Medico',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ChatScreen(),
-      debugShowCheckedModeBanner: false,
-    );
+    return ChatScreen();  // Se ha eliminado MaterialApp y solo se devuelve ChatScreen.
   }
 }
 
@@ -34,6 +29,9 @@ class _ChatScreenState extends State<ChatScreen> {
   final SpeechToText _speechToText = SpeechToText();
   bool _speechEnabled = false;
   String _wordsSpoken = "";
+
+  late final bool showZoomButton = true;
+  late final bool showMapsButton = true;
 
   final String apiUrl = "http://192.168.99.126:8001/gemini/question";
 
@@ -126,11 +124,58 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
+  void _pickFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result != null) {
+      PlatformFile file = result.files.first;
+      print('Archivo seleccionado: ${file.name}');
+      // Aquí puedes agregar la lógica para enviar el archivo al servidor o lo que necesites hacer con él
+    } else {
+      // Usuario canceló la selección de archivo
+      print('Selección de archivo cancelada');
+    }
+  }
+
+  void _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'No se pudo lanzar $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat Financiero'),
+        backgroundColor: Color.fromARGB(255, 82, 20, 122),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);  // Esto llevará al usuario de vuelta a la página anterior
+          },
+        ),
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.camera_alt, color: Colors.white),
+            SizedBox(width: 10),
+            Text('Nombre Médico', style: TextStyle(color: Colors.white)),
+          ],
+        ),
+        centerTitle: true,
+        actions: <Widget>[
+          if (showZoomButton) 
+            IconButton(
+              icon: Icon(Icons.video_call, color: Colors.white),
+              onPressed: () => _launchURL('zoommtg://'), // Ejemplo de URL de esquema para abrir Zoom
+            ),
+          if (showMapsButton)
+            IconButton(
+              icon: Icon(Icons.map, color: Colors.white),
+              onPressed: () => _launchURL('https://maps.google.com'), // URL para abrir Google Maps
+            ),
+        ],
       ),
       body: Column(
         children: <Widget>[
@@ -182,6 +227,10 @@ class _ChatScreenState extends State<ChatScreen> {
                 onPressed: _speechToText.isListening
                     ? _stopListening
                     : _startListening,
+              ),
+              IconButton(
+                icon: Icon(Icons.attach_file),
+                onPressed: _pickFile,
               ),
               Expanded(
                 child: Padding(
