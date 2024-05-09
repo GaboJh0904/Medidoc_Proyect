@@ -105,6 +105,12 @@ class MyCustomButtonGrid extends StatelessWidget {
           context,
           MaterialPageRoute(builder: (context) => TutorialesPA()),
         );
+      } else if (item == 'Solicitud de cita'){
+        print("Redireccionar a agendar cita");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AgendarCita()),
+        );
       }
       print('Se seleccionó: $item');
       // Aquí iría la lógica para cada acción
