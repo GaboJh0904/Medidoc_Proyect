@@ -1,7 +1,8 @@
+import 'package:doctordoc/agendarCita.dart';
 import 'package:flutter/material.dart';
-import 'package:medidoc_proyect/pages/asistente_page.dart';
-import 'package:medidoc_proyect/pages/formulario.dart';
-import 'package:medidoc_proyect/pages/navBar.dart';
+import  'asistente_page.dart';
+import 'formulario.dart';
+import 'navBar.dart';
 
 class MenuPrincipal extends StatelessWidget {
   @override
@@ -80,19 +81,27 @@ class BannerClipper extends CustomClipper<Path> {
 
 class MyCustomButtonGrid extends StatelessWidget {
   final List<String> options = [
-    "Historial médico", "Botón de alerta", "Solicitud de cita", // Añade los títulos
+    "Historial médico", "Botón de alerta", "Solicitud de cita",
     "Cancelación de cita", "Mapa de hospitales", "Cuestionarios médicos",
     "Teleconsulta", "Ver cita programada", "Receta médica",
     "BPO", "Tutoriales de primeros auxilios", "Emergencia SOS",
-    "Consulta en casa", "Chat asistente", "Calendario", // Asegúrate de tener 15 títulos
+    "Consulta en casa", "Chat asistente", "Calendario",
   ];
-
-  void Function() _getActionForItem(String item) {
-    // Aquí puedes definir lo que cada opción debe hacer
-    return () {
-      print('Se seleccionó: $item');
-      // Aquí iría la lógica para cada acción
-    };
+  void _navigateToScreen(BuildContext context, Widget screen) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => screen),
+    );
+  }
+  void Function() _getActionForItem(BuildContext context, String item) {
+    switch (item) {
+      case "Solicitud de cita":
+        return () => _navigateToScreen(context, AgendarCita());
+      default:
+        return () {
+          print('Se seleccionó: $item');
+        };
+    }
   }
 
   @override
@@ -108,7 +117,7 @@ class MyCustomButtonGrid extends StatelessWidget {
       itemCount: options.length,
       itemBuilder: (context, index) {
         return GestureDetector(
-          onTap: _getActionForItem(options[index]),
+          onTap: _getActionForItem(context, options[index]),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.purple,
@@ -142,7 +151,6 @@ class MyCustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Botón simplificado sin estado interno
     return GestureDetector(
       onTap: onPressed,
       child: Container(
