@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:medidoc_proyect/pages/TutorialesPA.dart';
+import 'package:medidoc_proyect/pages/agendarCita.dart';
 import 'package:medidoc_proyect/pages/asistente_page.dart';
+import 'package:medidoc_proyect/pages/chat.dart';
+import 'package:medidoc_proyect/pages/elimCancelacion.dart';
+import 'package:medidoc_proyect/pages/elimConsulta.dart';
+import 'package:medidoc_proyect/pages/elimTeleconsulta.dart';
 import 'package:medidoc_proyect/pages/formulario.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
 import 'package:medidoc_proyect/pages/historialMedico.dart';
 import 'package:medidoc_proyect/pages/TutorialesPA.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MenuPrincipal extends StatelessWidget {
   @override
@@ -81,6 +87,14 @@ class BannerClipper extends CustomClipper<Path> {
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
+void _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'No se pudo lanzar $url';
+    }
+  }
+
 class MyCustomButtonGrid extends StatelessWidget {
   final List<String> options = [
     "Historial médico", "Botón de alerta", "Solicitud de cita", // Añade los títulos
@@ -110,6 +124,33 @@ class MyCustomButtonGrid extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => AgendarCita()),
+        );
+      } else if (item == 'Cancelación de cita'){
+        print("Redireccionar a Cancelación de cita");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Cancelacion()),
+        );
+      } else if (item == 'Consulta en casa'){
+        print("Redireccionar a Consulta en casa");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Consulta()),
+        );
+      } else if (item == 'Mapa de hospitales'){
+        print("Redireccionar a Mapa de hospitales");
+        _launchURL('https://maps.google.com');
+      } else if (item == 'Teleconsulta'){
+        print("Redireccionar a Teleconsulta");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Teleconsulta()),
+        );
+      } else if (item == 'Chat asistente'){
+        print("Redireccionar a Chat asistente");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ChatBot()),
         );
       }
       print('Se seleccionó: $item');

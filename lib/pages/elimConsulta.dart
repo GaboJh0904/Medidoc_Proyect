@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:medidoc_proyect/pages/listaPersonal.dart';
 import 'navBar.dart';
 import 'agendarCitaFechaHora.dart';
 import 'modeloCita.dart';
 
-class AgendarCita extends StatefulWidget {
+class Consulta extends StatefulWidget {
   @override
-  _AgendarCitaState createState() => _AgendarCitaState();
+  _ConsultaState createState() => _ConsultaState();
 }
 
-class _AgendarCitaState extends State<AgendarCita> {
+class _ConsultaState extends State<Consulta> {
   final List<String> especialidades = [
     'Alergología', 'Cardiología', 'Cirugía plástica', 'Dermatología', 
     'Endocrinología', 'Fisioterapia', 'Gastroenterología', 'Ginecología - Obstetricia', 
@@ -18,6 +19,7 @@ class _AgendarCitaState extends State<AgendarCita> {
     'Psicología', 'Traumatología', 'Urología'
   ];
 
+
   String? selectedEspecialidad;
   List<String> medicos = [];
 
@@ -25,7 +27,7 @@ class _AgendarCitaState extends State<AgendarCita> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Solicitud de cita'),
+        title: Text('Consulta en casa'),
       ),
       drawer: NavbarOptions(),
       body: Column(
@@ -41,45 +43,20 @@ class _AgendarCitaState extends State<AgendarCita> {
               itemCount: especialidades.length,
               itemBuilder: (context, index) {
                 return ElevatedButton(
-                  onPressed: () => _showMedicos(especialidades[index]),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ListaPersonal())
+                    );
+                  } ,
                   child: Text(especialidades[index], style: TextStyle(color: Colors.white)),
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.purple),
                 );
               },
             ),
-          ),
-          if (selectedEspecialidad != null) ...[
-            Text('Selecciona un médico de $selectedEspecialidad:',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-            Expanded(
-              child: ListView.builder(
-                itemCount: medicos.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(medicos[index]),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AgendarCitaFechaHora(especialidad: selectedEspecialidad!, medico: medicos[index]),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
-          ]
+          )
         ],
       ),
     );
-  }
-
-  void _showMedicos(String especialidad) {
-    setState(() {
-      selectedEspecialidad = especialidad;
-      // Aquí deberías tener una lógica para obtener los médicos basados en la especialidad
-      medicos = ['Médico 1', 'Médico 2', 'Médico 3']; // Ejemplo de lista de médicos
-    });
   }
 }

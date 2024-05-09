@@ -117,7 +117,7 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.purple,
+                backgroundColor: Colors.purple,
               ),
               child: Text('Confirmar Cita'),
             ),
