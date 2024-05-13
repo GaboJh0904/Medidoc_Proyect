@@ -1,89 +1,107 @@
 import 'package:flutter/material.dart';
-
+import 'package:url_launcher/url_launcher.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class TutorialesPA extends StatelessWidget {
-  late PageController _pageController = PageController();
-
-  List<String> videoUrls = [
-    "https://www.youtube.com/watch?v=aShm8qshKDY",
-    "https://www.youtube.com/watch?v=TV3lnITz_Mk",
-    "https://www.youtube.com/watch?v=FEayzgNGGBQ",
-    "https://www.youtube.com/watch?v=JAgB5RVgHNk",
-    "https://www.youtube.com/watch?v=omEfz360ujY",
-  ];
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('YouTube Videos'),
+        title: Text('Tutoriales Primeros Auxilios'),
       ),
-      body: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: videoUrls.length,
-        itemBuilder: (context, index) {
-          return Container(
-            height: 200,
-            child: AnimatedVideoCard(
-              videoUrl: videoUrls[index],
-              pageIndex: index,
-              pageController: _pageController,
-            ),
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: ListView.builder(
+          itemCount: musicVideos.length,
+          itemBuilder: (context, index) {
+            return VideoCard(
+              video: musicVideos[index],
+            );
+          },
+        ),
       ),
     );
   }
 }
 
-class AnimatedVideoCard extends StatelessWidget {
-  final String videoUrl;
-  final int pageIndex;
-  final PageController pageController;
+class VideoPA {
+  final String videoId;
+  final String title;
 
-  const AnimatedVideoCard({
-    Key? key,
-    required this.videoUrl,
-    required this.pageIndex,
-    required this.pageController,
-  }) : super(key: key);
+  VideoPA({required this.videoId, required this.title});
+}
+
+final List<VideoPA> musicVideos = [
+  VideoPA(
+    videoId: 'omEfz360ujY',
+    title: 'Aprende RCP y Atragantamiento',
+  ),
+  VideoPA(
+    videoId: 'TV3lnITz_Mk',
+    title: 'Primeros Auxilios: RCP (Reanimación cardiopulmonar) en bebés y niños',
+  ),
+  VideoPA(
+    videoId: 'FEayzgNGGBQ',
+    title: 'Primeros Auxilios: RCP (Reanimación cardiopulmonar) en adultos',
+  ),
+  VideoPA(
+    videoId: 'JAgB5RVgHNk',
+    title: 'Primeros Auxilios - Valoración Primaria y Conducta PAS',
+  ),
+  VideoPA(
+    videoId: 'aShm8qshKDY',
+    title: 'RCP básica en NIÑOS y BEBÉS. Primeros auxilios en pediatría: reanimación cardiopulmonar',
+  ),
+];
+
+class VideoCard extends StatelessWidget {
+  final VideoPA video;
+
+  VideoCard({required this.video});
 
   @override
   Widget build(BuildContext context) {
-    String videoId = videoUrl.substring(videoUrl.indexOf('=') + 1);
-    String thumbnailUrl = 'https://img.youtube.com/vi/$videoId/maxresdefault.jpg';
-
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(bottom: 8.0),
       child: Card(
-        elevation: 5,
+        elevation: 4,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: BorderRadius.circular(20),
         ),
-        child: InkWell(
-          onTap: () {
-            // You can add functionality to open the video here
-          },
-          child: Stack(
-            children: [
-              Image.network(
-                thumbnailUrl,
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                _launchYouTubeVideo(video.videoId);
+              },
+              child: AspectRatio(
+                aspectRatio: 16 / 9, // Cambia la relación de aspecto aquí
+                child: Image.network(
+                  'https://img.youtube.com/vi/${video.videoId}/0.jpg',
+                  fit: BoxFit.cover,
+                ),
               ),
-              Center(
-                child: Icon(Icons.play_circle_filled, size: 50, color: Colors.white),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                video.title,
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  void _launchYouTubeVideo(String videoId) async {
+    final url = 'https://www.youtube.com/watch?v=$videoId';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
