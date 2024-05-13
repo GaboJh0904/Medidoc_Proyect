@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:medidoc_proyect/pages/EmergenciaSOS.dart';
+import 'package:medidoc_proyect/pages/SOS.dart';
 import 'package:medidoc_proyect/pages/TutorialesPA.dart';
 import 'package:medidoc_proyect/pages/agendarCita.dart';
-import 'package:medidoc_proyect/pages/asistente_page.dart';
 import 'package:medidoc_proyect/pages/chat.dart';
 import 'package:medidoc_proyect/pages/elimCancelacion.dart';
 import 'package:medidoc_proyect/pages/elimConsulta.dart';
 import 'package:medidoc_proyect/pages/elimTeleconsulta.dart';
-import 'package:medidoc_proyect/pages/formulario.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
 import 'package:medidoc_proyect/pages/historialMedico.dart';
-import 'package:medidoc_proyect/pages/TutorialesPA.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MenuPrincipal extends StatelessWidget {
@@ -99,7 +98,7 @@ class MyCustomButtonGrid extends StatelessWidget {
   final List<String> options = [
     "Historial médico", "Botón de alerta", "Solicitud de cita", // Añade los títulos
     "Cancelación de cita", "Mapa de hospitales", "Cuestionarios médicos",
-    "Teleconsulta", "Ver cita programada", "Receta médica",
+    "Teleconsulta", "Ver cita programada", "Receta médica", "Alimentaciones",
     "BPO", "Tutoriales de primeros auxilios", "Emergencia SOS",
     "Consulta en casa", "Chat asistente", "Calendario", // Asegúrate de tener 15 títulos
   ];
@@ -139,7 +138,7 @@ class MyCustomButtonGrid extends StatelessWidget {
         );
       } else if (item == 'Mapa de hospitales'){
         print("Redireccionar a Mapa de hospitales");
-        _launchURL('https://maps.google.com');
+        _launchURL('https://www.google.com/maps/search/hospital/@-16.5215258,-68.1111076,15z/data=!3m1!4b1?entry=ttu');
       } else if (item == 'Teleconsulta'){
         print("Redireccionar a Teleconsulta");
         Navigator.push(
@@ -151,6 +150,24 @@ class MyCustomButtonGrid extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => ChatBot()),
+        );
+      } else if (item == 'Emergencia SOS'){
+        print("Redireccionar a Emergencia SOS");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EmergenciaSOS()),
+        );
+      } else if (item == 'Botón de alerta'){
+        print("Redireccionar a Boton de alerta");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BotonSOS()),
+        );
+      } else if (item == 'Alimentaciones'){
+        print("Redireccionar a Alimentaciones");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BotonSOS()),
         );
       }
       print('Se seleccionó: $item');

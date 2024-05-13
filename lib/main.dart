@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:medidoc_proyect/pages/asistente_page.dart';
 import 'package:medidoc_proyect/pages/Inicio.dart';
 import 'package:medidoc_proyect/pages/biometrico.dart';
-import 'package:medidoc_proyect/pages/chat.dart';
-import 'package:medidoc_proyect/pages/listaPersonal.dart';
 
 void main() {
   runApp(const MyApp());
