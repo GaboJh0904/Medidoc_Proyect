@@ -86,7 +86,7 @@ class MyCustomButtonGrid extends StatelessWidget {
     "Historial médico", "Botón de alerta", "Solicitud de cita", // Añade los títulos
     "Cancelación de cita", "Mapa de hospitales", "Cuestionarios médicos",
     "Teleconsulta", "Ver cita programada", "Receta médica",
-    "BPO", "Tutoriales de primeros auxilios", "Emergencia SOS",
+    "RPO", "Tutoriales de primeros auxilios", "Emergencia SOS",
     "Consulta en casa", "Chat asistente", "Calendario", // Asegúrate de tener 15 títulos
   ];
 
@@ -110,6 +110,24 @@ class MyCustomButtonGrid extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => AgendarCita()),
+        );
+      } else if (item == 'Cancelación de cita'){
+        print("Redireccionar a cancelación cita");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CitasConfirmadasEliminar()),
+        );
+      } else if (item == 'Receta médica'){
+        print("Redireccionar a Receta médica");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => RecetaMedica()),
+        );
+      } else if (item == 'RPO'){
+        print("Redireccionar a RPO");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => rpo()),
         );
       }
       print('Se seleccionó: $item');
