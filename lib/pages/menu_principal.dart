@@ -9,6 +9,7 @@ import 'package:medidoc_proyect/pages/elimConsulta.dart';
 import 'package:medidoc_proyect/pages/elimTeleconsulta.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
 import 'package:medidoc_proyect/pages/historialMedico.dart';
+import 'package:medidoc_proyect/pages/fichaClinica.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MenuPrincipal extends StatelessWidget {
@@ -168,6 +169,13 @@ class MyCustomButtonGrid extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => BotonSOS()),
+        );
+      }
+      else if (item == 'Cuestionarios médicos'){
+        print("Redireccionar a Cuestionarios médicos");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => FichaClinica()),
         );
       }
       print('Se seleccionó: $item');
