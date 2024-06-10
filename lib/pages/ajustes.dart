@@ -29,13 +29,12 @@ class Ajustes extends StatelessWidget {
               ),
             ),
             decoration: BoxDecoration(
-              color: Colors.deepPurpleAccent,
+              color: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
             ),
           ),
-
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.0),
-            child:Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 OptionButton(
@@ -102,7 +101,6 @@ class Ajustes extends StatelessWidget {
                     Navigator.pop(context);
                   },
                 ),
-
               ],
             ),
           ),
@@ -130,14 +128,17 @@ class OptionButton extends StatelessWidget {
       icon: Icon(
         icon,
         size: 40,
+        color: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
       ),
       label: Text(
-          label,
-          style: const TextStyle(fontSize: 22)
+        label,
+        style: const TextStyle(
+          fontSize: 22,
+          color: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        ),
       ),
       style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all(Colors.deepPurpleAccent),
-
+        foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 36, 83, 153)),  // Dark Blueberry
       ),
     );
   }

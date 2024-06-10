@@ -6,7 +6,9 @@ import 'citasConfirmadas.dart';
 class AgendarCitaFechaHora extends StatefulWidget {
   final String especialidad;
   final String medico;
+
   AgendarCitaFechaHora({required this.especialidad, required this.medico});
+
   @override
   _AgendarCitaFechaHoraState createState() => _AgendarCitaFechaHoraState();
 }
@@ -21,8 +23,17 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Selecciona Fecha y Hora'),
-        backgroundColor: Colors.purpleAccent,
+        title: Text(
+          'Selecciona Fecha y Hora',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        elevation: 0,
       ),
       body: Column(
         children: [
@@ -42,11 +53,11 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
               todayTextStyle: TextStyle(color: Colors.white),
               selectedTextStyle: TextStyle(color: Colors.white),
               selectedDecoration: BoxDecoration(
-                color: Colors.purple,
+                color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
                 shape: BoxShape.circle,
               ),
               todayDecoration: BoxDecoration(
-                color: Colors.deepPurple[200],
+                color: Color.fromARGB(255, 51, 133, 209), // Color del esquema anterior
                 shape: BoxShape.circle,
               ),
               outsideTextStyle: TextStyle(color: Colors.grey),
@@ -57,7 +68,7 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
               leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
               rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white),
               titleCentered: true,
-              decoration: BoxDecoration(color: Colors.purple),
+              decoration: BoxDecoration(color: Color.fromARGB(255, 52, 123, 230)), // Dark Blueberry
             ),
             daysOfWeekStyle: DaysOfWeekStyle(
               weekdayStyle: TextStyle(color: Colors.white),
@@ -82,7 +93,7 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: _selectedTime == horarios[index] ? Colors.purple : Colors.purple[100],
+                      color: _selectedTime == horarios[index] ? Color.fromARGB(255, 36, 83, 153) : Color.fromARGB(255, 42, 107, 145),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(
@@ -117,9 +128,14 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple,
+                backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
               ),
-              child: Text('Confirmar Cita'),
+              child: Text(
+                'Confirmar Cita',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                ),
             ),
           ),
         ],

@@ -7,7 +7,17 @@ class HistorialMedicoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Medidoc'),
+        title: Text(
+          'Historia Medico',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        elevation: 0,
       ),
       drawer: NavbarOptions(),
       backgroundColor: Colors.white,
