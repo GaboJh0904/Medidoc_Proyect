@@ -4,7 +4,7 @@ class FooterAsistente extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(255, 192, 196, 199),
+      color: Color.fromARGB(255, 58, 94, 124),
       padding: EdgeInsets.all(16.0),
       child: Row(
         children: [
@@ -14,7 +14,7 @@ class FooterAsistente extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 53, 106, 146),
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
             ),
           ),

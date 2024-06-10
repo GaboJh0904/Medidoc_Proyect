@@ -33,7 +33,17 @@ class ArchivosPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Archivos'),
+        title: Text(
+          'Archivos',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        elevation: 0,
       ),
       body: GridView.builder(
         padding: EdgeInsets.all(16.0),
@@ -46,11 +56,11 @@ class ArchivosPage extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              // Navegar a la otra pantalla aquí
+              // Navegar a la otra pantalla aquí, pasando el nombre del archivo
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SubArchivosPage(), // Reemplaza SubFilesHM() con la pantalla a la que deseas navegar
+                  builder: (context) => SubArchivosPage(nombre: archivos[index]["nombre"]),
                 ),
               );
             },

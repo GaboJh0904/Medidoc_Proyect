@@ -4,11 +4,9 @@ import 'package:medidoc_proyect/components/menu_button.dart';
 import 'package:medidoc_proyect/pages/EmergenciaSOS.dart';
 import 'package:medidoc_proyect/pages/SOS.dart';
 import 'package:medidoc_proyect/pages/TutorialesPA.dart';
-import 'package:medidoc_proyect/pages/agendarCita.dart';
+import 'package:medidoc_proyect/pages/catalogoEspecialidades.dart';
+import 'package:medidoc_proyect/pages/alimentaciones.dart';
 import 'package:medidoc_proyect/pages/chat.dart';
-import 'package:medidoc_proyect/pages/elimCancelacion.dart';
-import 'package:medidoc_proyect/pages/elimConsulta.dart';
-import 'package:medidoc_proyect/pages/elimTeleconsulta.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
 import 'package:medidoc_proyect/pages/historialMedico.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -18,10 +16,20 @@ class MenuPrincipal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Medidoc'),
+        title: Text(
+          'Menu Principal',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        elevation: 0,
       ),
       drawer: NavbarOptions(),
-      backgroundColor: Color.fromARGB(255, 192, 196, 199),
+      backgroundColor: Color.fromARGB(255, 233, 236, 240),
       body: SafeArea(
         child: Column(
           children: [
@@ -120,12 +128,12 @@ class MyCustomButtonGrid extends StatelessWidget {
     {
       "text": "Solicitud de cita",
       "icon": Icons.calendar_today,
-      "page": AgendarCita()
+      "page": CatalogoEspecialidades(titulo: "Solicitar Cita",numFuncion: 1,)
     },
     {
       "text": "Cancelación de cita",
       "icon": Icons.cancel,
-      "page": Cancelacion()
+      "page": CatalogoEspecialidades(titulo: "Cancelacion de Cita",numFuncion: 4,)
     },
     {
       "text": "Mapa de hospitales",
@@ -138,14 +146,18 @@ class MyCustomButtonGrid extends StatelessWidget {
       "icon": Icons.question_answer,
       "page": BotonSOS()
     },
-    {"text": "Teleconsulta", "icon": Icons.video_call, "page": Teleconsulta()},
+    {
+      "text": "Teleconsulta", 
+      "icon": Icons.video_call, 
+      "page": CatalogoEspecialidades(titulo: "Teleconsulta",numFuncion: 2,)
+    },
     {
       "text": "Ver cita programada",
       "icon": Icons.event_note,
       "page": BotonSOS()
     },
     {"text": "Receta médica", "icon": Icons.receipt, "page": BotonSOS()},
-    {"text": "Alimentaciones", "icon": Icons.fastfood, "page": BotonSOS()},
+    {"text": "Alimentaciones", "icon": Icons.fastfood, "page": Alimentaciones()},
     {"text": "BPO", "icon": Icons.business_center, "page": BotonSOS()},
     {
       "text": "Tutoriales de primeros auxilios",
@@ -157,8 +169,12 @@ class MyCustomButtonGrid extends StatelessWidget {
       "icon": Icons.phone_in_talk,
       "page": EmergenciaSOS()
     },
-    {"text": "Consulta en casa", "icon": Icons.home, "page": Consulta()},
-    {"text": "Chat asistente", "icon": Icons.chat, "page": ChatBot()},
+    {
+      "text": "Consulta en casa", 
+      "icon": Icons.home, 
+      "page": CatalogoEspecialidades(titulo: "Consulta en Casa",numFuncion: 3,)
+    },
+    {"text": "Chat asistente", "icon": Icons.chat, "page": ChatBot(nombreDoctor: "Asistente Bot", estado: 3)},
     {"text": "Calendario", "icon": Icons.calendar_today, "page": BotonSOS()},
   ];
 
