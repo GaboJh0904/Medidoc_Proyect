@@ -9,6 +9,7 @@ import 'package:medidoc_proyect/pages/alimentaciones.dart';
 import 'package:medidoc_proyect/pages/chat.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
 import 'package:medidoc_proyect/pages/historialMedico.dart';
+import 'package:medidoc_proyect/pages/fichaClinica.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MenuPrincipal extends StatelessWidget {
