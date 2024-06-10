@@ -5,6 +5,7 @@ import 'package:medidoc_proyect/pages/TutorialesPA.dart';
 import 'package:medidoc_proyect/pages/agendarCita.dart';
 import 'package:medidoc_proyect/pages/asistente_page.dart';
 import 'package:medidoc_proyect/pages/citasConfirmadas.dart';
+import 'package:medidoc_proyect/pages/citasConfirmadasEliminar.dart';
 import 'package:medidoc_proyect/pages/formulario.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
 import 'package:medidoc_proyect/pages/historialMedico.dart';
@@ -121,7 +122,7 @@ class MyCustomButtonGrid extends StatelessWidget {
         print("Redireccionar a cancelación cita");
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => CitasConfirmadas()),
+          MaterialPageRoute(builder: (context) => CitasConfirmadasEliminar()),
         );
       } else if (item == 'Receta médica') {
         print("Redireccionar a Receta médica");
