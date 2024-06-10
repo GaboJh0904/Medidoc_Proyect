@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:medidoc_proyect/pages/RPO.dart';
+import 'package:medidoc_proyect/pages/RecetaMedica.dart';
 import 'package:medidoc_proyect/pages/TutorialesPA.dart';
+import 'package:medidoc_proyect/pages/agendarCita.dart';
 import 'package:medidoc_proyect/pages/asistente_page.dart';
+import 'package:medidoc_proyect/pages/citasConfirmadas.dart';
 import 'package:medidoc_proyect/pages/formulario.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
 import 'package:medidoc_proyect/pages/historialMedico.dart';
@@ -83,11 +87,13 @@ class BannerClipper extends CustomClipper<Path> {
 
 class MyCustomButtonGrid extends StatelessWidget {
   final List<String> options = [
-    "Historial médico", "Botón de alerta", "Solicitud de cita", // Añade los títulos
+    "Historial médico", "Botón de alerta",
+    "Solicitud de cita", // Añade los títulos
     "Cancelación de cita", "Mapa de hospitales", "Cuestionarios médicos",
     "Teleconsulta", "Ver cita programada", "Receta médica",
     "RPO", "Tutoriales de primeros auxilios", "Emergencia SOS",
-    "Consulta en casa", "Chat asistente", "Calendario", // Asegúrate de tener 15 títulos
+    "Consulta en casa", "Chat asistente",
+    "Calendario", // Asegúrate de tener 15 títulos
   ];
 
   void Function() _getActionForItem(String item, BuildContext context) {
@@ -99,31 +105,31 @@ class MyCustomButtonGrid extends StatelessWidget {
           context,
           MaterialPageRoute(builder: (context) => HistorialMedicoPage()),
         );
-      } else if (item == 'Tutoriales de primeros auxilios'){
+      } else if (item == 'Tutoriales de primeros auxilios') {
         print("Redireccionar a la Tutoriales de primeros auxilios");
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => TutorialesPA()),
         );
-      } else if (item == 'Solicitud de cita'){
+      } else if (item == 'Solicitud de cita') {
         print("Redireccionar a agendar cita");
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => AgendarCita()),
         );
-      } else if (item == 'Cancelación de cita'){
+      } else if (item == 'Cancelación de cita') {
         print("Redireccionar a cancelación cita");
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => CitasConfirmadasEliminar()),
+          MaterialPageRoute(builder: (context) => CitasConfirmadas()),
         );
-      } else if (item == 'Receta médica'){
+      } else if (item == 'Receta médica') {
         print("Redireccionar a Receta médica");
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => RecetaMedica()),
         );
-      } else if (item == 'RPO'){
+      } else if (item == 'RPO') {
         print("Redireccionar a RPO");
         Navigator.push(
           context,
@@ -218,7 +224,6 @@ class MyCustomButton extends StatelessWidget {
     );
   }
 }
-
 
 class PlaceholderWidget extends StatelessWidget {
   @override

@@ -10,7 +10,12 @@ class AgendarCita extends StatefulWidget {
 
 class _AgendarCitaState extends State<AgendarCita> {
   final List<String> especialidades = [
-    'Alergología', 'Cardiología', 'Cirugía plástica', 'Dermatología', 'Endocrinología', 'Fisioterapia',
+    'Alergología',
+    'Cardiología',
+    'Cirugía plástica',
+    'Dermatología',
+    'Endocrinología',
+    'Fisioterapia',
   ];
 
   String? selectedEspecialidad;
@@ -38,7 +43,8 @@ class _AgendarCitaState extends State<AgendarCita> {
                 return ElevatedButton(
                   onPressed: () => _showMedicos(especialidades[index]),
                   child: Text(especialidades[index]),
-                  style: ElevatedButton.styleFrom(primary: Colors.purple),
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.purple),
                 );
               },
             ),
@@ -56,7 +62,9 @@ class _AgendarCitaState extends State<AgendarCita> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AgendarCitaFechaHora(especialidad: selectedEspecialidad!, medico: medicos[index]),
+                          builder: (context) => AgendarCitaFechaHora(
+                              especialidad: selectedEspecialidad!,
+                              medico: medicos[index]),
                         ),
                       );
                     },
@@ -74,7 +82,11 @@ class _AgendarCitaState extends State<AgendarCita> {
     setState(() {
       selectedEspecialidad = especialidad;
       // Aquí deberías tener una lógica para obtener los médicos basados en la especialidad
-      medicos = ['Médico 1', 'Médico 2', 'Médico 3']; // Ejemplo de lista de médicos
+      medicos = [
+        'Médico 1',
+        'Médico 2',
+        'Médico 3'
+      ]; // Ejemplo de lista de médicos
     });
   }
 }

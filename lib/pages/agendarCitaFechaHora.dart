@@ -15,7 +15,19 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
   DateTime _selectedDay = DateTime.now();
   String? _selectedTime;
 
-  List<String> horarios = ['08:00', '09:30', '10:30', '11:00', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00'];
+  List<String> horarios = [
+    '08:00',
+    '09:30',
+    '10:30',
+    '11:00',
+    '12:00',
+    '12:30',
+    '13:00',
+    '13:30',
+    '14:00',
+    '14:30',
+    '15:00'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +94,9 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: _selectedTime == horarios[index] ? Colors.purple : Colors.purple[100],
+                      color: _selectedTime == horarios[index]
+                          ? Colors.purple
+                          : Colors.purple[100],
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(
@@ -113,11 +127,14 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
                     direccion: 'Dirección del Consultorio',
                   );
                   listaDeCitasGlobal.add(nuevaCita);
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => CitasConfirmadas()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CitasConfirmadas()));
                 }
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.purple,
+                backgroundColor: Colors.purple,
               ),
               child: Text('Confirmar Cita'),
             ),
