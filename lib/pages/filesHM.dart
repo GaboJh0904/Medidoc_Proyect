@@ -79,6 +79,7 @@ class ArchivosPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14.0, // Tamaño del texto
+                    color: Colors.black,
                     //fontWeight: FontWeight.bold,
                   ),
                 ),

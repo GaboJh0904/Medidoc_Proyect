@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:medidoc_proyect/components/footer_asistente.dart';
 import 'package:medidoc_proyect/components/menu_button.dart';
 import 'package:medidoc_proyect/pages/EmergenciaSOS.dart';
+import 'package:medidoc_proyect/pages/RPO.dart';
+import 'package:medidoc_proyect/pages/RecetaMedica.dart';
 import 'package:medidoc_proyect/pages/SOS.dart';
 import 'package:medidoc_proyect/pages/TutorialesPA.dart';
 import 'package:medidoc_proyect/pages/catalogoEspecialidades.dart';
 import 'package:medidoc_proyect/pages/alimentaciones.dart';
 import 'package:medidoc_proyect/pages/chat.dart';
+import 'package:medidoc_proyect/pages/citasConfirmadasEliminar.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
 import 'package:medidoc_proyect/pages/historialMedico.dart';
 import 'package:medidoc_proyect/pages/fichaClinica.dart';
@@ -134,7 +137,7 @@ class MyCustomButtonGrid extends StatelessWidget {
     {
       "text": "Cancelación de cita",
       "icon": Icons.cancel,
-      "page": CatalogoEspecialidades(titulo: "Cancelacion de Cita",numFuncion: 4,)
+      "page": CitasConfirmadasEliminar()
     },
     {
       "text": "Mapa de hospitales",
@@ -145,7 +148,7 @@ class MyCustomButtonGrid extends StatelessWidget {
     {
       "text": "Cuestionarios médicos",
       "icon": Icons.question_answer,
-      "page": BotonSOS()
+      "page": FichaClinica()
     },
     {
       "text": "Teleconsulta", 
@@ -157,9 +160,9 @@ class MyCustomButtonGrid extends StatelessWidget {
       "icon": Icons.event_note,
       "page": BotonSOS()
     },
-    {"text": "Receta médica", "icon": Icons.receipt, "page": BotonSOS()},
+    {"text": "Receta médica", "icon": Icons.receipt, "page": RecetaMedica()},
     {"text": "Alimentaciones", "icon": Icons.fastfood, "page": Alimentaciones()},
-    {"text": "BPO", "icon": Icons.business_center, "page": BotonSOS()},
+    {"text": "RPO", "icon": Icons.business_center, "page": rpo()},
     {
       "text": "Tutoriales de primeros auxilios",
       "icon": Icons.school,
