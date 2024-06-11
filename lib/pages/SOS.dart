@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:medidoc_proyect/components/custom_button.dart';
 import 'dart:async';
 
+import 'package:medidoc_proyect/pages/sosMap.dart';
+
 class BotonSOS extends StatefulWidget {
   @override
   _BotonSOSState createState() => _BotonSOSState();
@@ -83,6 +85,18 @@ class _BotonSOSState extends State<BotonSOS> {
                     color: Color.fromARGB(255, 26, 51, 121),  // Dark Blueberry
                     onTap: () {
                       _showCancelDialog(); // Suponiendo 165 como número de emergencia
+                    },
+                  ),
+                  CustomButton(
+                    text: 'Mapa de ubicación',
+                    title: null,
+                    sections: null,
+                    color: Color.fromARGB(255, 26, 51, 121),  // Dark Blueberry
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MapPage()),
+                      );
                     },
                   ),
                   CustomButton(

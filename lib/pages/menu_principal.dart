@@ -10,6 +10,7 @@ import 'package:medidoc_proyect/pages/catalogoEspecialidades.dart';
 import 'package:medidoc_proyect/pages/alimentaciones.dart';
 import 'package:medidoc_proyect/pages/chat.dart';
 import 'package:medidoc_proyect/pages/citasConfirmadasEliminar.dart';
+import 'package:medidoc_proyect/pages/consultaCasa.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
 import 'package:medidoc_proyect/pages/historialMedico.dart';
 import 'package:medidoc_proyect/pages/fichaClinica.dart';
@@ -176,7 +177,7 @@ class MyCustomButtonGrid extends StatelessWidget {
     {
       "text": "Consulta en casa", 
       "icon": Icons.home, 
-      "page": CatalogoEspecialidades(titulo: "Consulta en Casa",numFuncion: 3,)
+      "page": ConsultaCasa()
     },
     {"text": "Chat asistente", "icon": Icons.chat, "page": ChatBot(nombreDoctor: "Asistente Bot", estado: 3)},
     {"text": "Calendario", "icon": Icons.calendar_today, "page": BotonSOS()},
