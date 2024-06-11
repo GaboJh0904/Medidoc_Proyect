@@ -1,90 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Gestión de Alimentaciones')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DietListPage(
-                      dietCategory: 'Alimentaciones Personalizadas',
-                      diets: personalizedDiets,
-                    ),
-                  ),
-                );
-              },
-              child: Text('Alimentaciones Personalizadas'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DietListPage(
-                      dietCategory: 'Alimentaciones Gluten',
-                      diets: glutenDiets,
-                    ),
-                  ),
-                );
-              },
-              child: Text('Alimentaciones Gluten'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DietListPage(
-                      dietCategory: 'Alimentaciones Alergias',
-                      diets: allergyDiets,
-                    ),
-                  ),
-                );
-              },
-              child: Text('Alimentaciones Alergias'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DietListPage(
-                      dietCategory: 'Alimentaciones Cáncer',
-                      diets: cancerDiets,
-                    ),
-                  ),
-                );
-              },
-              child: Text('Alimentaciones Cáncer'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class Diet {
   final String name;
   final Map<String, Map<String, String>> weeklyDiet;
@@ -98,7 +13,6 @@ class Diet {
     required this.forbiddenFoods,
   });
 }
-
 class DietListPage extends StatelessWidget {
   final String dietCategory;
   final List<Diet> diets;
@@ -107,38 +21,49 @@ class DietListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(dietCategory),
+    return Theme(
+      data: ThemeData(
+        primarySwatch: Colors.purple,
+        textTheme: TextTheme(
+          bodyText2: TextStyle(color: Colors.white),
+        ),
       ),
-      body: ListView.builder(
-        itemCount: diets.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DietDetailPage(diet: diets[index]),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(dietCategory),
+        ),
+        body: ListView.builder(
+          itemCount: diets.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DietDetailPage(diet: diets[index]),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.deepPurple, // Text color
+
+
+                  padding: EdgeInsets.all(20), // Button padding
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0), // Button border radius
                   ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.blue, // Text color
-                padding: EdgeInsets.all(20), // Button padding
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0), // Button border radius
+                ),
+                child: Text(
+                  diets[index].name,
+                  style: TextStyle(fontSize: 18),
                 ),
               ),
-              child: Text(
-                diets[index].name,
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
