@@ -14,6 +14,7 @@ import 'package:medidoc_proyect/pages/EspecialidadesCasa.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
 import 'package:medidoc_proyect/pages/historialMedico.dart';
 import 'package:medidoc_proyect/pages/fichaClinica.dart';
+import 'package:medidoc_proyect/pages/calendario.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MenuPrincipal extends StatelessWidget {
@@ -180,7 +181,7 @@ class MyCustomButtonGrid extends StatelessWidget {
       "page": EspecialidadesCasa(titulo: 'Consulta en casa',numFuncion: 2,)
     },
     {"text": "Chat asistente", "icon": Icons.chat, "page": ChatBot(nombreDoctor: "Asistente Bot", estado: 3)},
-    {"text": "Calendario", "icon": Icons.calendar_today, "page": BotonSOS()},
+    {"text": "Calendario", "icon": Icons.calendar_today, "page": VisualizarCalendario()},
   ];
 
   void _launchURL(String url) async {
