@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
+import 'package:medidoc_proyect/pages/DietaAlimentacion.dart';
 
 class Alimentaciones extends StatelessWidget {
   @override
@@ -47,15 +48,50 @@ class AlimentacionesPage extends StatelessWidget {
                 children: <Widget>[
                   _buildListItem('Pacientes', 'assets/images/alimentacion_1.jpg', onTap: () {
                     //Navigator.push(context, MaterialPageRoute(builder: (context) => Reanimacion()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DietListPage(
+                          dietCategory: 'Alimentaciones Personalizadas',
+                          diets: personalizedDiets,
+                        ),
+                      ),
+                    );
                   }),
                   _buildListItem('Gluten', 'assets/images/alimentacion_2.jpg', onTap: () {
                     //Navigator.push(context, MaterialPageRoute(builder: (context) => Torniquete()));
-                  }),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DietListPage(
+                          dietCategory: 'Alimentaciones Gluten',
+                          diets: glutenDiets,
+                        ),
+                      ),
+                    );                  }),
                   _buildListItem('Alergias', 'assets/images/alimentacion_3.jpeg', onTap: () {
                     //Navigator.push(context, MaterialPageRoute(builder: (context) => Vendaje()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DietListPage(
+                          dietCategory: 'Alimentaciones Alergias',
+                          diets: allergyDiets,
+                        ),
+                      ),
+                    );
                   }),
                   _buildListItem('Cáncer', 'assets/images/alimentacion_4.jpg', onTap: () {
                     //Navigator.push(context, MaterialPageRoute(builder: (context) => Asma()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DietListPage(
+                          dietCategory: 'Alimentaciones Cáncer',
+                          diets: cancerDiets,
+                        ),
+                      ),
+                    );
                   }),
                 ],
               ),
