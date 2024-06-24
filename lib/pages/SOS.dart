@@ -105,27 +105,27 @@ class _BotonSOSState extends State<BotonSOS> {
                     sections: [
                       {
                         'text': 'Paso 1. Llama a emergencias (165 - 160) \nSi presencias una emergencia, lo primero es llamar al número de emergencias. Mantén la calma y proporciona los detalles necesarios.',
-                        'image': 'assets/images/Asma_1.jpg',
+                        'image': 'assets/images/reanimacion_1.png',
                       },
                       {
                         'text': 'Paso 2. Revisa signos vitales \nVerifica si la persona está consciente y respirando. Revisa el pulso y observa cualquier signo de vida.',
-                        'image': 'assets/images/Asma_2.jpg',
+                        'image': 'assets/images/reanimacion_2.png',
                       },
                       {
                         'text': 'Paso 3. Escucha la respiración \nAcércate al pecho de la persona y trata de escuchar su respiración, además de observar si su pecho se eleva y desciende.',
-                        'image': 'assets/images/Asma_4.jpg',
+                        'image': 'assets/images/reanimacion_3.png',
                       },
                       {
                         'text': 'Paso 4. Comienza la RCP \nSi la persona no está respirando normalmente, inicia la reanimación cardiopulmonar. Coloca tus manos entrelazadas sobre su pecho y presiona firmemente.',
-                        'image': 'assets/images/Asma_5.jpg',
+                        'image': 'assets/images/reanimacion_4.png',
                       },
                       {
                         'text': 'Paso 5. Haz las compresiones \nRealiza compresiones torácicas firmes y rápidas. Asegúrate de presionar hacia abajo al menos 5 cm, pero no más de 6 cm.',
-                        'image': 'assets/images/Asma_6.jpg',
+                        'image': 'assets/images/reanimacion_5.png',
                       },
                       {
                         'text': 'Paso 6. Postura de recuperación \nSi la persona recobra la respiración pero sigue inconsciente, colócala en posición lateral de seguridad. Esto ayuda a mantener despejada la vía aérea.',
-                        'image': 'assets/images/Asma_6.jpg',
+                        'image': 'assets/images/reanimacion_6.png',
                       },
                     ],
                     color: Color.fromARGB(255, 26, 51, 121),  // Dark Blueberry
@@ -136,43 +136,43 @@ class _BotonSOSState extends State<BotonSOS> {
                     sections: [
                       {
                         'text': 'Paso 1: Retire el torniquete CAT del botiquín (Bic) o de la funda de transporte. Asegúrese de tener acceso rápido a estos equipos en caso de emergencia.',
-                        'image': 'assets/step1.png',
+                        'image': 'assets/images/torniquete_1.jpg',
                       },
                       {
                         'text': 'Paso 2: Disponga el torniquete para su uso inmediato, preparándolo para colocarlo ya sea en el brazo o la pierna, según donde esté la lesión.',
-                        'image': 'assets/step2.png',
+                        'image': 'assets/images/torniquete_2.jpg',
                       },
                       {
                         'text': 'Paso 3: Coloque el torniquete lo más cerca posible del área de la herida que sangra, pero no sobre la herida misma. Esto ayudará a controlar el sangrado de manera más efectiva.',
-                        'image': 'assets/step3.png',
+                        'image': 'assets/images/torniquete_3.jpg',
                       },
                       {
                         'text': 'Paso 4: Ajuste la banda del torniquete alrededor del miembro lesionado, asegurándose de que esté suficientemente apretada para detener el flujo sanguíneo, pero sin causar daño adicional.',
-                        'image': 'assets/step4.png',
+                        'image': 'assets/images/torniquete_4.jpg',
                       },
                       {
                         'text': 'Paso 5: Gire el bastón de torsión del torniquete hasta que la hemorragia se detenga o hasta que desaparezcan los pulsos distales. Este paso es crucial para asegurar que el sangrado se ha controlado adecuadamente.',
-                        'image': 'assets/step5.png',
+                        'image': 'assets/images/torniquete_5.jpg',
                       },
                       {
                         'text': 'Paso 6: Asegure el bastón de torsión en una de las pestañas de anclaje del torniquete. Esto evitará que el torniquete se afloje y que el sangrado se reanude.',
-                        'image': 'assets/step6.png',
+                        'image': 'assets/images/torniquete_6.jpg',
                       },
                       {
                         'text': 'Paso 7: Coloque el resto de la cinta del torniquete entre las pestañas de anclaje, asegurándose de que todo el dispositivo está seguro y no se moverá.',
-                        'image': 'assets/step7.png',
+                        'image': 'assets/images/torniquete_7.jpg',
                       },
                       {
                         'text': 'Paso 8: Asegure el bastón de torsión y la cinta sobrante con la correa de velcro sobre las pestañas de anclaje. Esto proporciona una seguridad adicional para mantener el torniquete en su lugar durante el transporte o hasta que llegue ayuda médica.',
-                        'image': 'assets/step8.png',
+                        'image': 'assets/images/torniquete_8.jpg',
                       },
                       {
                         'text': 'Paso 9: Es importante documentar el momento exacto de la aplicación del torniquete, escribiéndolo en la correa de seguridad del torniquete y en una tarjeta de heridos TCCC, o incluso en la frente del herido si es necesario. Esto es vital para el tratamiento posterior.',
-                        'image': 'assets/step9.png',
+                        'image': 'assets/images/torniquete_9.jpg',
                       },
                       {
                         'text': 'Paso 10: Comunique con el personal de sanidad cualquier ayuda proporcionada y detalles del uso del torniquete. La comunicación efectiva puede ser crucial para el tratamiento posterior del herido.',
-                        'image': 'assets/step10.png',
+                        'image': 'assets/images/torniquete_10.jpg',
                       },
                     ],
                     color: Color.fromARGB(255, 26, 51, 121),  // Dark Blueberry
@@ -183,27 +183,27 @@ class _BotonSOSState extends State<BotonSOS> {
                     sections: [
                       {
                         'text': 'Tipo 1: Vendaje Circular\nUtiliza este método para cubrir pequeñas áreas uniformemente. Simplemente enrolla el vendaje alrededor de la zona afectada de forma circular, asegurando que cada vuelta cubra parcialmente la anterior.',
-                        'image': 'assets/images/Asma_1.jpg',
+                        'image': 'assets/images/vendaje_1.jpg',
                       },
                       {
                         'text': 'Tipo 2: Vendaje en Espiral\nIdeal para extremidades, este método implica envolver el vendaje en espiral ascendente, asegurando que cada vuelta cubra al menos la mitad de la vuelta anterior.',
-                        'image': 'assets/images/Asma_2.jpg',
+                        'image': 'assets/images/vendaje_2.jpg',
                       },
                       {
                         'text': 'Tipo 3: Espiral Invertida\nUsa este método para zonas más difíciles como el codo o la rodilla. Involucra un giro del vendaje en cada vuelta para acomodarse a la forma de la articulación.',
-                        'image': 'assets/images/Asma_4.jpg',
+                        'image': 'assets/images/vendaje_3.jpg',
                       },
                       {
                         'text': 'Tipo 4: Vendaje en Espiga\nSe utiliza para cubrir áreas que cambian de diámetro, como el antebrazo al codo. Se envuelve en forma de X alternando las direcciones con cada vuelta.',
-                        'image': 'assets/images/Asma_5.jpg',
+                        'image': 'assets/images/vendaje_4.jpg',
                       },
                       {
                         'text': 'Tipo 5: Vendaje Recurrente\nPerfecto para la cabeza o los muñones, donde el vendaje va de ida y vuelta sobre la parte superior de la zona afectada, cubriendo completamente el área.',
-                        'image': 'assets/images/Asma_6.jpg',
+                        'image': 'assets/images/vendaje_5.jpg',
                       },
                       {
                         'text': 'Tipo 6: Vendaje en Ocho\nFrecuentemente usado para las articulaciones, este método asegura soporte y movilidad limitada. Las vueltas del vendaje forman un ocho alrededor de la articulación.',
-                        'image': 'assets/images/Asma_6.jpg',
+                        'image': 'assets/images/vendaje_6.jpg',
                       },
                     ],
                     color: Color.fromARGB(255, 26, 51, 121),  // Dark Blueberry
