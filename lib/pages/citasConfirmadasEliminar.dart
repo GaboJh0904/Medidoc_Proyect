@@ -73,8 +73,8 @@ class _CitasConfirmadasEliminarState extends State<CitasConfirmadasEliminar> {
                               ElevatedButton(
                                 onPressed: () => _eliminarCita(index),
                                 child: Text('Eliminar Cita'),
-                                style: ElevatedButton.styleFrom(
-                                    primary: Colors.red),
+                                // style: ElevatedButton.styleFrom(
+                                //     primary: Colors.red),
                               ),
                             ],
                           ),

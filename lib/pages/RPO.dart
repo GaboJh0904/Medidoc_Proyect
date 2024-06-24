@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:flutter/material.dart';
 
 class rpo extends StatelessWidget {
   @override
@@ -153,7 +153,7 @@ class HeartbeatPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final rect = Offset.zero & size;
     final gradient = LinearGradient(
-      colors: [Colors.white, Colors.blue, Colors.deepPurple],
+      colors: [Colors.black, Colors.blueGrey, Colors.black],
     ).createShader(rect);
 
     final paint = Paint()
@@ -177,28 +177,44 @@ class HeartbeatPainter extends CustomPainter {
   }
 
   double _getECGWaveHeight(double x) {
-    // Simulate a realistic ECG wave pattern with large, irregular, and consecutive peaks and valleys
+    // Simulate a realistic ECG wave pattern with more, sharper, and narrower peaks and valleys
     double phase = (x % 300);
     if (phase < 30) {
       return 0.0;
+    } else if (phase < 40) {
+      return 20.0 * (phase - 30) / 10; // sharp rising edge
+    } else if (phase < 50) {
+      return 20.0 - 40.0 * (phase - 40) / 10; // sharp peak
     } else if (phase < 60) {
-      return 20.0 * sin((phase - 30) * pi / 30);
+      return -20.0 + 40.0 * (phase - 50) / 10; // sharp falling edge
+    } else if (phase < 70) {
+      return -20.0 + 20.0 * (phase - 60) / 10; // small peak
+    } else if (phase < 80) {
+      return 0.0; // flat
     } else if (phase < 90) {
-      return -30.0 * sin((phase - 60) * pi / 30);
+      return 10.0 * (phase - 80) / 10; // rising edge for second peak
+    } else if (phase < 100) {
+      return 10.0 - 20.0 * (phase - 90) / 10; // second peak
+    } else if (phase < 110) {
+      return -10.0 + 20.0 * (phase - 100) / 10; // falling edge for second peak
     } else if (phase < 120) {
-      return 40.0 * sin((phase - 90) * pi / 30);
+      return 0.0; // flat
+    } else if (phase < 130) {
+      return 15.0 * (phase - 120) / 10; // additional peak
+    } else if (phase < 140) {
+      return 15.0 - 30.0 * (phase - 130) / 10; // additional peak
     } else if (phase < 150) {
-      return -20.0 * sin((phase - 120) * pi / 30);
+      return -15.0 + 30.0 * (phase - 140) / 10; // additional peak
+    } else if (phase < 160) {
+      return -15.0 + 15.0 * (phase - 150) / 10; // small peak
     } else if (phase < 180) {
-      return 10.0 * sin((phase - 150) * pi / 30);
+      return 0.0; // flat
+    } else if (phase < 200) {
+      return 5.0 * sin((phase - 180) * pi / 20); // sinusoidal valley
     } else if (phase < 210) {
-      return -10.0 * sin((phase - 180) * pi / 30);
-    } else if (phase < 240) {
-      return 15.0 * sin((phase - 210) * pi / 30);
-    } else if (phase < 270) {
-      return -5.0 * sin((phase - 240) * pi / 30);
+      return -5.0 * sin((phase - 200) * pi / 10); // small dip
     } else {
-      return 0.0;
+      return 0.0; // flat
     }
   }
 
