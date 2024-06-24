@@ -15,6 +15,7 @@ import 'package:medidoc_proyect/pages/navBar.dart';
 import 'package:medidoc_proyect/pages/historialMedico.dart';
 import 'package:medidoc_proyect/pages/fichaClinica.dart';
 import 'package:medidoc_proyect/pages/calendario.dart';
+import 'package:medidoc_proyect/pages/visualizar_citas.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MenuPrincipal extends StatelessWidget {
@@ -160,7 +161,7 @@ class MyCustomButtonGrid extends StatelessWidget {
     {
       "text": "Ver cita programada",
       "icon": Icons.event_note,
-      "page": BotonSOS()
+      "page": VisualizarCitas()
     },
     {"text": "Receta médica", "icon": Icons.receipt, "page": RecetaMedica()},
     {"text": "Alimentaciones", "icon": Icons.fastfood, "page": Alimentaciones()},

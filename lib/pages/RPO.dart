@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:flutter/material.dart';
 
 class rpo extends StatelessWidget {
   @override
@@ -114,7 +114,7 @@ class StatsCard extends StatelessWidget {
       padding: EdgeInsets.all(20),
       margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 123, 97, 167),  // Purple shade from the color panel
+        color: Color(0xFF3A7cA5),  // Purple shade from the color panel
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -150,7 +150,7 @@ class OxygenStats extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(30),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 123, 97, 167),  // Purple shade from the color panel
+        color: Color(0xFF3A7cA5),  // Purple shade from the color panel
         shape: BoxShape.circle,
       ),
       child: Center(
@@ -175,8 +175,8 @@ class HeartbeatPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final rect = Offset.zero & size;
-    final gradient = LinearGradient(
-      colors: [Colors.white, Colors.blue, Colors.deepPurple],
+    final gradient = const LinearGradient(
+      colors: [Colors.black, Color(0xff00b3c2), Colors.black],
     ).createShader(rect);
 
     final paint = Paint()
@@ -200,26 +200,41 @@ class HeartbeatPainter extends CustomPainter {
   }
 
   double _getECGWaveHeight(double x) {
-    // Simulate a realistic ECG wave pattern with large, irregular, and consecutive peaks and valleys
     double phase = (x % 300);
     if (phase < 30) {
       return 0.0;
+    } else if (phase < 40) {
+      return 20.0 * (phase - 30) / 10;
+    } else if (phase < 50) {
+      return 20.0 - 40.0 * (phase - 40) / 10;
     } else if (phase < 60) {
-      return 20.0 * sin((phase - 30) * pi / 30);
+      return -20.0 + 40.0 * (phase - 50) / 10;
+    } else if (phase < 70) {
+      return -20.0 + 20.0 * (phase - 60) / 10;
+    } else if (phase < 80) {
+      return 0.0;
     } else if (phase < 90) {
-      return -30.0 * sin((phase - 60) * pi / 30);
+      return 10.0 * (phase - 80) / 10;
+    } else if (phase < 100) {
+      return 10.0 - 20.0 * (phase - 90) / 10;
+    } else if (phase < 110) {
+      return -10.0 + 20.0 * (phase - 100) / 10;
     } else if (phase < 120) {
-      return 40.0 * sin((phase - 90) * pi / 30);
+      return 0.0;
+    } else if (phase < 130) {
+      return 15.0 * (phase - 120) / 10;
+    } else if (phase < 140) {
+      return 15.0 - 30.0 * (phase - 130) / 10;
     } else if (phase < 150) {
-      return -20.0 * sin((phase - 120) * pi / 30);
+      return -15.0 + 30.0 * (phase - 140) / 10;
+    } else if (phase < 160) {
+      return -15.0 + 15.0 * (phase - 150) / 10;
     } else if (phase < 180) {
-      return 10.0 * sin((phase - 150) * pi / 30);
+      return 0.0;
+    } else if (phase < 200) {
+      return 5.0 * sin((phase - 180) * pi / 20);
     } else if (phase < 210) {
-      return -10.0 * sin((phase - 180) * pi / 30);
-    } else if (phase < 240) {
-      return 15.0 * sin((phase - 210) * pi / 30);
-    } else if (phase < 270) {
-      return -5.0 * sin((phase - 240) * pi / 30);
+      return -5.0 * sin((phase - 200) * pi / 10);
     } else {
       return 0.0;
     }

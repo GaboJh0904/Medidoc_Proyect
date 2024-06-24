@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:medidoc_proyect/pages/biometrico.dart';
-import 'package:medidoc_proyect/pages/asistente_page.dart';
+import 'package:medidoc_proyect/pages/menu_principal.dart';
 
 class Inicio extends StatefulWidget {
   @override
@@ -20,7 +20,7 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
     )..repeat();
 
     Future.delayed(Duration(seconds: 10), () {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => AsistentePage()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => MenuPrincipal()));
     });
   }
 
