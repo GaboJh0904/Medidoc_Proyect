@@ -121,7 +121,7 @@ class _BotonSOSState extends State<BotonSOS> {
                       },
                       {
                         'text': 'Paso 5. Haz las compresiones \nRealiza compresiones torácicas firmes y rápidas. Asegúrate de presionar hacia abajo al menos 5 cm, pero no más de 6 cm.',
-                        'image': 'assets/images/reanimacion_5.png',
+                        'image': 'assets/images/Reanimacion_5.png',
                       },
                       {
                         'text': 'Paso 6. Postura de recuperación \nSi la persona recobra la respiración pero sigue inconsciente, colócala en posición lateral de seguridad. Esto ayuda a mantener despejada la vía aérea.',

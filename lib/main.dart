@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/': (context) => MenuPrincipal(),
+        '/': (context) => Inicio(),
         '/asistente': (context) => AsistentePage(),
         '/registro': (context) => BioPag(),
       },
