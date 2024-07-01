@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:medidoc_proyect/pages/asistente_page.dart';
 import 'package:medidoc_proyect/pages/Inicio.dart';
 import 'package:medidoc_proyect/pages/biometrico.dart';
-import 'package:medidoc_proyect/pages/menu_principal.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase/firebase_options.dart';
 

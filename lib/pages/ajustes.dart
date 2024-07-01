@@ -29,7 +29,7 @@ class Ajustes extends StatelessWidget {
               ),
             ),
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+              color: Color(0xFF005954), // Color 1
             ),
           ),
           Padding(

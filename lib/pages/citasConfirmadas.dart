@@ -18,7 +18,7 @@ class CitasConfirmadas extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Color 1
         elevation: 0,
       ),
       body: Column(
