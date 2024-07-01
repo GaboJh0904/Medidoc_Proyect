@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:medidoc_proyect/pages/biometrico.dart';
-import 'package:medidoc_proyect/pages/asistente_page.dart';
+import 'package:medidoc_proyect/pages/menu_principal.dart';
 
 class Inicio extends StatefulWidget {
   @override
@@ -20,7 +20,8 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
     )..repeat();
 
     Future.delayed(Duration(seconds: 10), () {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => AsistentePage()));
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => MenuPrincipal()));
     });
   }
 
@@ -36,10 +37,11 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
     return Scaffold(
       body: GestureDetector(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (_) => BioPag())); // Modifica esto por tu destino
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => BioPag())); // Modifica esto por tu destino
         },
         child: Container(
-          color: Colors.blue[200],
+          color: const Color(0xFF00a4b4),
           child: Stack(
             children: [
               CapaOla(
@@ -47,7 +49,7 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
                 proporcionAltura: 0.1,
                 velocidad: 1.0,
                 desfase: pi,
-                color: Colors.blue[600]!.withOpacity(0.7),
+                color: const Color(0xFF9CA4F8).withOpacity(0.7),
                 inicioY: alturaPantalla * 0.3,
               ),
               CapaOla(
@@ -55,7 +57,7 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
                 proporcionAltura: 0.15,
                 velocidad: 1.1,
                 desfase: pi / 2,
-                color: Colors.indigoAccent[200]!.withOpacity(0.7),
+                color: const Color(0xf2312d7a).withOpacity(0.7),
                 inicioY: alturaPantalla * 0.1,
               ),
               CapaOla(
@@ -63,7 +65,7 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
                 proporcionAltura: 0.1,
                 velocidad: 1.0,
                 desfase: pi / 3,
-                color: Colors.blue[500]!.withOpacity(0.7),
+                color: const Color(0xFF3A7cA5).withOpacity(0.7),
                 inicioY: alturaPantalla * 0.6,
               ),
               CapaOla(
@@ -71,7 +73,7 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
                 proporcionAltura: 0.1,
                 velocidad: 1.3,
                 desfase: pi / 3,
-                color: Colors.blue[100]!.withOpacity(0.7),
+                color: const Color(0xFF00a4b4).withOpacity(0.7),
                 inicioY: alturaPantalla * 0.8,
               ),
               Center(
@@ -103,7 +105,7 @@ class CapaOla extends StatelessWidget {
   const CapaOla({
     Key? key,
     required this.animacion,
-    required this.proporcionAltura, 
+    required this.proporcionAltura,
     required this.velocidad,
     required this.desfase,
     required this.color,
@@ -155,11 +157,13 @@ class PintorOla extends CustomPainter {
 
     final alturaOla = size.height * proporcionAltura;
     final frecuenciaOla = 2 * pi / size.width;
-    final desplazamientoTotalOla = 2 * pi * valorAnimacion * velocidad + desfase;
+    final desplazamientoTotalOla =
+        2 * pi * valorAnimacion * velocidad + desfase;
 
     path.moveTo(0, inicioY);
     for (double x = 0; x <= size.width; x++) {
-      final y = inicioY + alturaOla * sin(frecuenciaOla * x + desplazamientoTotalOla);
+      final y =
+          inicioY + alturaOla * sin(frecuenciaOla * x + desplazamientoTotalOla);
       path.lineTo(x, y);
     }
 

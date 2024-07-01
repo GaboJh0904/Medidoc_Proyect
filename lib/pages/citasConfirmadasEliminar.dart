@@ -14,8 +14,17 @@ class _CitasConfirmadasEliminarState extends State<CitasConfirmadasEliminar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Citas Confirmadas para Eliminar'),
-        backgroundColor: Colors.deepPurple,
+        title: Text(
+          'Citas Confirmadas para Eliminar',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+        elevation: 0,
       ),
       body: listaDeCitasGlobal.isEmpty
           ? Center(child: Text('No hay citas confirmadas.'))
@@ -72,9 +81,14 @@ class _CitasConfirmadasEliminarState extends State<CitasConfirmadasEliminar> {
                               SizedBox(height: 10),
                               ElevatedButton(
                                 onPressed: () => _eliminarCita(index),
-                                child: Text('Eliminar Cita'),
-                                // style: ElevatedButton.styleFrom(
-                                //     primary: Colors.red),
+                                child: Text(
+                                  'Eliminar Cita',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.red),
                               ),
                             ],
                           ),

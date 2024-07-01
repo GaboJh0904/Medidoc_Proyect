@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class SubArchivosPage extends StatelessWidget {
+  final String nombre;
+
+  SubArchivosPage({required this.nombre});
+
   @override
   Widget build(BuildContext context) {
     // Lista de archivos (para ejemplo)
@@ -11,15 +15,24 @@ class SubArchivosPage extends StatelessWidget {
       {"nombre": "Biografia", "icono": Icons.folder_open},
       {"nombre": "Resultados de pruebas", "icono": Icons.folder_open},
       {"nombre": "Ultimos examenes fisicos", "icono": Icons.folder_open},
-      {"nombre": "Infomracion de urgencia", "icono": Icons.folder_open},
+      {"nombre": "Informacion de urgencia", "icono": Icons.folder_open},
       {"nombre": "Ordenes medicas", "icono": Icons.folder_open},
       {"nombre": "Historial", "icono": Icons.folder_open},
-
     ];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Archivos'),
+        title: Text(
+          'Archivos de $nombre',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        elevation: 0,
       ),
       body: GridView.builder(
         padding: EdgeInsets.all(16.0),
@@ -45,6 +58,7 @@ class SubArchivosPage extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14.0, // Tamaño del texto
+                  color: Colors.black,
                   //fontWeight: FontWeight.bold,
                 ),
               ),

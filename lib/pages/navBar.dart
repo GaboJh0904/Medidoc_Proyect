@@ -7,7 +7,7 @@ class NavbarOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: Colors.purple, // Color de fondo del Drawer
+        color: Color(0xFF204C67), // Color de fondo del Drawer
         child: Center( // Centra el contenido
           child: Column(
             mainAxisSize: MainAxisSize.min, // Centra los elementos verticalmente

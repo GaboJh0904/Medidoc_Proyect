@@ -1,35 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:medidoc_proyect/components/footer_asistente.dart';
+import 'package:medidoc_proyect/components/menu_button.dart';
+import 'package:medidoc_proyect/pages/EmergenciaSOS.dart';
 import 'package:medidoc_proyect/pages/RPO.dart';
 import 'package:medidoc_proyect/pages/RecetaMedica.dart';
+import 'package:medidoc_proyect/pages/SOS.dart';
 import 'package:medidoc_proyect/pages/TutorialesPA.dart';
-import 'package:medidoc_proyect/pages/agendarCita.dart';
-import 'package:medidoc_proyect/pages/asistente_page.dart';
-import 'package:medidoc_proyect/pages/citasConfirmadas.dart';
+import 'package:medidoc_proyect/pages/catalogoEspecialidades.dart';
+import 'package:medidoc_proyect/pages/alimentaciones.dart';
+import 'package:medidoc_proyect/pages/chat.dart';
 import 'package:medidoc_proyect/pages/citasConfirmadasEliminar.dart';
-import 'package:medidoc_proyect/pages/formulario.dart';
+import 'package:medidoc_proyect/pages/EspecialidadesCasa.dart';
 import 'package:medidoc_proyect/pages/navBar.dart';
 import 'package:medidoc_proyect/pages/historialMedico.dart';
-import 'package:medidoc_proyect/pages/TutorialesPA.dart';
+import 'package:medidoc_proyect/pages/fichaClinica.dart';
+import 'package:medidoc_proyect/pages/calendario.dart';
+import 'package:medidoc_proyect/pages/visualizar_citas.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MenuPrincipal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Medidoc'),
+        title: Text(
+          'Menu Principal',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+        elevation: 0,
       ),
       drawer: NavbarOptions(),
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 233, 236, 240),
       body: SafeArea(
         child: Column(
           children: [
-            HomeIndicator(), // Banderita "Inicio" alineada a la izquierda
+            HomeIndicator(),
             Expanded(
-              child: MyCustomButtonGrid(), // Cuadrícula de botones ajustada
+              child: MyCustomButtonGrid(),
             ),
             Align(
               alignment: Alignment.bottomRight,
-              child: PlaceholderWidget(), // Espacio ajustado para imagen/video
+              child: FooterAsistente(),
             ),
           ],
         ),
@@ -51,7 +68,20 @@ class HomeIndicator extends StatelessWidget {
         child: ClipPath(
           clipper: BannerClipper(),
           child: Container(
-            color: Colors.purple,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xFF4B3D82), // Dark Blueberry
+                  Color(0xFF6C62B6), // Blueberry
+                  //Color(0xFF9A92D6),  // Medium Light Blueberry
+                  //Color(0xFFA6C6E4),  // Light Cornflower Blue
+                  Color(0xFF5788A8), // Medium Wedgwood
+                  Color(0xFF204C67), // Very Dark Peacock Blue
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
             height: 30,
             child: Center(
               child: Text(
@@ -86,60 +116,102 @@ class BannerClipper extends CustomClipper<Path> {
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
+void _launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'No se pudo lanzar $url';
+  }
+}
+
 class MyCustomButtonGrid extends StatelessWidget {
-  final List<String> options = [
-    "Historial médico", "Botón de alerta",
-    "Solicitud de cita", // Añade los títulos
-    "Cancelación de cita", "Mapa de hospitales", "Cuestionarios médicos",
-    "Teleconsulta", "Ver cita programada", "Receta médica",
-    "RPO", "Tutoriales de primeros auxilios", "Emergencia SOS",
-    "Consulta en casa", "Chat asistente",
-    "Calendario", // Asegúrate de tener 15 títulos
+  final List<Map<String, dynamic>> options = [
+    {
+      "text": "Historial médico",
+      "icon": Icons.medical_services,
+      "page": HistorialMedicoPage()
+    },
+    {"text": "Botón de alerta", "icon": Icons.warning, "page": BotonSOS()},
+    {
+      "text": "Solicitud de cita",
+      "icon": Icons.calendar_today,
+      "page": CatalogoEspecialidades(
+        titulo: "Solicitar Cita",
+        numFuncion: 1,
+      )
+    },
+    {
+      "text": "Cancelación de cita",
+      "icon": Icons.cancel,
+      "page": CitasConfirmadasEliminar()
+    },
+    {
+      "text": "Mapa de hospitales",
+      "icon": Icons.map,
+      "url":
+          'https://www.google.com/maps/search/hospital/@-16.5215258,-68.1111076,15z/data=!3m1!4b1?entry=ttu'
+    },
+    {
+      "text": "Cuestionarios médicos",
+      "icon": Icons.question_answer,
+      "page": FichaClinica()
+    },
+    {
+      "text": "Teleconsulta",
+      "icon": Icons.video_call,
+      "page": CatalogoEspecialidades(
+        titulo: "Teleconsulta",
+        numFuncion: 2,
+      )
+    },
+    {
+      "text": "Ver cita programada",
+      "icon": Icons.event_note,
+      "page": VisualizarCitas()
+    },
+    {"text": "Receta médica", "icon": Icons.receipt, "page": RecetaMedica()},
+    {
+      "text": "Alimentaciones",
+      "icon": Icons.fastfood,
+      "page": Alimentaciones()
+    },
+    {"text": "RPO", "icon": Icons.business_center, "page": rpo()},
+    {
+      "text": "Tutoriales de primeros auxilios",
+      "icon": Icons.school,
+      "page": TutorialesPA()
+    },
+    {
+      "text": "Emergencia SOS",
+      "icon": Icons.phone_in_talk,
+      "page": EmergenciaSOS()
+    },
+    {
+      "text": "Consulta en casa",
+      "icon": Icons.home,
+      "page": EspecialidadesCasa(
+        titulo: 'Consulta en casa',
+        numFuncion: 2,
+      )
+    },
+    {
+      "text": "Chat asistente",
+      "icon": Icons.chat,
+      "page": ChatBot(nombreDoctor: "Asistente Bot", estado: 3)
+    },
+    {
+      "text": "Calendario",
+      "icon": Icons.calendar_today,
+      "page": VisualizarCalendario()
+    },
   ];
 
-  void Function() _getActionForItem(String item, BuildContext context) {
-    // Aquí puedes definir lo que cada opción debe hacer
-    return () {
-      if (item == 'Historial médico') {
-        print("Redireccionar a la página de historial médico");
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HistorialMedicoPage()),
-        );
-      } else if (item == 'Tutoriales de primeros auxilios') {
-        print("Redireccionar a la Tutoriales de primeros auxilios");
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => TutorialesPA()),
-        );
-      } else if (item == 'Solicitud de cita') {
-        print("Redireccionar a agendar cita");
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => AgendarCita()),
-        );
-      } else if (item == 'Cancelación de cita') {
-        print("Redireccionar a cancelación cita");
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => CitasConfirmadasEliminar()),
-        );
-      } else if (item == 'Receta médica') {
-        print("Redireccionar a Receta médica");
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => RecetaMedica()),
-        );
-      } else if (item == 'RPO') {
-        print("Redireccionar a RPO");
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => rpo()),
-        );
-      }
-      print('Se seleccionó: $item');
-      // Aquí iría la lógica para cada acción
-    };
+  void _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'No se pudo lanzar $url';
+    }
   }
 
   @override
@@ -154,101 +226,22 @@ class MyCustomButtonGrid extends StatelessWidget {
       ),
       itemCount: options.length,
       itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: _getActionForItem(options[index], context),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.purple,
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Center(
-              child: Text(
-                options[index],
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
+        final option = options[index];
+        return MenuButton(
+          text: option['text'],
+          icon: option['icon'],
+          onPressed: () {
+            if (option.containsKey('page')) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => option['page']),
+              );
+            } else if (option.containsKey('url')) {
+              _launchURL(option['url']);
+            }
+          },
         );
       },
-    );
-  }
-}
-
-class MyCustomButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onPressed;
-
-  MyCustomButton({
-    required this.text,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    // Botón simplificado sin estado interno
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10.0), // Espaciado entre botones
-        width: 80, // Ancho del botón
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(16.0), // Padding dentro del botón
-              decoration: BoxDecoration(
-                color: Colors.purple, // Color de fondo del botón
-                borderRadius: BorderRadius.circular(10), // Borde redondeado
-              ),
-              child: Icon(
-                Icons.add, // Icono del botón, cámbialo por el que necesites
-                color: Colors.white,
-                size: 24, // Tamaño del icono
-              ),
-            ),
-            SizedBox(height: 8), // Espaciado entre icono y texto
-            Text(
-              text, // Texto del botón
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 10,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class PlaceholderWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // Reducir tamaño y mover a la esquina inferior derecha
-    return Padding(
-      padding: EdgeInsets.only(
-        right: 16.0, // Ajustar según sea necesario
-        bottom: 16.0, // Ajustar según sea necesario
-      ),
-      child: Container(
-        width: 50, // Ancho del espacio para imagen/video
-        height: 50, // Altura del espacio para imagen/video
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        alignment: Alignment.center,
-        child: Icon(
-          Icons.person_outline,
-          size: 50,
-          color: Colors.grey,
-        ),
-      ),
     );
   }
 }

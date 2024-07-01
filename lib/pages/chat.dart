@@ -7,13 +7,23 @@ import 'dart:convert';
 import 'package:url_launcher/url_launcher.dart';
 
 class ChatBot extends StatelessWidget {
+  final String nombreDoctor;
+  final int estado;
+
+  ChatBot({required this.nombreDoctor, required this.estado});
+
   @override
   Widget build(BuildContext context) {
-    return ChatScreen();  // Se ha eliminado MaterialApp y solo se devuelve ChatScreen.
+    return ChatScreen(nombreDoctor: nombreDoctor, estado: estado);  // Pasamos las variables al ChatScreen
   }
 }
 
 class ChatScreen extends StatefulWidget {
+  final String nombreDoctor;
+  final int estado;
+
+  ChatScreen({required this.nombreDoctor, required this.estado});
+
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -21,7 +31,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   FlutterTts _flutterTts = FlutterTts();
   final List<String> messages = [];
-  List<String> chatmessages = ['¿En que puedo ayudarte?'];
+  List<String> chatmessages = ['¿En qué puedo ayudarte?'];
   final TextEditingController _controller = TextEditingController();
   String chatbotResponse = '';
 
@@ -30,10 +40,32 @@ class _ChatScreenState extends State<ChatScreen> {
   bool _speechEnabled = false;
   String _wordsSpoken = "";
 
-  late final bool showZoomButton = true;
-  late final bool showMapsButton = true;
+  late bool showZoomButton;
+  late bool showMapsButton;
 
   final String apiUrl = "http://192.168.99.126:8001/gemini/question";
+
+  @override
+  void initState() {
+    super.initState();
+    initSpeech();
+    _setButtonVisibility();
+  }
+
+  void _setButtonVisibility() {
+    setState(() {
+      if (widget.estado == 1) {
+        showZoomButton = true;
+        showMapsButton = false;
+      } else if (widget.estado == 2) {
+        showZoomButton = false;
+        showMapsButton = true;
+      } else if (widget.estado == 3) {
+        showZoomButton = false;
+        showMapsButton = false;
+      }
+    });
+  }
 
   Future<void> sendData(question) async {
     try {
@@ -71,12 +103,6 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    initSpeech();
-  }
-
   void initSpeech() async {
     _speechEnabled = await _speechToText.initialize();
     setState(() {});
@@ -89,8 +115,6 @@ class _ChatScreenState extends State<ChatScreen> {
         print("Mensaje enviado");
         messages.add(_wordsSpoken);
         sendData(_wordsSpoken);
-        //String chatbotResponse = "Gracias por tu mensaje";
-        //chatmessages.add(chatbotResponse);
         _flutterTts.setSpeechRate(0.5);
         _flutterTts.speak(chatbotResponse); // Speak chatbot message
         _wordsSpoken = "";
@@ -117,10 +141,6 @@ class _ChatScreenState extends State<ChatScreen> {
         sendData(_controller.text);
         _controller.clear();
       });
-
-      //String chatbotResponse = "Ya funcionaaaaa";
-      //chatmessages.add(chatbotResponse); // Add chatbot message
-      // _flutterTts.speak(chatbotResponse); // Speak chatbot message
     }
   }
 
@@ -148,7 +168,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 82, 20, 122),
+        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
@@ -158,14 +178,14 @@ class _ChatScreenState extends State<ChatScreen> {
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.camera_alt, color: Colors.white),
+            Icon(Icons.person, color: Colors.white),
             SizedBox(width: 10),
-            Text('Nombre Médico', style: TextStyle(color: Colors.white)),
+            Text(widget.nombreDoctor, style: TextStyle(color: Colors.white)),
           ],
         ),
         centerTitle: true,
         actions: <Widget>[
-          if (showZoomButton) 
+          if (showZoomButton)
             IconButton(
               icon: Icon(Icons.video_call, color: Colors.white),
               onPressed: () => _launchURL('zoommtg://'), // Ejemplo de URL de esquema para abrir Zoom
@@ -189,8 +209,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     return ListTile(
                       title: Container(
                         decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(12)),
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                         padding: EdgeInsets.all(8),
                         child: Text(
                           chatmessages[chatIndex],
@@ -221,8 +242,7 @@ class _ChatScreenState extends State<ChatScreen> {
               IconButton(
                 icon: Icon(
                   _speechToText.isNotListening ? Icons.mic_off : Icons.mic,
-                  color:
-                      _speechToText.isNotListening ? Colors.black : Colors.red,
+                  color: _speechToText.isNotListening ? Colors.black : Colors.red,
                 ),
                 onPressed: _speechToText.isListening
                     ? _stopListening

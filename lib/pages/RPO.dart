@@ -5,6 +5,27 @@ class rpo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(
+                context); // Esto llevará al usuario de vuelta a la página anterior
+          },
+        ),
+        title: Text(
+          'RPO',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        centerTitle: true,
+        elevation: 0,
+      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
@@ -50,9 +71,10 @@ class rpo extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-              color: Color(0xFFA836F4),
-              fontSize: 20,
-              fontWeight: FontWeight.bold),
+            color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         SizedBox(height: 10),
         child,
@@ -68,9 +90,10 @@ class rpo extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-              color: Color(0xFFA836F4),
-              fontSize: 20,
-              fontWeight: FontWeight.bold),
+            color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         SizedBox(height: 10),
         OxygenStats(percentage: percentage),
@@ -94,7 +117,8 @@ class StatsCard extends StatelessWidget {
       padding: EdgeInsets.all(20),
       margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
-        color: Color(0xFFA836F4),
+        color: Color.fromARGB(
+            255, 123, 97, 167), // Purple shade from the color panel
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -130,14 +154,18 @@ class OxygenStats extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(30),
       decoration: BoxDecoration(
-        color: Color(0xFFA836F4),
+        color: Color.fromARGB(
+            255, 123, 97, 167), // Purple shade from the color panel
         shape: BoxShape.circle,
       ),
       child: Center(
         child: Text(
           '$percentage%',
           style: TextStyle(
-              color: Colors.white, fontSize: 26, fontWeight: FontWeight.bold),
+            color: Colors.white,
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
@@ -177,44 +205,43 @@ class HeartbeatPainter extends CustomPainter {
   }
 
   double _getECGWaveHeight(double x) {
-    // Simulate a realistic ECG wave pattern with more, sharper, and narrower peaks and valleys
     double phase = (x % 300);
     if (phase < 30) {
       return 0.0;
     } else if (phase < 40) {
-      return 20.0 * (phase - 30) / 10; // sharp rising edge
+      return 20.0 * (phase - 30) / 10;
     } else if (phase < 50) {
-      return 20.0 - 40.0 * (phase - 40) / 10; // sharp peak
+      return 20.0 - 40.0 * (phase - 40) / 10;
     } else if (phase < 60) {
-      return -20.0 + 40.0 * (phase - 50) / 10; // sharp falling edge
+      return -20.0 + 40.0 * (phase - 50) / 10;
     } else if (phase < 70) {
-      return -20.0 + 20.0 * (phase - 60) / 10; // small peak
+      return -20.0 + 20.0 * (phase - 60) / 10;
     } else if (phase < 80) {
-      return 0.0; // flat
+      return 0.0;
     } else if (phase < 90) {
-      return 10.0 * (phase - 80) / 10; // rising edge for second peak
+      return 10.0 * (phase - 80) / 10;
     } else if (phase < 100) {
-      return 10.0 - 20.0 * (phase - 90) / 10; // second peak
+      return 10.0 - 20.0 * (phase - 90) / 10;
     } else if (phase < 110) {
-      return -10.0 + 20.0 * (phase - 100) / 10; // falling edge for second peak
+      return -10.0 + 20.0 * (phase - 100) / 10;
     } else if (phase < 120) {
-      return 0.0; // flat
+      return 0.0;
     } else if (phase < 130) {
-      return 15.0 * (phase - 120) / 10; // additional peak
+      return 15.0 * (phase - 120) / 10;
     } else if (phase < 140) {
-      return 15.0 - 30.0 * (phase - 130) / 10; // additional peak
+      return 15.0 - 30.0 * (phase - 130) / 10;
     } else if (phase < 150) {
-      return -15.0 + 30.0 * (phase - 140) / 10; // additional peak
+      return -15.0 + 30.0 * (phase - 140) / 10;
     } else if (phase < 160) {
-      return -15.0 + 15.0 * (phase - 150) / 10; // small peak
+      return -15.0 + 15.0 * (phase - 150) / 10;
     } else if (phase < 180) {
-      return 0.0; // flat
+      return 0.0;
     } else if (phase < 200) {
-      return 5.0 * sin((phase - 180) * pi / 20); // sinusoidal valley
+      return 5.0 * sin((phase - 180) * pi / 20);
     } else if (phase < 210) {
-      return -5.0 * sin((phase - 200) * pi / 10); // small dip
+      return -5.0 * sin((phase - 200) * pi / 10);
     } else {
-      return 0.0; // flat
+      return 0.0;
     }
   }
 

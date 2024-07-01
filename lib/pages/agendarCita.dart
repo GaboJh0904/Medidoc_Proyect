@@ -81,12 +81,7 @@ class _AgendarCitaState extends State<AgendarCita> {
   void _showMedicos(String especialidad) {
     setState(() {
       selectedEspecialidad = especialidad;
-      // Aquí deberías tener una lógica para obtener los médicos basados en la especialidad
-      medicos = [
-        'Médico 1',
-        'Médico 2',
-        'Médico 3'
-      ]; // Ejemplo de lista de médicos
+      medicos = ['Medico 1', 'Medico 2', 'Meedico 3'];
     });
   }
 }
