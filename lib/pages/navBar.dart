@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:medidoc_proyect/pages/ajustes.dart';
+import 'package:medidoc_proyect/pages/menu_principal.dart';
 
 class NavbarOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: Colors.purple, // Color de fondo del Drawer
+        color: Color(0xFF204C67), // Color de fondo del Drawer
         child: Center( // Centra el contenido
           child: Column(
             mainAxisSize: MainAxisSize.min, // Centra los elementos verticalmente
@@ -16,6 +17,7 @@ class NavbarOptions extends StatelessWidget {
                 title: 'Inicio',
                 onTap: () {
                   // Actualiza la navegación aquí
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MenuPrincipal()));
                 },
               ),
               _buildDrawerOption(
