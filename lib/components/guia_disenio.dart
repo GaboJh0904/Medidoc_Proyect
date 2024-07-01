@@ -9,7 +9,7 @@ class GuiaDisenio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF4B3D82),  // Blueberry
+      backgroundColor: Color(0xFF005954), // Color 1
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -26,7 +26,7 @@ class GuiaDisenio extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // More vivid color
+        backgroundColor: Color(0xFF005954), // Color 1
       ),
       body: ListView(
         children: sections.map((section) {

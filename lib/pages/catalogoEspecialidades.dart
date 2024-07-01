@@ -56,7 +56,7 @@ class _CatalogoEspecialidadesState extends State<CatalogoEspecialidades> {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color(0xFF005954), // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Color 1
         elevation: 0,
       ),
       drawer: NavbarOptions(),
@@ -216,7 +216,7 @@ class CustomButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.blue, Color.fromARGB(255, 25, 27, 143)],
+          colors: [Color(0xFF5dc1b9), Color(0xFF005954)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),

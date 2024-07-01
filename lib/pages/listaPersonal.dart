@@ -56,17 +56,21 @@ class DoctorListScreen extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color(0xFF005954), // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Color 1
         elevation: 0,
       ),
       drawer: NavbarOptions(),
-      backgroundColor: Color.fromARGB(255, 65, 70, 117),
+      backgroundColor: Color(0xFF338b85),
       body: ListView.builder(
         itemCount: doctors.length,
         itemBuilder: (context, index) {
           return Card(
+<<<<<<< HEAD
             color: Color.fromARGB(
                 255, 97, 110, 167), // Adaptado al panel de colores utilizado
+=======
+            color: Color(0xFF5dc1b9), // Adaptado al panel de colores utilizado
+>>>>>>> d77541c1248fb3c52a59ded768d143cfe0392a5f
             child: ListTile(
               leading: Icon(Icons.person,
                   color: Colors.white), // Ícono del personaje

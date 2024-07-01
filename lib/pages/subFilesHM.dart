@@ -31,7 +31,7 @@ class SubArchivosPage extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color(0xFF005954), // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Color 1
         elevation: 0,
       ),
       body: GridView.builder(
