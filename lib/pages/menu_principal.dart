@@ -151,7 +151,7 @@ class MyCustomButtonGrid extends StatelessWidget {
     {
       "text": "Cuestionarios médicos",
       "icon": Icons.question_answer,
-      "page": FichaClinica()
+      "page": FichaClinica(idPaciente: 1,)
     },
     {
       "text": "Teleconsulta", 
