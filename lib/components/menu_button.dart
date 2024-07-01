@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class MenuButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
-  final IconData? icon;
+  final String? imagePath;
 
   MenuButton({
     required this.text,
     required this.onPressed,
-    this.icon,
+    this.imagePath,
   });
 
   @override
@@ -23,10 +23,8 @@ class MenuButton extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color(0xFF4B3D82),  // Dark Blueberry
-                  Color(0xFF6C62B6),  // Light Cornflower Blue
-                  Color(0xFF5788A8),  // Medium Wedgwood
-                  Color(0xFF204C67),  // Very Dark Peacock Blue
+                  Color(0xFF005954), // Color 1
+                  Color(0xFF005954), // Color 1
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -35,11 +33,11 @@ class MenuButton extends StatelessWidget {
               border: Border.all(color: Colors.grey),
             ),
             child: Center(
-              child: icon != null
-                  ? Icon(
-                      icon,
-                      color: Colors.white,
-                      size: 30,  // Reduce the icon size
+              child: imagePath != null
+                  ? Image.asset(
+                      imagePath!,
+                      width: 40,  // Reduce the image width
+                      height: 40,  // Reduce the image height
                     )
                   : null,
             ),
@@ -49,7 +47,7 @@ class MenuButton extends StatelessWidget {
         Text(
           text,
           style: TextStyle(
-            color: Color.fromARGB(255, 87, 137, 170),
+            color: Color(0xFF338b85), // Color 2
             fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.center,

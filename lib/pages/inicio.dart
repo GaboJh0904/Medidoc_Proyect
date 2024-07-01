@@ -20,7 +20,8 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
     )..repeat();
 
     Future.delayed(Duration(seconds: 10), () {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => MenuPrincipal()));
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => MenuPrincipal()));
     });
   }
 
@@ -36,7 +37,8 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
     return Scaffold(
       body: GestureDetector(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (_) => BioPag())); // Modifica esto por tu destino
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => BioPag())); // Modifica esto por tu destino
         },
         child: Container(
           color: const Color(0xFF005954),
@@ -103,7 +105,7 @@ class CapaOla extends StatelessWidget {
   const CapaOla({
     Key? key,
     required this.animacion,
-    required this.proporcionAltura, 
+    required this.proporcionAltura,
     required this.velocidad,
     required this.desfase,
     required this.color,
@@ -155,11 +157,13 @@ class PintorOla extends CustomPainter {
 
     final alturaOla = size.height * proporcionAltura;
     final frecuenciaOla = 2 * pi / size.width;
-    final desplazamientoTotalOla = 2 * pi * valorAnimacion * velocidad + desfase;
+    final desplazamientoTotalOla =
+        2 * pi * valorAnimacion * velocidad + desfase;
 
     path.moveTo(0, inicioY);
     for (double x = 0; x <= size.width; x++) {
-      final y = inicioY + alturaOla * sin(frecuenciaOla * x + desplazamientoTotalOla);
+      final y =
+          inicioY + alturaOla * sin(frecuenciaOla * x + desplazamientoTotalOla);
       path.lineTo(x, y);
     }
 

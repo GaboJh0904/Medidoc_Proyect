@@ -11,7 +11,7 @@ class BotonSOS extends StatefulWidget {
 
 class _BotonSOSState extends State<BotonSOS> {
   Timer? _timer;
-  int _remainingTime = 3600;  // 1 hour for countdown
+  int _remainingTime = 3600; // 1 hour for countdown
 
   @override
   void initState() {
@@ -26,7 +26,7 @@ class _BotonSOSState extends State<BotonSOS> {
           _remainingTime--;
         });
       } else {
-        _timer?.cancel();  // Stops timer when it reaches 0
+        _timer?.cancel(); // Stops timer when it reaches 0
       }
     });
   }
@@ -244,6 +244,7 @@ class _BotonSOSState extends State<BotonSOS> {
                 ],
               ),
             ),
+          ),
         ],
       ),
     );
@@ -260,15 +261,15 @@ class _BotonSOSState extends State<BotonSOS> {
             TextButton(
               child: Text('Cancelar'),
               onPressed: () {
-                Navigator.of(context).pop();  // Close the dialog
+                Navigator.of(context).pop(); // Close the dialog
               },
             ),
             TextButton(
               child: Text('Aceptar'),
               onPressed: () {
                 _timer?.cancel();
-                Navigator.of(context).pop();  // Close the dialog
-                Navigator.of(context).pop();  // Go back to previous screen
+                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pop(); // Go back to previous screen
               },
             ),
           ],

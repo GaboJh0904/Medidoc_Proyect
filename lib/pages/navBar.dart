@@ -7,7 +7,7 @@ class NavbarOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: Color(0xFF204C67), // Color de fondo del Drawer
+        color: Color(0xFF005954), // Color 1
         child: Center( // Centra el contenido
           child: Column(
             mainAxisSize: MainAxisSize.min, // Centra los elementos verticalmente
@@ -51,6 +51,7 @@ class NavbarOptions extends StatelessWidget {
       margin: EdgeInsets.all(4.0), // Margen alrededor de cada botón
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white), // Borde del botón color blanco
+        borderRadius: BorderRadius.circular(10.0), // Bordes redondos con radio de 10
       ),
       child: ListTile(
         title: Text(

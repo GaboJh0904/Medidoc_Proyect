@@ -5,11 +5,9 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-
 class ConsultaCasa extends StatelessWidget {
   final String nombreDoctor;
   final int tiempo;
-
 
   ConsultaCasa({required this.nombreDoctor, required this.tiempo});
 
@@ -20,9 +18,10 @@ class ConsultaCasa extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MapScreen(nombreDoctor: nombreDoctor, tiempo: tiempo),  // Pasamos las variables al ChatScreen
+      home: MapScreen(
+          nombreDoctor: nombreDoctor,
+          tiempo: tiempo), // Pasamos las variables al ChatScreen
     );
-
   }
 }
 
@@ -40,8 +39,10 @@ class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
 
   // Coordenadas de ejemplo: ubicación del doctor y del paciente
-  final LatLng _doctorLocation = LatLng(-16.523100, -68.112332); // Ejemplo: ubicación del doctor
-  final LatLng _patientLocation = LatLng(-16.541149, -68.077625); // Ejemplo: ubicación del paciente (Ciudad de México)
+  final LatLng _doctorLocation =
+      LatLng(-16.523100, -68.112332); // Ejemplo: ubicación del doctor
+  final LatLng _patientLocation = LatLng(-16.541149,
+      -68.077625); // Ejemplo: ubicación del paciente (Ciudad de México)
 
   Set<Polyline> _polylines = {};
 
@@ -57,7 +58,8 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   Future<void> _getDirections() async {
-    final String apiKey = 'TU_API_KEY_DE_GOOGLE_MAPS'; // Usa tu API Key de Google Maps
+    final String apiKey =
+        'TU_API_KEY_DE_GOOGLE_MAPS'; // Usa tu API Key de Google Maps
     final String url =
         'https://maps.googleapis.com/maps/api/directions/json?origin=${_doctorLocation.latitude},${_doctorLocation.longitude}&destination=${_patientLocation.latitude},${_patientLocation.longitude}&key=$apiKey';
 
@@ -91,12 +93,20 @@ class _MapScreenState extends State<MapScreen> {
     if (mapController != null) {
       LatLngBounds bounds = LatLngBounds(
         southwest: LatLng(
-          _patientLocation.latitude < _doctorLocation.latitude ? _patientLocation.latitude : _doctorLocation.latitude,
-          _patientLocation.longitude < _doctorLocation.longitude ? _patientLocation.longitude : _doctorLocation.longitude,
+          _patientLocation.latitude < _doctorLocation.latitude
+              ? _patientLocation.latitude
+              : _doctorLocation.latitude,
+          _patientLocation.longitude < _doctorLocation.longitude
+              ? _patientLocation.longitude
+              : _doctorLocation.longitude,
         ),
         northeast: LatLng(
-          _patientLocation.latitude > _doctorLocation.latitude ? _patientLocation.latitude : _doctorLocation.latitude,
-          _patientLocation.longitude > _doctorLocation.longitude ? _patientLocation.longitude : _doctorLocation.longitude,
+          _patientLocation.latitude > _doctorLocation.latitude
+              ? _patientLocation.latitude
+              : _doctorLocation.latitude,
+          _patientLocation.longitude > _doctorLocation.longitude
+              ? _patientLocation.longitude
+              : _doctorLocation.longitude,
         ),
       );
 
@@ -146,7 +156,6 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -158,7 +167,7 @@ class _MapScreenState extends State<MapScreen> {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
         elevation: 0,
       ),
       body: Column(

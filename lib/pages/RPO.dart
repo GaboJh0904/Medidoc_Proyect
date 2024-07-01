@@ -6,11 +6,12 @@ class rpo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pop(context);  // Esto llevará al usuario de vuelta a la página anterior
+            Navigator.pop(
+                context); // Esto llevará al usuario de vuelta a la página anterior
           },
         ),
         title: Text(
@@ -70,7 +71,7 @@ class rpo extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            color: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+            color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -81,14 +82,15 @@ class rpo extends StatelessWidget {
     );
   }
 
-  Widget buildTitleWithCircle({required String title, required int percentage}) {
+  Widget buildTitleWithCircle(
+      {required String title, required int percentage}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
           style: TextStyle(
-            color: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+            color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -105,7 +107,8 @@ class StatsCard extends StatelessWidget {
   final IconData? icon;
   final Widget chart;
 
-  const StatsCard({Key? key, required this.value, required this.icon, required this.chart})
+  const StatsCard(
+      {Key? key, required this.value, required this.icon, required this.chart})
       : super(key: key);
 
   @override
@@ -114,7 +117,8 @@ class StatsCard extends StatelessWidget {
       padding: EdgeInsets.all(20),
       margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
-        color: Color(0xFF3A7cA5),  // Purple shade from the color panel
+        color: Color.fromARGB(
+            255, 123, 97, 167), // Purple shade from the color panel
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -150,7 +154,8 @@ class OxygenStats extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(30),
       decoration: BoxDecoration(
-        color: Color(0xFF3A7cA5),  // Purple shade from the color panel
+        color: Color.fromARGB(
+            255, 123, 97, 167), // Purple shade from the color panel
         shape: BoxShape.circle,
       ),
       child: Center(
@@ -175,8 +180,8 @@ class HeartbeatPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final rect = Offset.zero & size;
-    final gradient = const LinearGradient(
-      colors: [Colors.black, Color(0xff00b3c2), Colors.black],
+    final gradient = LinearGradient(
+      colors: [Colors.black, Colors.blueGrey, Colors.black],
     ).createShader(rect);
 
     final paint = Paint()

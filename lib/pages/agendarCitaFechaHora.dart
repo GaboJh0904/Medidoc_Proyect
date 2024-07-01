@@ -17,7 +17,19 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
   DateTime _selectedDay = DateTime.now();
   String? _selectedTime;
 
-  List<String> horarios = ['08:00', '09:30', '10:30', '11:00', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00'];
+  List<String> horarios = [
+    '08:00',
+    '09:30',
+    '10:30',
+    '11:00',
+    '12:00',
+    '12:30',
+    '13:00',
+    '13:30',
+    '14:00',
+    '14:30',
+    '15:00'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +44,7 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
         elevation: 0,
       ),
       body: Column(
@@ -57,7 +69,8 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
                 shape: BoxShape.circle,
               ),
               todayDecoration: BoxDecoration(
-                color: Color.fromARGB(255, 51, 133, 209), // Color del esquema anterior
+                color: Color.fromARGB(
+                    255, 51, 133, 209), // Color del esquema anterior
                 shape: BoxShape.circle,
               ),
               outsideTextStyle: TextStyle(color: Colors.grey),
@@ -68,7 +81,8 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
               leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
               rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white),
               titleCentered: true,
-              decoration: BoxDecoration(color: Color.fromARGB(255, 52, 123, 230)), // Dark Blueberry
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 52, 123, 230)), // Dark Blueberry
             ),
             daysOfWeekStyle: DaysOfWeekStyle(
               weekdayStyle: TextStyle(color: Colors.white),
@@ -93,7 +107,9 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: _selectedTime == horarios[index] ? Color.fromARGB(255, 36, 83, 153) : Color.fromARGB(255, 42, 107, 145),
+                      color: _selectedTime == horarios[index]
+                          ? Color.fromARGB(255, 36, 83, 153)
+                          : Color.fromARGB(255, 42, 107, 145),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(
@@ -124,18 +140,22 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
                     direccion: 'Dirección del Consultorio',
                   );
                   listaDeCitasGlobal.add(nuevaCita);
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => CitasConfirmadas()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CitasConfirmadas()));
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+                backgroundColor:
+                    Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
               ),
               child: Text(
                 'Confirmar Cita',
                 style: TextStyle(
                   color: Colors.white,
                 ),
-                ),
+              ),
             ),
           ),
         ],
