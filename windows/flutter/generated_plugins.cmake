@@ -3,7 +3,9 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  cloud_firestore
   file_selector_windows
+  firebase_core
   flutter_tts
   local_auth_windows
   url_launcher_windows

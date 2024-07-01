@@ -13,6 +13,7 @@ class Diet {
     required this.forbiddenFoods,
   });
 }
+
 class DietListPage extends StatelessWidget {
   final String dietCategory;
   final List<Diet> diets;
@@ -25,7 +26,8 @@ class DietListPage extends StatelessWidget {
       data: ThemeData(
         primarySwatch: Colors.purple,
         textTheme: TextTheme(
-          bodyText2: TextStyle(color: Colors.white),
+          bodyMedium: TextStyle(
+              color: Colors.white), // Cambiado de 'bodyText2' a 'bodyMedium'
         ),
       ),
       child: Scaffold(
@@ -36,7 +38,8 @@ class DietListPage extends StatelessWidget {
           itemCount: diets.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -50,10 +53,10 @@ class DietListPage extends StatelessWidget {
                   foregroundColor: Colors.white,
                   backgroundColor: Colors.deepPurple, // Text color
 
-
                   padding: EdgeInsets.all(20), // Button padding
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0), // Button border radius
+                    borderRadius:
+                        BorderRadius.circular(10.0), // Button border radius
                   ),
                 ),
                 child: Text(
@@ -96,7 +99,8 @@ final List<Diet> personalizedDiets = [
       'Viernes': {
         'Desayuno': 'Pan integral con aguacate y salmón ahumado',
         'Almuerzo': 'Pasta integral con salsa de tomate casera y espinacas',
-        'Cena': 'Tortilla francesa de claras de huevo con espárragos y champiñones',
+        'Cena':
+            'Tortilla francesa de claras de huevo con espárragos y champiñones',
       },
       'Sábado': {
         'Desayuno': 'Tortitas de avena con plátano y nueces',
@@ -109,8 +113,18 @@ final List<Diet> personalizedDiets = [
         'Cena': 'Vegetales al horno con tofu marinado',
       },
     },
-    mandatoryFoods: ['Frutas frescas', 'Verduras verdes', 'Proteína magra', 'Granos enteros'],
-    forbiddenFoods: ['Azúcar refinada', 'Alimentos procesados', 'Grasas trans', 'Bebidas azucaradas'],
+    mandatoryFoods: [
+      'Frutas frescas',
+      'Verduras verdes',
+      'Proteína magra',
+      'Granos enteros'
+    ],
+    forbiddenFoods: [
+      'Azúcar refinada',
+      'Alimentos procesados',
+      'Grasas trans',
+      'Bebidas azucaradas'
+    ],
   ),
   Diet(
     name: "Dieta Personalizada 2",
@@ -151,11 +165,20 @@ final List<Diet> personalizedDiets = [
         'Cena': 'Vegetales al horno con tofu marinado',
       },
     },
-    mandatoryFoods: ['Frutas frescas', 'Verduras verdes', 'Proteína magra', 'Granos enteros'],
-    forbiddenFoods: ['Azúcar refinada', 'Alimentos procesados', 'Grasas trans', 'Bebidas azucaradas'],
+    mandatoryFoods: [
+      'Frutas frescas',
+      'Verduras verdes',
+      'Proteína magra',
+      'Granos enteros'
+    ],
+    forbiddenFoods: [
+      'Azúcar refinada',
+      'Alimentos procesados',
+      'Grasas trans',
+      'Bebidas azucaradas'
+    ],
   ),
 ];
-
 
 final List<Diet> glutenDiets = [
   Diet(
@@ -183,7 +206,8 @@ final List<Diet> glutenDiets = [
       },
       'Viernes': {
         'Desayuno': 'Smoothie bowl de bayas con semillas de chía',
-        'Almuerzo': 'Wrap de pavo con lechuga, tomate y hummus en tortilla de maíz',
+        'Almuerzo':
+            'Wrap de pavo con lechuga, tomate y hummus en tortilla de maíz',
         'Cena': 'Ensalada de quinoa con vegetales asados',
       },
       'Sábado': {
@@ -197,8 +221,18 @@ final List<Diet> glutenDiets = [
         'Cena': 'Pechuga de pollo a la parrilla con vegetales al vapor',
       },
     },
-    mandatoryFoods: ['Frutas frescas', 'Verduras verdes', 'Proteína magra', 'Quinoa'],
-    forbiddenFoods: ['Trigo', 'Cebada', 'Centeno', 'Avena (a menos que sea sin gluten)'],
+    mandatoryFoods: [
+      'Frutas frescas',
+      'Verduras verdes',
+      'Proteína magra',
+      'Quinoa'
+    ],
+    forbiddenFoods: [
+      'Trigo',
+      'Cebada',
+      'Centeno',
+      'Avena (a menos que sea sin gluten)'
+    ],
   ),
   Diet(
     name: "Dieta sin Gluten 2",
@@ -215,13 +249,15 @@ final List<Diet> glutenDiets = [
       },
       'Miércoles': {
         'Desayuno': 'Yogurt griego con frutas frescas y granola sin gluten',
-        'Almuerzo': 'Pasta de arroz integral con salsa de tomate casera y espinacas',
+        'Almuerzo':
+            'Pasta de arroz integral con salsa de tomate casera y espinacas',
         'Cena': 'Pollo a la plancha con batatas asadas y brócoli al vapor',
       },
       'Jueves': {
         'Desayuno': 'Batido de plátano, espinacas y leche de almendras',
         'Almuerzo': 'Sopa de lentejas con vegetales',
-        'Cena': 'Tortilla francesa de claras de huevo con espárragos y champiñones',
+        'Cena':
+            'Tortilla francesa de claras de huevo con espárragos y champiñones',
       },
       'Viernes': {
         'Desayuno': 'Avena sin gluten con plátano y nueces',
@@ -239,8 +275,18 @@ final List<Diet> glutenDiets = [
         'Cena': 'Ensalada de garbanzos, pepino, tomate y atún',
       },
     },
-    mandatoryFoods: ['Frutas frescas', 'Verduras verdes', 'Proteína magra', 'Quinoa'],
-    forbiddenFoods: ['Trigo', 'Cebada', 'Centeno', 'Avena (a menos que sea sin gluten)'],
+    mandatoryFoods: [
+      'Frutas frescas',
+      'Verduras verdes',
+      'Proteína magra',
+      'Quinoa'
+    ],
+    forbiddenFoods: [
+      'Trigo',
+      'Cebada',
+      'Centeno',
+      'Avena (a menos que sea sin gluten)'
+    ],
   ),
 ];
 
@@ -254,7 +300,8 @@ final List<Diet> allergyDiets = [
         'Cena': 'Pescado al horno con verduras al vapor',
       },
       'Martes': {
-        'Desayuno': 'Tostadas de pan integral con mantequilla de semillas de girasol',
+        'Desayuno':
+            'Tostadas de pan integral con mantequilla de semillas de girasol',
         'Almuerzo': 'Wrap de pavo con vegetales y mayonesa sin frutos secos',
         'Cena': 'Pasta integral con salsa de tomate y pollo desmenuzado',
       },
@@ -269,9 +316,12 @@ final List<Diet> allergyDiets = [
         'Cena': 'Ensalada verde con atún en conserva y vinagreta de limón',
       },
       'Viernes': {
-        'Desayuno': 'Yogurt de soja con frutas frescas y granola sin frutos secos',
-        'Almuerzo': 'Pechuga de pollo a la plancha con arroz integral y brócoli al vapor',
-        'Cena': 'Tortilla francesa de claras de huevo con espinacas y champiñones',
+        'Desayuno':
+            'Yogurt de soja con frutas frescas y granola sin frutos secos',
+        'Almuerzo':
+            'Pechuga de pollo a la plancha con arroz integral y brócoli al vapor',
+        'Cena':
+            'Tortilla francesa de claras de huevo con espinacas y champiñones',
       },
       'Sábado': {
         'Desayuno': 'Huevos revueltos con tomate y aguacate',
@@ -279,13 +329,25 @@ final List<Diet> allergyDiets = [
         'Cena': 'Pasta integral con pesto de albahaca y pollo a la parrilla',
       },
       'Domingo': {
-        'Desayuno': 'Tostadas de pan sin frutos secos con mermelada de frutas naturales',
-        'Almuerzo': 'Wrap de atún con aguacate, lechuga y tomate en tortilla integral',
+        'Desayuno':
+            'Tostadas de pan sin frutos secos con mermelada de frutas naturales',
+        'Almuerzo':
+            'Wrap de atún con aguacate, lechuga y tomate en tortilla integral',
         'Cena': 'Salmón al horno con patatas asadas y espárragos',
       },
     },
-    mandatoryFoods: ['Frutas frescas', 'Verduras verdes', 'Proteína magra', 'Granos enteros'],
-    forbiddenFoods: ['Almendras', 'Nueces', 'Cacahuetes', 'Otros frutos secos y semillas'],
+    mandatoryFoods: [
+      'Frutas frescas',
+      'Verduras verdes',
+      'Proteína magra',
+      'Granos enteros'
+    ],
+    forbiddenFoods: [
+      'Almendras',
+      'Nueces',
+      'Cacahuetes',
+      'Otros frutos secos y semillas'
+    ],
   ),
   Diet(
     name: "Alimentación para Alergia al Marisco",
@@ -296,23 +358,27 @@ final List<Diet> allergyDiets = [
         'Cena': 'Pescado al horno con verduras al vapor',
       },
       'Martes': {
-        'Desayuno': 'Tostadas de pan integral con mermelada de frutas naturales',
+        'Desayuno':
+            'Tostadas de pan integral con mermelada de frutas naturales',
         'Almuerzo': 'Pasta integral con salsa de tomate y pollo desmenuzado',
         'Cena': 'Salmón al horno con quinoa y espárragos',
       },
       'Miércoles': {
-        'Desayuno': 'Yogurt de soja con frutas frescas y granola sin frutos secos',
+        'Desayuno':
+            'Yogurt de soja con frutas frescas y granola sin frutos secos',
         'Almuerzo': 'Wrap de pollo con vegetales y mayonesa sin frutos secos',
         'Cena': 'Ensalada verde con atún en conserva y aguacate',
       },
       'Jueves': {
         'Desayuno': 'Avena con plátano y miel',
         'Almuerzo': 'Ensalada de garbanzos con aguacate, tomate y pepino',
-        'Cena': 'Pechuga de pollo a la plancha con arroz integral y brócoli al vapor',
+        'Cena':
+            'Pechuga de pollo a la plancha con arroz integral y brócoli al vapor',
       },
       'Viernes': {
         'Desayuno': 'Smoothie bowl de bayas con leche de almendras',
-        'Almuerzo': 'Wrap de pavo con aguacate, tomate y lechuga en tortilla integral',
+        'Almuerzo':
+            'Wrap de pavo con aguacate, tomate y lechuga en tortilla integral',
         'Cena': 'Ensalada de quinoa con vegetales asados y pollo a la parrilla',
       },
       'Sábado': {
@@ -326,8 +392,18 @@ final List<Diet> allergyDiets = [
         'Cena': 'Pechuga de pollo a la plancha con puré de boniato',
       },
     },
-    mandatoryFoods: ['Frutas frescas', 'Verduras verdes', 'Proteína magra', 'Granos enteros'],
-    forbiddenFoods: ['Camarones', 'Langostinos', 'Cangrejo', 'Otros mariscos y productos del mar'],
+    mandatoryFoods: [
+      'Frutas frescas',
+      'Verduras verdes',
+      'Proteína magra',
+      'Granos enteros'
+    ],
+    forbiddenFoods: [
+      'Camarones',
+      'Langostinos',
+      'Cangrejo',
+      'Otros mariscos y productos del mar'
+    ],
   ),
   Diet(
     name: "Alimentación para Alergia a los Lácteos",
@@ -338,24 +414,29 @@ final List<Diet> allergyDiets = [
         'Cena': 'Pescado al horno con verduras al vapor',
       },
       'Martes': {
-        'Desayuno': 'Tostadas de pan integral con mermelada de frutas naturales',
+        'Desayuno':
+            'Tostadas de pan integral con mermelada de frutas naturales',
         'Almuerzo': 'Wrap de pavo con vegetales y hummus',
         'Cena': 'Pasta integral con salsa de tomate y pollo desmenuzado',
       },
       'Miércoles': {
-        'Desayuno': 'Smoothie bowl de bayas con yogurt de soja y granola sin lácteos',
+        'Desayuno':
+            'Smoothie bowl de bayas con yogurt de soja y granola sin lácteos',
         'Almuerzo': 'Ensalada de quinoa con aguacate, tomate y huevo duro',
         'Cena': 'Salmón al horno con quinoa y espárragos',
       },
       'Jueves': {
         'Desayuno': 'Avena con plátano y miel',
-        'Almuerzo': 'Wrap de pollo con vegetales y mayonesa sin lácteos en tortilla integral',
+        'Almuerzo':
+            'Wrap de pollo con vegetales y mayonesa sin lácteos en tortilla integral',
         'Cena': 'Ensalada verde con atún en conserva y aguacate',
       },
       'Viernes': {
         'Desayuno': 'Yogurt de soja con frutas frescas y semillas de chía',
-        'Almuerzo': 'Pechuga de pollo a la plancha con arroz integral y brócoli al vapor',
-        'Cena': 'Tortilla francesa de claras de huevo con espinacas y champiñones',
+        'Almuerzo':
+            'Pechuga de pollo a la plancha con arroz integral y brócoli al vapor',
+        'Cena':
+            'Tortilla francesa de claras de huevo con espinacas y champiñones',
       },
       'Sábado': {
         'Desayuno': 'Huevos revueltos con tomate y aguacate',
@@ -363,16 +444,27 @@ final List<Diet> allergyDiets = [
         'Cena': 'Pasta integral con pesto de albahaca y pollo a la parrilla',
       },
       'Domingo': {
-        'Desayuno': 'Tostadas de pan integral con mermelada de frutas naturales',
-        'Almuerzo': 'Wrap de atún con aguacate, lechuga y tomate en tortilla integral',
+        'Desayuno':
+            'Tostadas de pan integral con mermelada de frutas naturales',
+        'Almuerzo':
+            'Wrap de atún con aguacate, lechuga y tomate en tortilla integral',
         'Cena': 'Pechuga de pollo a la plancha con puré de boniato',
       },
     },
-    mandatoryFoods: ['Frutas frescas', 'Verduras verdes', 'Proteína magra', 'Granos enteros'],
-    forbiddenFoods: ['Leche de vaca', 'Quesos', 'Yogurt', 'Mantequilla y otros lácteos'],
+    mandatoryFoods: [
+      'Frutas frescas',
+      'Verduras verdes',
+      'Proteína magra',
+      'Granos enteros'
+    ],
+    forbiddenFoods: [
+      'Leche de vaca',
+      'Quesos',
+      'Yogurt',
+      'Mantequilla y otros lácteos'
+    ],
   ),
 ];
-
 
 final List<Diet> cancerDiets = [
   Diet(
@@ -399,13 +491,15 @@ final List<Diet> cancerDiets = [
         'Cena': 'Salmón al horno con brócoli y quinoa',
       },
       'Viernes': {
-        'Desayuno': 'Smoothie bowl de frutas y espinacas con semillas de calabaza',
+        'Desayuno':
+            'Smoothie bowl de frutas y espinacas con semillas de calabaza',
         'Almuerzo': 'Wrap integral con pollo, vegetales y hummus',
         'Cena': 'Ensalada verde con quinoa, aguacate y tomate',
       },
       'Sábado': {
         'Desayuno': 'Huevos revueltos con espinacas y champiñones',
-        'Almuerzo': 'Pavo a la plancha con puré de batata y espárragos al vapor',
+        'Almuerzo':
+            'Pavo a la plancha con puré de batata y espárragos al vapor',
         'Cena': 'Sopa de verduras casera con una rebanada de pan integral',
       },
       'Domingo': {
@@ -414,8 +508,18 @@ final List<Diet> cancerDiets = [
         'Cena': 'Pechuga de pollo al horno con vegetales asados',
       },
     },
-    mandatoryFoods: ['Frutas frescas', 'Verduras verdes', 'Proteína magra', 'Granos integrales'],
-    forbiddenFoods: ['Azúcares refinados', 'Alimentos procesados', 'Grasas trans', 'Bebidas azucaradas'],
+    mandatoryFoods: [
+      'Frutas frescas',
+      'Verduras verdes',
+      'Proteína magra',
+      'Granos integrales'
+    ],
+    forbiddenFoods: [
+      'Azúcares refinados',
+      'Alimentos procesados',
+      'Grasas trans',
+      'Bebidas azucaradas'
+    ],
   ),
   Diet(
     name: "Alimentación para Cáncer de Pulmón",
@@ -431,23 +535,27 @@ final List<Diet> cancerDiets = [
         'Cena': 'Pechuga de pollo a la plancha con verduras salteadas',
       },
       'Miércoles': {
-        'Desayuno': 'Yogurt natural con granola sin azúcar añadido y frutas frescas',
+        'Desayuno':
+            'Yogurt natural con granola sin azúcar añadido y frutas frescas',
         'Almuerzo': 'Wrap integral con salmón ahumado, aguacate y espinacas',
         'Cena': 'Ensalada de quinoa con pollo a la parrilla y vegetales',
       },
       'Jueves': {
-        'Desayuno': 'Tostadas integrales con mantequilla de almendras y plátano',
+        'Desayuno':
+            'Tostadas integrales con mantequilla de almendras y plátano',
         'Almuerzo': 'Ensalada verde con salmón ahumado y aguacate',
         'Cena': 'Pollo al curry con arroz integral',
       },
       'Viernes': {
         'Desayuno': 'Batido verde de espinacas, piña, mango y leche de coco',
         'Almuerzo': 'Ensalada de garbanzos con vegetales y atún en conserva',
-        'Cena': 'Tortilla francesa de claras de huevo con espinacas y champiñones',
+        'Cena':
+            'Tortilla francesa de claras de huevo con espinacas y champiñones',
       },
       'Sábado': {
         'Desayuno': 'Tortitas de avena y plátano con frutas frescas y miel',
-        'Almuerzo': 'Pechuga de pollo a la plancha con puré de boniato y espárragos al vapor',
+        'Almuerzo':
+            'Pechuga de pollo a la plancha con puré de boniato y espárragos al vapor',
         'Cena': 'Sopa de calabaza y zanahoria con trozos de pollo',
       },
       'Domingo': {
@@ -456,11 +564,20 @@ final List<Diet> cancerDiets = [
         'Cena': 'Pescado al horno con espárragos y patatas asadas',
       },
     },
-    mandatoryFoods: ['Frutas frescas', 'Verduras verdes', 'Proteína magra', 'Granos integrales'],
-    forbiddenFoods: ['Azúcares refinados', 'Alimentos procesados', 'Grasas trans', 'Bebidas azucaradas'],
+    mandatoryFoods: [
+      'Frutas frescas',
+      'Verduras verdes',
+      'Proteína magra',
+      'Granos integrales'
+    ],
+    forbiddenFoods: [
+      'Azúcares refinados',
+      'Alimentos procesados',
+      'Grasas trans',
+      'Bebidas azucaradas'
+    ],
   ),
 ];
-
 
 class DietDetailPage extends StatelessWidget {
   final Diet diet;

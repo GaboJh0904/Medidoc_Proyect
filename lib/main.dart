@@ -5,7 +5,14 @@ import 'package:medidoc_proyect/pages/Inicio.dart';
 import 'package:medidoc_proyect/pages/biometrico.dart';
 import 'package:medidoc_proyect/pages/menu_principal.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase/firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'modeloCita.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'citasConfirmadas.dart';
 
 class AgendarCitaFechaHora extends StatefulWidget {
@@ -131,19 +131,7 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
             child: ElevatedButton(
               onPressed: () {
                 if (_selectedTime != null) {
-                  Cita nuevaCita = Cita(
-                    especialidad: widget.especialidad,
-                    fecha: _selectedDay,
-                    hora: _selectedTime!,
-                    paciente: 'Nombre del Paciente',
-                    medico: widget.medico,
-                    direccion: 'Dirección del Consultorio',
-                  );
-                  listaDeCitasGlobal.add(nuevaCita);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CitasConfirmadas()));
+                  _confirmarCita();
                 }
               },
               style: ElevatedButton.styleFrom(
@@ -161,5 +149,44 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
         ],
       ),
     );
+  }
+
+  void _confirmarCita() async {
+    final db = FirebaseFirestore.instance;
+
+    final nuevaCita = {
+      'doctor_id_doctor': widget.medico,
+      'paciente_id_paciente': '1',
+      'direccion': '123 Main St',
+      'estado': 'pendiente',
+      'fecha': _selectedDay,
+      'horario': _selectedTime,
+      'tipocita': widget.especialidad,
+      'id_cita': await _obtenerProximoIdCita(),
+    };
+
+    await db.collection('SolicitudCita').add(nuevaCita);
+
+    // Navegar a la página de confirmación de citas u otra página adecuada.
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CitasConfirmadas()),
+    );
+  }
+
+  Future<int> _obtenerProximoIdCita() async {
+    final db = FirebaseFirestore.instance;
+    final querySnapshot = await db
+        .collection('SolicitudCita')
+        .orderBy('id_cita', descending: true)
+        .limit(1)
+        .get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      final ultimoId = querySnapshot.docs.first.get('id_cita') as int;
+      return ultimoId + 1;
+    } else {
+      return 1; // Si no hay citas, empieza en 1.
+    }
   }
 }
