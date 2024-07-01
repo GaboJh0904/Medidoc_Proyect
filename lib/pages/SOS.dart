@@ -80,18 +80,20 @@ class _BotonSOSState extends State<BotonSOS> {
                 children: <Widget>[
                   CustomButton(
                     text: 'Cancelar llamado SOS',
+                    textColor: Colors.red,
                     title: null,
                     sections: null,
-                    color: Color.fromARGB(255, 26, 51, 121),  // Dark Blueberry
+                    color: Color.fromARGB(255, 255, 255, 255),  // white
                     onTap: () {
                       _showCancelDialog(); // Suponiendo 165 como número de emergencia
                     },
                   ),
                   CustomButton(
                     text: 'Mapa de ubicación',
+                    textColor: Colors.red,
                     title: null,
                     sections: null,
-                    color: Color.fromARGB(255, 26, 51, 121),  // Dark Blueberry
+                    color: Color.fromARGB(255, 255, 255, 255),  // white
                     onTap: () {
                       Navigator.push(
                         context,
@@ -102,6 +104,7 @@ class _BotonSOSState extends State<BotonSOS> {
                   CustomButton(
                     text: 'Reanimación',
                     title: 'Reanimación',
+                    textColor: Colors.red,
                     sections: [
                       {
                         'text': 'Paso 1. Llama a emergencias (165 - 160) \nSi presencias una emergencia, lo primero es llamar al número de emergencias. Mantén la calma y proporciona los detalles necesarios.',
@@ -128,11 +131,12 @@ class _BotonSOSState extends State<BotonSOS> {
                         'image': 'assets/images/reanimacion_6.png',
                       },
                     ],
-                    color: Color.fromARGB(255, 26, 51, 121),  // Dark Blueberry
+                    color: Color.fromARGB(255, 255, 255, 255),  // white
                   ),
                   CustomButton(
                     text: 'Torniquetes',
                     title: 'Torniquetes',
+                    textColor: Colors.red,
                     sections: [
                       {
                         'text': 'Paso 1: Retire el torniquete CAT del botiquín (Bic) o de la funda de transporte. Asegúrese de tener acceso rápido a estos equipos en caso de emergencia.',
@@ -175,11 +179,12 @@ class _BotonSOSState extends State<BotonSOS> {
                         'image': 'assets/images/torniquete_10.jpg',
                       },
                     ],
-                    color: Color.fromARGB(255, 26, 51, 121),  // Dark Blueberry
+                    color: Color.fromARGB(255, 255, 255, 255),  // white
                   ),
                   CustomButton(
                     text: 'Vendaje',
                     title: 'Vendaje',
+                    textColor: Colors.red,
                     sections: [
                       {
                         'text': 'Tipo 1: Vendaje Circular\nUtiliza este método para cubrir pequeñas áreas uniformemente. Simplemente enrolla el vendaje alrededor de la zona afectada de forma circular, asegurando que cada vuelta cubra parcialmente la anterior.',
@@ -206,11 +211,12 @@ class _BotonSOSState extends State<BotonSOS> {
                         'image': 'assets/images/vendaje_6.jpg',
                       },
                     ],
-                    color: Color.fromARGB(255, 26, 51, 121),  // Dark Blueberry
+                    color: Color.fromARGB(255, 255, 255, 255),  // white
                   ),
                   CustomButton(
                     text: 'Asma',
                     title: 'Asma',
+                    textColor: Colors.red,
                     sections: [
                       {
                         'text': 'Paso 1: Retiramos el tapón\nAntes de usar el inhalador, es importante retirar el tapón de la boquilla para asegurar que el medicamento pueda ser administrado correctamente.',
@@ -233,7 +239,7 @@ class _BotonSOSState extends State<BotonSOS> {
                         'image': 'assets/images/Asma_6.jpg',
                       },
                     ],
-                    color: Color.fromARGB(255, 26, 51, 121),  // Dark Blueberry
+                    color: Color.fromARGB(255, 255, 255, 255),  // white
                   ),
                 ],
               ),

@@ -6,6 +6,7 @@ class CustomButton extends StatelessWidget {
   final String? title;
   final List<Map<String, String>>? sections;
   final Color color;
+  final Color? textColor; // Nuevo parámetro opcional para el color del texto
   final VoidCallback? onTap;
 
   CustomButton({
@@ -13,6 +14,7 @@ class CustomButton extends StatelessWidget {
     this.title,
     this.sections,
     required this.color,
+    this.textColor, // Parámetro opcional para el color del texto
     this.onTap,
   });
 
@@ -21,16 +23,19 @@ class CustomButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(20),
       ),
       margin: EdgeInsets.symmetric(vertical: 8.0),
       child: ListTile(
         title: Text(
           text,
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: textColor ?? Colors.white, // Usar el textColor si está definido, si no, usar blanco
+            fontWeight: FontWeight.bold,
+          ),
         ),
         onTap: onTap ??
-            () {
+                () {
               if (title != null && sections != null) {
                 Navigator.push(
                   context,

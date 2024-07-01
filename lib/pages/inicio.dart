@@ -39,7 +39,7 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
           Navigator.of(context).push(MaterialPageRoute(builder: (_) => BioPag())); // Modifica esto por tu destino
         },
         child: Container(
-          color: const Color(0xFF00a4b4),
+          color: const Color(0xFF005954),
           child: Stack(
             children: [
               CapaOla(
@@ -47,7 +47,7 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
                 proporcionAltura: 0.1,
                 velocidad: 1.0,
                 desfase: pi,
-                color: const Color(0xFF9CA4F8).withOpacity(0.7),
+                color: const Color(0xFF338b85).withOpacity(0.7),
                 inicioY: alturaPantalla * 0.3,
               ),
               CapaOla(
@@ -55,7 +55,7 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
                 proporcionAltura: 0.15,
                 velocidad: 1.1,
                 desfase: pi / 2,
-                color: const Color(0xf2312d7a).withOpacity(0.7),
+                color: const Color(0xFF5dc1b9).withOpacity(0.7),
                 inicioY: alturaPantalla * 0.1,
               ),
               CapaOla(
@@ -63,7 +63,7 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
                 proporcionAltura: 0.1,
                 velocidad: 1.0,
                 desfase: pi / 3,
-                color: const Color(0xFF3A7cA5).withOpacity(0.7),
+                color: const Color(0xFF338b85).withOpacity(0.7),
                 inicioY: alturaPantalla * 0.6,
               ),
               CapaOla(
@@ -71,7 +71,7 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
                 proporcionAltura: 0.1,
                 velocidad: 1.3,
                 desfase: pi / 3,
-                color: const Color(0xFF00a4b4).withOpacity(0.7),
+                color: const Color(0xFF005954).withOpacity(0.7),
                 inicioY: alturaPantalla * 0.8,
               ),
               Center(
