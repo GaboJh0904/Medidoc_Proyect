@@ -38,7 +38,7 @@ class _AgendarCitaState extends State<AgendarCita> {
                 return ElevatedButton(
                   onPressed: () => _showMedicos(especialidades[index]),
                   child: Text(especialidades[index]),
-                  style: ElevatedButton.styleFrom(primary: Colors.purple),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.purple),
                 );
               },
             ),

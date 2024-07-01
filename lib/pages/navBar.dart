@@ -51,7 +51,7 @@ class NavbarOptions extends StatelessWidget {
       margin: EdgeInsets.all(4.0), // Margen alrededor de cada botón
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white), // Borde del botón color blanco
-        borderRadius: BorderRadius.circular(10.0), // Bordes redondos con radio de 10
+        borderRadius: BorderRadius.circular(20.0), // Bordes redondos con radio de 10
       ),
       child: ListTile(
         title: Text(
