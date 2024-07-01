@@ -32,8 +32,9 @@ class MenuPrincipal extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Color 1
         elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       drawer: NavbarOptions(),
       backgroundColor: Color.fromARGB(255, 233, 236, 240),
@@ -71,16 +72,13 @@ class HomeIndicator extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color(0xFF4B3D82), // Dark Blueberry
-                  Color(0xFF6C62B6), // Blueberry
-                  //Color(0xFF9A92D6),  // Medium Light Blueberry
-                  //Color(0xFFA6C6E4),  // Light Cornflower Blue
-                  Color(0xFF5788A8), // Medium Wedgwood
-                  Color(0xFF204C67), // Very Dark Peacock Blue
+                  Color(0xFF005954), // Color 1
+                  Color(0xFF005954), // Color 1
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
+              borderRadius: BorderRadius.circular(15), // Añade bordes redondeados
             ),
             height: 30,
             child: Center(
@@ -104,17 +102,19 @@ class BannerClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
+    path.lineTo(size.width, 0);
+    path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
-    path.lineTo(size.width * 0.75, size.height);
-    path.lineTo(size.width, size.height / 2);
-    path.lineTo(size.width * 0.75, 0);
     path.close();
     return path;
   }
 
   @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
+  }
 }
+
 
 void _launchURL(String url) async {
   if (await canLaunch(url)) {
@@ -128,13 +128,13 @@ class MyCustomButtonGrid extends StatelessWidget {
   final List<Map<String, dynamic>> options = [
     {
       "text": "Historial médico",
-      "icon": Icons.medical_services,
+      "image": "icons/historial_medico.png",
       "page": HistorialMedicoPage()
     },
-    {"text": "Botón de alerta", "icon": Icons.warning, "page": BotonSOS()},
+    {"text": "Botón de alerta", "image": "icons/boton_alerta.png", "page": BotonSOS()},
     {
       "text": "Solicitud de cita",
-      "icon": Icons.calendar_today,
+      "image": "icons/cita_programable.png",
       "page": CatalogoEspecialidades(
         titulo: "Solicitar Cita",
         numFuncion: 1,
@@ -142,23 +142,23 @@ class MyCustomButtonGrid extends StatelessWidget {
     },
     {
       "text": "Cancelación de cita",
-      "icon": Icons.cancel,
+      "image": "icons/cancelar_cita.png",
       "page": CitasConfirmadasEliminar()
     },
     {
       "text": "Mapa de hospitales",
-      "icon": Icons.map,
+      "image": "icons/mapa_hospital.png",
       "url":
           'https://www.google.com/maps/search/hospital/@-16.5215258,-68.1111076,15z/data=!3m1!4b1?entry=ttu'
     },
     {
       "text": "Cuestionarios médicos",
-      "icon": Icons.question_answer,
+      "image": "icons/ficha_clinica.png",
       "page": FichaClinica(idPaciente: 1,)
     },
     {
       "text": "Teleconsulta",
-      "icon": Icons.video_call,
+      "image": "icons/teleconsulta.png",
       "page": CatalogoEspecialidades(
         titulo: "Teleconsulta",
         numFuncion: 2,
@@ -166,29 +166,29 @@ class MyCustomButtonGrid extends StatelessWidget {
     },
     {
       "text": "Ver cita programada",
-      "icon": Icons.event_note,
+      "image": "icons/ver_cita_programable.png",
       "page": VisualizarCitas()
     },
-    {"text": "Receta médica", "icon": Icons.receipt, "page": RecetaMedica()},
+    {"text": "Receta médica", "image": "icons/receta_medica.png", "page": RecetaMedica()},
     {
       "text": "Alimentaciones",
-      "icon": Icons.fastfood,
+      "image": "icons/alimentacion.png",
       "page": Alimentaciones()
     },
-    {"text": "RPO", "icon": Icons.business_center, "page": rpo()},
+    {"text": "RPO", "image": "icons/rpo.png", "page": rpo()},
     {
       "text": "Tutoriales de primeros auxilios",
-      "icon": Icons.school,
+      "image": "icons/tutorial_primeros_auxilios.png",
       "page": TutorialesPA()
     },
     {
       "text": "Emergencia SOS",
-      "icon": Icons.phone_in_talk,
+      "image": "icons/emergencia_sos.png",
       "page": EmergenciaSOS()
     },
     {
       "text": "Consulta en casa",
-      "icon": Icons.home,
+      "image": "icons/consulta_en_casa.png",
       "page": EspecialidadesCasa(
         titulo: 'Consulta en casa',
         numFuncion: 2,
@@ -196,12 +196,12 @@ class MyCustomButtonGrid extends StatelessWidget {
     },
     {
       "text": "Chat asistente",
-      "icon": Icons.chat,
+      "image": "icons/chatbot.png",
       "page": ChatBot(nombreDoctor: "Asistente Bot", estado: 3)
     },
     {
       "text": "Calendario",
-      "icon": Icons.calendar_today,
+      "image": "icons/calendario.png",
       "page": VisualizarCalendario()
     },
   ];
@@ -229,7 +229,7 @@ class MyCustomButtonGrid extends StatelessWidget {
         final option = options[index];
         return MenuButton(
           text: option['text'],
-          icon: option['icon'],
+          imagePath: option['image'],
           onPressed: () {
             if (option.containsKey('page')) {
               Navigator.push(
