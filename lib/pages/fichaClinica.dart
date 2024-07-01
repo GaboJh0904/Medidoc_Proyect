@@ -25,8 +25,19 @@ class FichaClinica extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ficha Clínica de Paciente'),
+        title: Text(
+          'Ficha Clínica',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Color(0xFF005954), // Color 1
+        elevation: 0,
       ),
+      backgroundColor: Color.fromARGB(255, 233, 236, 240),
       body: FutureBuilder<Map<String, dynamic>?>(
         future: _fetchPatientData(idPaciente),
         builder: (context, snapshot) {
@@ -353,26 +364,33 @@ class _FichaClinicaFormState extends State<FichaClinicaForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Stepper(
-      physics: ClampingScrollPhysics(), // Evita el desplazamiento excesivo
-      currentStep: _currentStep,
-      onStepContinue: () {
-        if (_currentStep < _buildSteps().length - 1) {
-          setState(() {
-            _currentStep += 1;
-          });
-        } else {
-          _saveToFirestore();
-        }
-      },
-      onStepCancel: () {
-        if (_currentStep > 0) {
-          setState(() {
-            _currentStep -= 1;
-          });
-        }
-      },
-      steps: _buildSteps(),
+    return Theme(
+      data: ThemeData(
+          primaryColor: Color(0xFF338b85), // Color turquesa
+          hintColor: Color(0xFF338b85), // Color turquesa
+          colorScheme: ColorScheme.light(primary: Color(0xFF338b85)), // Color turquesa
+          ),
+      child:Stepper(
+        physics: ClampingScrollPhysics(), // Evita el desplazamiento excesivo
+        currentStep: _currentStep,
+        onStepContinue: () {
+          if (_currentStep < _buildSteps().length - 1) {
+            setState(() {
+              _currentStep += 1;
+            });
+          } else {
+            _saveToFirestore();
+          }
+        },
+        onStepCancel: () {
+          if (_currentStep > 0) {
+            setState(() {
+              _currentStep -= 1;
+            });
+          }
+        },
+        steps: _buildSteps(),
+      ),
     );
   }
 }

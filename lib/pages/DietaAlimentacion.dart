@@ -23,15 +23,26 @@ class DietListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       data: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.teal,
         textTheme: TextTheme(
           bodyText2: TextStyle(color: Colors.white),
         ),
       ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(dietCategory),
+          title: Text(
+            dietCategory,
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          backgroundColor: Color(0xFF005954), // Color 1
+          elevation: 0,
         ),
+        backgroundColor: Color.fromARGB(255, 233, 236, 240),
         body: ListView.builder(
           itemCount: diets.length,
           itemBuilder: (context, index) {
@@ -48,7 +59,7 @@ class DietListPage extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
-                  backgroundColor: Colors.deepPurple, // Text color
+                  backgroundColor: Color(0xFF338b85), // Text color
 
 
                   padding: EdgeInsets.all(20), // Button padding
@@ -473,15 +484,36 @@ class DietDetailPage extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(diet.name),
+          title: Text(
+            diet.name,
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          backgroundColor: Color(0xFF005954), // Color 1
+          elevation: 0,
           bottom: TabBar(
+            labelColor: Color(0xFF5dc1b9), // Color del texto de la pestaña activa
+            unselectedLabelColor: Colors.white, // Color del texto de las pestañas inactivas
+            indicatorColor: Color(0xFF5dc1b9), // Color de la línea indicadora debajo de la pestaña activa
+            indicatorWeight: 2.0, // Grosor de la línea indicadora
             tabs: [
-              Tab(text: 'Dieta Semanal'),
-              Tab(text: 'Alimentos Obligatorios'),
-              Tab(text: 'Alimentos Prohibidos'),
+              Tab(
+                text: 'Dieta Semanal',
+              ),
+              Tab(
+                text: 'Alimentos Obligatorios',
+              ),
+              Tab(
+                text: 'Alimentos Prohibidos',
+              ),
             ],
           ),
         ),
+        backgroundColor: Color.fromARGB(255, 233, 236, 240),
         body: TabBarView(
           children: [
             WeeklyDietTab(weeklyDiet: diet.weeklyDiet),
