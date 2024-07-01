@@ -159,7 +159,7 @@ class _MapScreenState extends State<MapScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Tutoriales Primeros Auxilios',
+          'Consulta en casa',
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
@@ -229,18 +229,18 @@ class _MapScreenState extends State<MapScreen> {
                       SizedBox(height: 10.0),
                       ListTile(
                         leading: CircleAvatar(
-                          backgroundColor: Colors.blue,
+                          backgroundColor:  Color(0xFF338b85),
                           child: Icon(Icons.person, color: Colors.white),
                         ),
                         title: Text(widget.nombreDoctor),
                       ),
                       ListTile(
-                        leading: Icon(Icons.calendar_today, color: Colors.blue),
+                        leading: Icon(Icons.calendar_today, color: Color(0xFF338b85)),
                         title: Text('Fecha de la cita'),
                         subtitle: Text("formattedDate"),
                       ),
                       ListTile(
-                        leading: Icon(Icons.access_time, color: Colors.blue),
+                        leading: Icon(Icons.access_time, color: Color(0xFF338b85)),
                         title: Text('Tiempo estimado de llegada'),
                         subtitle: Text('15 minutos'),
                       ),
