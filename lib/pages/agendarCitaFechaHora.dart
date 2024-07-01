@@ -1,16 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:medidoc_proyect/pages/menu_principal.dart';
+import 'package:table_calendar/table_calendar.dart';
 import 'modeloCita.dart';
-import 'package:intl/intl.dart';
+import 'citasConfirmadas.dart';
 
-class CitasConfirmadas extends StatelessWidget {
+class AgendarCitaFechaHora extends StatefulWidget {
+  final String especialidad;
+  final String medico;
+
+  AgendarCitaFechaHora({required this.especialidad, required this.medico});
+
+  @override
+  _AgendarCitaFechaHoraState createState() => _AgendarCitaFechaHoraState();
+}
+
+class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
+  DateTime _selectedDay = DateTime.now();
+  String? _selectedTime;
+
+  List<String> horarios = [
+    '08:00',
+    '09:30',
+    '10:30',
+    '11:00',
+    '12:00',
+    '12:30',
+    '13:00',
+    '13:30',
+    '14:00',
+    '14:30',
+    '15:00'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Citas Confirmadas',
+          'Selecciona Fecha y Hora',
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
@@ -23,84 +49,109 @@ class CitasConfirmadas extends StatelessWidget {
       ),
       body: Column(
         children: [
+          TableCalendar(
+            firstDay: DateTime.utc(2020, 10, 16),
+            lastDay: DateTime.utc(2030, 3, 14),
+            focusedDay: _selectedDay,
+            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+            onDaySelected: (selectedDay, focusedDay) {
+              setState(() {
+                _selectedDay = selectedDay;
+              });
+            },
+            calendarStyle: CalendarStyle(
+              defaultTextStyle: TextStyle(color: Colors.black),
+              weekendTextStyle: TextStyle(color: Colors.red),
+              todayTextStyle: TextStyle(color: Colors.white),
+              selectedTextStyle: TextStyle(color: Colors.white),
+              selectedDecoration: BoxDecoration(
+                color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+                shape: BoxShape.circle,
+              ),
+              todayDecoration: BoxDecoration(
+                color: Color.fromARGB(
+                    255, 51, 133, 209), // Color del esquema anterior
+                shape: BoxShape.circle,
+              ),
+              outsideTextStyle: TextStyle(color: Colors.grey),
+            ),
+            headerStyle: HeaderStyle(
+              formatButtonVisible: false,
+              titleTextStyle: TextStyle(color: Colors.white, fontSize: 18),
+              leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
+              rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white),
+              titleCentered: true,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 52, 123, 230)), // Dark Blueberry
+            ),
+            daysOfWeekStyle: DaysOfWeekStyle(
+              weekdayStyle: TextStyle(color: Colors.white),
+              weekendStyle: TextStyle(color: Colors.red),
+            ),
+          ),
           Expanded(
-            child: listaDeCitasGlobal.isEmpty
-                ? Center(child: Text('No hay citas confirmadas.'))
-                : AnimationLimiter(
-                    child: ListView.builder(
-                      itemCount: listaDeCitasGlobal.length,
-                      itemBuilder: (context, index) {
-                        Cita cita = listaDeCitasGlobal[index];
-                        String formattedDate =
-                            DateFormat('dd/MM/yyyy').format(cita.fecha);
-                        return AnimationConfiguration.staggeredList(
-                          position: index,
-                          duration: const Duration(milliseconds: 375),
-                          child: ScaleAnimation(
-                            child: FadeInAnimation(
-                              child: Container(
-                                margin: EdgeInsets.all(10),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 20),
-                                decoration: BoxDecoration(
-                                  color: Colors.deepPurple[100],
-                                  borderRadius: BorderRadius.circular(12),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 2,
-                                      blurRadius: 5,
-                                      offset: Offset(0, 3),
-                                    ),
-                                  ],
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("Fecha: $formattedDate",
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold)),
-                                    SizedBox(height: 10),
-                                    Text("Hora: ${cita.hora}",
-                                        style: TextStyle(fontSize: 16)),
-                                    SizedBox(height: 10),
-                                    Text("Paciente: ${cita.paciente}",
-                                        style: TextStyle(fontSize: 16)),
-                                    SizedBox(height: 10),
-                                    Text("Especialidad: ${cita.especialidad}",
-                                        style: TextStyle(fontSize: 16)),
-                                    SizedBox(height: 10),
-                                    Text("Médico: ${cita.medico}",
-                                        style: TextStyle(fontSize: 16)),
-                                    SizedBox(height: 10),
-                                    Text("Dirección: ${cita.direccion}",
-                                        style: TextStyle(fontSize: 16)),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      },
+            child: GridView.builder(
+              padding: const EdgeInsets.all(8.0),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+              ),
+              itemCount: horarios.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedTime = horarios[index];
+                    });
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: _selectedTime == horarios[index]
+                          ? Color.fromARGB(255, 36, 83, 153)
+                          : Color.fromARGB(255, 42, 107, 145),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(
+                      child: Text(
+                        horarios[index],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
+                );
+              },
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MenuPrincipal()),
-                );
+                if (_selectedTime != null) {
+                  Cita nuevaCita = Cita(
+                    especialidad: widget.especialidad,
+                    fecha: _selectedDay,
+                    hora: _selectedTime!,
+                    paciente: 'Nombre del Paciente',
+                    medico: widget.medico,
+                    direccion: 'Dirección del Consultorio',
+                  );
+                  listaDeCitasGlobal.add(nuevaCita);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CitasConfirmadas()));
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor:
                     Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
               ),
               child: Text(
-                'Volver al Menú Principal',
+                'Confirmar Cita',
                 style: TextStyle(
                   color: Colors.white,
                 ),
