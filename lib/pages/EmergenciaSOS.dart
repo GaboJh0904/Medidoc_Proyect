@@ -35,7 +35,7 @@ class SOSPage extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Dark Blueberry
         elevation: 0,
       ),
       drawer: NavbarOptions(),

@@ -5,7 +5,7 @@ class RecetaMedica extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Dark Blueberry
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {

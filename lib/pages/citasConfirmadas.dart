@@ -19,7 +19,7 @@ class CitasConfirmadas extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Dark Blueberry
         elevation: 0,
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -129,7 +129,7 @@ class CitasConfirmadas extends StatelessWidget {
             );
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+            backgroundColor: Color(0xFF005954), // Dark Blueberry
           ),
           child: Text(
             'Volver al Menú Principal',

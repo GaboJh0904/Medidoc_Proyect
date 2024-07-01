@@ -16,12 +16,11 @@ class HistorialMedicoPage extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Dark Blueberry
         elevation: 0,
       ),
       drawer: NavbarOptions(),
       backgroundColor: Colors.white,
-
       body: ListView(
         padding: EdgeInsets.all(16.0),
         children: [
@@ -33,7 +32,9 @@ class HistorialMedicoPage extends StatelessWidget {
                   // Navegar a la página de destino al presionar el botón
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ArchivosPage()), // Reemplaza 'NombreDeLaPaginaDestino' con el nombre real de tu página de destino
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ArchivosPage()), // Reemplaza 'NombreDeLaPaginaDestino' con el nombre real de tu página de destino
                   );
                 },
                 child: Text('$year'),

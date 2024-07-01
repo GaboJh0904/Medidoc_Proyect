@@ -15,12 +15,29 @@ class EspecialidadesCasa extends StatefulWidget {
 
 class _EspecialidadesCasaState extends State<EspecialidadesCasa> {
   final List<String> especialidades = [
-    'Alergología', 'Cardiología', 'Cirugía plástica', 'Dermatología',
-    'Endocrinología', 'Fisioterapia', 'Gastroenterología', 'Ginecología - Obstetricia',
-    'Medicina familiar y comunitaria', 'Medicina interna', 'Nefrología', 'Nutrición',
-    'Neurología', 'Odontología', 'Otorrinolaringología', 'Ortopedia',
-    'Oftalmología', 'Oncología', 'Pediatría', 'Psiquiatría',
-    'Psicología', 'Traumatología', 'Urología'
+    'Alergología',
+    'Cardiología',
+    'Cirugía plástica',
+    'Dermatología',
+    'Endocrinología',
+    'Fisioterapia',
+    'Gastroenterología',
+    'Ginecología - Obstetricia',
+    'Medicina familiar y comunitaria',
+    'Medicina interna',
+    'Nefrología',
+    'Nutrición',
+    'Neurología',
+    'Odontología',
+    'Otorrinolaringología',
+    'Ortopedia',
+    'Oftalmología',
+    'Oncología',
+    'Pediatría',
+    'Psiquiatría',
+    'Psicología',
+    'Traumatología',
+    'Urología'
   ];
 
   String? selectedEspecialidad;
@@ -39,7 +56,7 @@ class _EspecialidadesCasaState extends State<EspecialidadesCasa> {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Dark Blueberry
         elevation: 0,
       ),
       drawer: NavbarOptions(),
@@ -87,7 +104,8 @@ class _EspecialidadesCasaState extends State<EspecialidadesCasa> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red, // Color del botón
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20), // Borde redondeado
+                        borderRadius:
+                            BorderRadius.circular(20), // Borde redondeado
                       ),
                     ),
                     child: Text(
@@ -122,12 +140,15 @@ class _EspecialidadesCasaState extends State<EspecialidadesCasa> {
                           color: Colors.blue[900],
                         ),
                       ),
-                      trailing: Icon(Icons.arrow_forward_ios, color: Colors.blue[900]),
+                      trailing: Icon(Icons.arrow_forward_ios,
+                          color: Colors.blue[900]),
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AgendarCitaFechaHora(especialidad: selectedEspecialidad!, medico: medicos[index]),
+                            builder: (context) => AgendarCitaFechaHora(
+                                especialidad: selectedEspecialidad!,
+                                medico: medicos[index]),
                           ),
                         );
                       },
@@ -163,10 +184,10 @@ class _EspecialidadesCasaState extends State<EspecialidadesCasa> {
         );
         break;
       case 4:
-      // Aquí se puede agregar la función para el caso 4 en el futuro
+        // Aquí se puede agregar la función para el caso 4 en el futuro
         break;
       default:
-      // Acción por defecto o manejo de errores
+        // Acción por defecto o manejo de errores
         break;
     }
   }
@@ -175,7 +196,11 @@ class _EspecialidadesCasaState extends State<EspecialidadesCasa> {
     setState(() {
       selectedEspecialidad = especialidad;
       // Aquí deberías tener una lógica para obtener los médicos basados en la especialidad
-      medicos = ['Médico 1', 'Médico 2', 'Médico 3']; // Ejemplo de lista de médicos
+      medicos = [
+        'Médico 1',
+        'Médico 2',
+        'Médico 3'
+      ]; // Ejemplo de lista de médicos
     });
   }
 }

@@ -14,7 +14,9 @@ class ChatBot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChatScreen(nombreDoctor: nombreDoctor, estado: estado);  // Pasamos las variables al ChatScreen
+    return ChatScreen(
+        nombreDoctor: nombreDoctor,
+        estado: estado); // Pasamos las variables al ChatScreen
   }
 }
 
@@ -168,11 +170,12 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Dark Blueberry
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pop(context);  // Esto llevará al usuario de vuelta a la página anterior
+            Navigator.pop(
+                context); // Esto llevará al usuario de vuelta a la página anterior
           },
         ),
         title: Row(
@@ -188,12 +191,14 @@ class _ChatScreenState extends State<ChatScreen> {
           if (showZoomButton)
             IconButton(
               icon: Icon(Icons.video_call, color: Colors.white),
-              onPressed: () => _launchURL('zoommtg://'), // Ejemplo de URL de esquema para abrir Zoom
+              onPressed: () => _launchURL(
+                  'zoommtg://'), // Ejemplo de URL de esquema para abrir Zoom
             ),
           if (showMapsButton)
             IconButton(
               icon: Icon(Icons.map, color: Colors.white),
-              onPressed: () => _launchURL('https://maps.google.com'), // URL para abrir Google Maps
+              onPressed: () => _launchURL(
+                  'https://maps.google.com'), // URL para abrir Google Maps
             ),
         ],
       ),
@@ -242,7 +247,8 @@ class _ChatScreenState extends State<ChatScreen> {
               IconButton(
                 icon: Icon(
                   _speechToText.isNotListening ? Icons.mic_off : Icons.mic,
-                  color: _speechToText.isNotListening ? Colors.black : Colors.red,
+                  color:
+                      _speechToText.isNotListening ? Colors.black : Colors.red,
                 ),
                 onPressed: _speechToText.isListening
                     ? _stopListening

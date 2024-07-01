@@ -29,7 +29,7 @@ class Ajustes extends StatelessWidget {
               ),
             ),
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+              color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
             ),
           ),
           Padding(
@@ -128,17 +128,18 @@ class OptionButton extends StatelessWidget {
       icon: Icon(
         icon,
         size: 40,
-        color: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
       ),
       label: Text(
         label,
         style: const TextStyle(
           fontSize: 22,
-          color: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+          color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
         ),
       ),
       style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 36, 83, 153)),  // Dark Blueberry
+        foregroundColor: MaterialStateProperty.all(
+            Color.fromARGB(255, 36, 83, 153)), // Dark Blueberry
       ),
     );
   }

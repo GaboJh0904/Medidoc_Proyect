@@ -44,7 +44,7 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Dark Blueberry
         elevation: 0,
       ),
       body: Column(
@@ -65,7 +65,7 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
               todayTextStyle: TextStyle(color: Colors.white),
               selectedTextStyle: TextStyle(color: Colors.white),
               selectedDecoration: BoxDecoration(
-                color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+                color: Color(0xFF005954), // Dark Blueberry
                 shape: BoxShape.circle,
               ),
               todayDecoration: BoxDecoration(

@@ -56,7 +56,7 @@ class DoctorListScreen extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Dark Blueberry
         elevation: 0,
       ),
       drawer: NavbarOptions(),
@@ -65,10 +65,13 @@ class DoctorListScreen extends StatelessWidget {
         itemCount: doctors.length,
         itemBuilder: (context, index) {
           return Card(
-            color: Color.fromARGB(255, 97, 110, 167), // Adaptado al panel de colores utilizado
+            color: Color.fromARGB(
+                255, 97, 110, 167), // Adaptado al panel de colores utilizado
             child: ListTile(
-              leading: Icon(Icons.person, color: Colors.white), // Ícono del personaje
-              title: Text(doctors[index], style: TextStyle(color: Colors.white)),
+              leading: Icon(Icons.person,
+                  color: Colors.white), // Ícono del personaje
+              title:
+                  Text(doctors[index], style: TextStyle(color: Colors.white)),
               onTap: () {
                 // Acción al hacer tap en un ítem, navegar a una nueva página
                 Navigator.push(
@@ -88,4 +91,3 @@ class DoctorListScreen extends StatelessWidget {
     );
   }
 }
-

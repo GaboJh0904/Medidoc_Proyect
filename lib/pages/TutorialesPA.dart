@@ -15,7 +15,7 @@ class TutorialesPA extends StatelessWidget {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Dark Blueberry
         elevation: 0,
       ),
       body: Padding(
@@ -47,7 +47,8 @@ final List<VideoPA> musicVideos = [
   ),
   VideoPA(
     videoId: 'TV3lnITz_Mk',
-    title: 'Primeros Auxilios: RCP (Reanimación cardiopulmonar) en bebés y niños',
+    title:
+        'Primeros Auxilios: RCP (Reanimación cardiopulmonar) en bebés y niños',
   ),
   VideoPA(
     videoId: 'FEayzgNGGBQ',
@@ -59,7 +60,8 @@ final List<VideoPA> musicVideos = [
   ),
   VideoPA(
     videoId: 'aShm8qshKDY',
-    title: 'RCP básica en NIÑOS y BEBÉS. Primeros auxilios en pediatría: reanimación cardiopulmonar',
+    title:
+        'RCP básica en NIÑOS y BEBÉS. Primeros auxilios en pediatría: reanimación cardiopulmonar',
   ),
 ];
 

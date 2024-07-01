@@ -22,7 +22,7 @@ class _VisualizarCalendarioState extends State<VisualizarCalendario> {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Dark Blueberry
         elevation: 0,
       ),
       body: TableCalendar(
@@ -45,7 +45,8 @@ class _VisualizarCalendarioState extends State<VisualizarCalendario> {
             shape: BoxShape.circle,
           ),
           todayDecoration: BoxDecoration(
-            color: Color.fromARGB(255, 51, 133, 209), // Color del esquema anterior
+            color:
+                Color.fromARGB(255, 51, 133, 209), // Color del esquema anterior
             shape: BoxShape.circle,
           ),
           outsideTextStyle: TextStyle(color: Colors.grey),
@@ -56,7 +57,8 @@ class _VisualizarCalendarioState extends State<VisualizarCalendario> {
           leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
           rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white),
           titleCentered: true,
-          decoration: BoxDecoration(color: Color.fromARGB(255, 52, 123, 230)), // Dark Blueberry
+          decoration: BoxDecoration(
+              color: Color.fromARGB(255, 52, 123, 230)), // Dark Blueberry
         ),
         daysOfWeekStyle: DaysOfWeekStyle(
           weekdayStyle: TextStyle(color: Colors.white),

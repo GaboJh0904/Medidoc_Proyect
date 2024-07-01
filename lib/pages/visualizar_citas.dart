@@ -25,7 +25,7 @@ class _VisualizarCitasState extends State<VisualizarCitas> {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+        backgroundColor: Color(0xFF005954), // Dark Blueberry
         elevation: 0,
       ),
       body: StreamBuilder<QuerySnapshot>(
