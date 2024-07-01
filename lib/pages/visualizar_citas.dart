@@ -26,24 +26,27 @@ class _VisualizarCitasState extends State<VisualizarCitas> {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color.fromARGB(255, 36, 83, 153),  // Dark Blueberry
+        backgroundColor: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
         elevation: 0,
       ),
       body: Column(
         children: [
           citasFiltradas.isEmpty
-              ? Expanded(child: Center(child: Text('No hay citas programadas.')))
+              ? Expanded(
+                  child: Center(child: Text('No hay citas programadas.')))
               : Expanded(
                   child: CarouselSlider.builder(
                     itemCount: citasFiltradas.length,
                     itemBuilder: (context, index, realIndex) {
                       Cita cita = citasFiltradas[index];
-                      String formattedDate = DateFormat('dd/MM/yyyy').format(cita.fecha);
+                      String formattedDate =
+                          DateFormat('dd/MM/yyyy').format(cita.fecha);
                       return Container(
-                        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                        margin:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                         padding: EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: Colors.deepPurple[100],  // Dark Blueberry
+                          color: Colors.deepPurple[100], // Dark Blueberry
                           borderRadius: BorderRadius.circular(12),
                           boxShadow: [
                             BoxShadow(
@@ -59,22 +62,29 @@ class _VisualizarCitasState extends State<VisualizarCitas> {
                           children: [
                             Text("Fecha: $formattedDate",
                                 style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black)),
                             SizedBox(height: 10),
                             Text("Hora: ${cita.hora}",
-                                style: TextStyle(fontSize: 16, color: Colors.black)),
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black)),
                             SizedBox(height: 10),
                             Text("Paciente: ${cita.paciente}",
-                                style: TextStyle(fontSize: 16, color: Colors.black)),
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black)),
                             SizedBox(height: 10),
                             Text("Especialidad: ${cita.especialidad}",
-                                style: TextStyle(fontSize: 16, color: Colors.black)),
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black)),
                             SizedBox(height: 10),
                             Text("Médico: ${cita.medico}",
-                                style: TextStyle(fontSize: 16, color: Colors.black)),
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black)),
                             SizedBox(height: 10),
                             Text("Dirección: ${cita.direccion}",
-                                style: TextStyle(fontSize: 16, color: Colors.black)),
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.black)),
                           ],
                         ),
                       );
@@ -99,9 +109,8 @@ class _VisualizarCitasState extends State<VisualizarCitas> {
                   });
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: filtroActual == 'fecha'
-                      ? Colors.blue
-                      : Colors.grey,
+                  backgroundColor:
+                      filtroActual == 'fecha' ? Colors.blue : Colors.grey,
                 ),
                 child: Text('Por Fecha'),
               ),
@@ -112,9 +121,8 @@ class _VisualizarCitasState extends State<VisualizarCitas> {
                   });
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: filtroActual == 'medico'
-                      ? Colors.blue
-                      : Colors.grey,
+                  backgroundColor:
+                      filtroActual == 'medico' ? Colors.blue : Colors.grey,
                 ),
                 child: Text('Por Médico'),
               ),
