@@ -240,9 +240,8 @@ class _BotonSOSState extends State<BotonSOS> {
                       },
                     ],
                     color: Color.fromARGB(255, 255, 255, 255),  // white
-                  ),
-                ],
-              ),
+                 ),
+              ],
             ),
           ),
         ],
