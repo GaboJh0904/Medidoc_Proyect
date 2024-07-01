@@ -4,7 +4,7 @@ class FooterAsistente extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(255, 58, 94, 124),
+      color: Color(0xFF005954), // Color 1
       padding: EdgeInsets.all(16.0),
       child: Row(
         children: [

@@ -41,7 +41,7 @@ class SOSPage extends StatelessWidget {
       drawer: NavbarOptions(),
       backgroundColor: Color(0xFF6C62B6), // Blueberry
       body: Container(
-        color: Color.fromARGB(255, 192, 196, 199),
+        color: Color.fromARGB(255, 255, 255, 255),
         child: Column(
           children: <Widget>[
             Expanded(
@@ -52,7 +52,7 @@ class SOSPage extends StatelessWidget {
                     text: 'Llamada de emergencia',
                     title: null,
                     sections: null,
-                    color: Color(0xFF5A4FCF), // Dark Blueberry
+                    color: Color(0xFF338b85), // Dark Blueberry
                     onTap: () {
                       _makePhoneCall(
                           'tel:165'); // Suponiendo 165 como número de emergencia
@@ -93,7 +93,7 @@ class SOSPage extends StatelessWidget {
                         'image': 'assets/images/reanimacion_6.png',
                       },
                     ],
-                    color: Color(0xFF5A4FCF), // Dark Blueberry
+                    color: Color(0xFF338b85), // Dark Blueberry
                   ),
                   CustomButton(
                     text: 'Torniquetes',
@@ -150,7 +150,7 @@ class SOSPage extends StatelessWidget {
                         'image': 'assets/images/torniquete_10.jpg',
                       },
                     ],
-                    color: Color(0xFF5A4FCF), // Dark Blueberry
+                    color: Color(0xFF338b85), // Dark Blueberry
                   ),
                   CustomButton(
                     text: 'Vendaje',
@@ -187,7 +187,7 @@ class SOSPage extends StatelessWidget {
                         'image': 'assets/images/vendaje_6.jpg',
                       },
                     ],
-                    color: Color(0xFF5A4FCF), // Dark Blueberry
+                    color: Color(0xFF338b85), // Dark Blueberry
                   ),
                   CustomButton(
                     text: 'Asma',
@@ -219,7 +219,7 @@ class SOSPage extends StatelessWidget {
                         'image': 'assets/images/Asma_6.jpg',
                       },
                     ],
-                    color: Color(0xFF5A4FCF), // Dark Blueberry
+                    color: Color(0xFF338b85), // Dark Blueberry
                   ),
                 ],
               ),

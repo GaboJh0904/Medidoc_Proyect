@@ -1,76 +1,277 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'menu_principal.dart'; // Importa el menú principal
 
 class FichaClinica extends StatelessWidget {
+  final int idPaciente;
+
+  FichaClinica({required this.idPaciente});
+
+  Future<Map<String, dynamic>?> _fetchPatientData(int idPaciente) async {
+    final querySnapshot = await FirebaseFirestore.instance
+        .collection('Paciente')
+        .where('id_paciente', isEqualTo: idPaciente)
+        .limit(1)
+        .get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      return querySnapshot.docs.first.data();
+    } else {
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ficha Clinica de Paciente'),
+        title: Text('Ficha Clínica de Paciente'),
       ),
-      body: FichaClinicaForm(),
+      body: FutureBuilder<Map<String, dynamic>?>(
+        future: _fetchPatientData(idPaciente),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error al cargar los datos del paciente.'));
+          } else if (!snapshot.hasData || snapshot.data == null) {
+            return Center(child: Text('No se encontró el paciente.'));
+          } else {
+            final patientData = snapshot.data!;
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Datos del Paciente',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 20),
+                    Text('Nombres: ${patientData['nombres']}'),
+                    Text(
+                        'Apellidos: ${patientData['apellidoPaterno']} ${patientData['apellidoMaterno']}'),
+                    Text('Correo: ${patientData['correo']}'),
+                    Text('Dirección: ${patientData['direccion']}'),
+                    Text('Género: ${patientData['genero']}'),
+                    Text('Fecha de nacimiento: ${patientData['nacimiento']}'),
+                    Text('Teléfono: ${patientData['telefono']}'),
+                    SizedBox(height: 20),
+                    Divider(),
+                    SizedBox(height: 20),
+                    FichaClinicaForm(patientData: patientData),
+                  ],
+                ),
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }
 
 class FichaClinicaForm extends StatefulWidget {
+  final Map<String, dynamic> patientData;
+
+  FichaClinicaForm({required this.patientData});
+
   @override
   _FichaClinicaFormState createState() => _FichaClinicaFormState();
 }
 
 class _FichaClinicaFormState extends State<FichaClinicaForm> {
-  final _formKey = GlobalKey<FormBuilderState>();
   int _currentStep = 0;
+
+  final TextEditingController medicamentosController = TextEditingController();
+  final TextEditingController alergiasController = TextEditingController();
+  final TextEditingController enfermedadesCronicasController = TextEditingController();
+  final TextEditingController cirugiasController = TextEditingController();
+  final TextEditingController hospitalizacionesController = TextEditingController();
+  final TextEditingController frecuenciaEjercicioController = TextEditingController();
+  final TextEditingController horasSuenoController = TextEditingController();
+  final TextEditingController otrosHabitosController = TextEditingController();
+
+  final ValueNotifier<bool> embarazadaNotifier = ValueNotifier(false);
+  final ValueNotifier<bool> amamantandoNotifier = ValueNotifier(false);
+  final ValueNotifier<List<String>> sintomasNotifier = ValueNotifier([]);
+  final ValueNotifier<List<String>> habitosNotifier = ValueNotifier([]);
+
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  Future<void> _saveToFirestore() async {
+    try {
+      await firestore.collection('FichaClinica').add({
+        'historialClinico': {
+          'medicamentos': medicamentosController.text,
+          'alergias': alergiasController.text,
+          'enfermedadesCronicas': enfermedadesCronicasController.text,
+          'cirugias': cirugiasController.text,
+          'hospitalizaciones': hospitalizacionesController.text,
+          'embarazada': embarazadaNotifier.value,
+          'amamantando': amamantandoNotifier.value,
+          'sintomas': sintomasNotifier.value,
+        },
+        'habitosEstiloVida': {
+          'habitos': habitosNotifier.value,
+          'frecuenciaEjercicio': frecuenciaEjercicioController.text,
+          'horasSueno': horasSuenoController.text,
+          'otrosHabitos': otrosHabitosController.text,
+        },
+        'id_paciente': widget.patientData['id_paciente'],
+      });
+      _showConfirmationDialog();
+    } catch (e) {
+      print("Error al guardar en Firestore: $e");
+    }
+  }
+
+  void _showConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirmación'),
+          content: Text('La ficha clínica ha sido guardada exitosamente.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => MenuPrincipal()),
+                      (Route<dynamic> route) => false,
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   List<Step> _buildSteps() {
     return [
       Step(
-        title: Text('Datos Personales'),
+        title: Text('Historial Clínico'),
         content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FormBuilderTextField(
-              name: 'nombre',
-              decoration: InputDecoration(labelText: 'Nombre', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
+            TextField(
+              controller: medicamentosController,
+              decoration: InputDecoration(
+                labelText: 'Medicamentos actuales',
+                labelStyle: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              maxLines: 3,
             ),
             SizedBox(height: 10),
-            FormBuilderDateTimePicker(
-              name: 'fecha_nacimiento',
-              inputType: InputType.date,
-              decoration: InputDecoration(labelText: 'Fecha de Nacimiento', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
+            TextField(
+              controller: alergiasController,
+              decoration: InputDecoration(
+                labelText: 'Alergias',
+                labelStyle: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              maxLines: 3,
             ),
             SizedBox(height: 10),
-            FormBuilderTextField(
-              name: 'edad',
-              decoration: InputDecoration(labelText: 'Edad', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-              keyboardType: TextInputType.number,
+            TextField(
+              controller: enfermedadesCronicasController,
+              decoration: InputDecoration(
+                labelText: 'Enfermedades crónicas',
+                labelStyle: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              maxLines: 3,
             ),
             SizedBox(height: 10),
-            FormBuilderDateTimePicker(
-              name: 'fecha',
-              inputType: InputType.date,
-              decoration: InputDecoration(labelText: 'Fecha', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
+            TextField(
+              controller: cirugiasController,
+              decoration: InputDecoration(
+                labelText: 'Cirugías previas',
+                labelStyle: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              maxLines: 3,
             ),
             SizedBox(height: 10),
-            FormBuilderTextField(
-              name: 'direccion',
-              decoration: InputDecoration(labelText: 'Dirección', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
+            TextField(
+              controller: hospitalizacionesController,
+              decoration: InputDecoration(
+                labelText: 'Hospitalizaciones previas',
+                labelStyle: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              maxLines: 3,
             ),
             SizedBox(height: 10),
-            FormBuilderTextField(
-              name: 'numero_telefono',
-              decoration: InputDecoration(labelText: 'Número de Teléfono', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-              keyboardType: TextInputType.phone,
+            ValueListenableBuilder<bool>(
+              valueListenable: embarazadaNotifier,
+              builder: (context, value, child) {
+                return CheckboxListTile(
+                  title: Text('¿Está embarazada?', style: TextStyle(fontWeight: FontWeight.bold)),
+                  value: value,
+                  onChanged: (newValue) {
+                    embarazadaNotifier.value = newValue!;
+                  },
+                );
+              },
             ),
             SizedBox(height: 10),
-            FormBuilderTextField(
-              name: 'nombre_doctor',
-              decoration: InputDecoration(labelText: 'Nombre del Doctor Primario', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
+            ValueListenableBuilder<bool>(
+              valueListenable: amamantandoNotifier,
+              builder: (context, value, child) {
+                return CheckboxListTile(
+                  title: Text('¿Está amamantando?', style: TextStyle(fontWeight: FontWeight.bold)),
+                  value: value,
+                  onChanged: (newValue) {
+                    amamantandoNotifier.value = newValue!;
+                  },
+                );
+              },
             ),
             SizedBox(height: 10),
-            FormBuilderTextField(
-              name: 'correo_electronico',
-              decoration: InputDecoration(labelText: 'Correo Electrónico del Paciente', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-              keyboardType: TextInputType.emailAddress,
+            ValueListenableBuilder<List<String>>(
+              valueListenable: sintomasNotifier,
+              builder: (context, selectedSintomas, child) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Síntomas actuales', style: TextStyle(fontWeight: FontWeight.bold)),
+                    CheckboxListTile(
+                      title: Text('Fiebre'),
+                      value: selectedSintomas.contains('Fiebre'),
+                      onChanged: (value) {
+                        if (value == true) {
+                          sintomasNotifier.value = List.from(selectedSintomas)..add('Fiebre');
+                        } else {
+                          sintomasNotifier.value = List.from(selectedSintomas)..remove('Fiebre');
+                        }
+                      },
+                    ),
+                    CheckboxListTile(
+                      title: Text('Dolor de cabeza'),
+                      value: selectedSintomas.contains('Dolor de cabeza'),
+                      onChanged: (value) {
+                        if (value == true) {
+                          sintomasNotifier.value = List.from(selectedSintomas)..add('Dolor de cabeza');
+                        } else {
+                          sintomasNotifier.value = List.from(selectedSintomas)..remove('Dolor de cabeza');
+                        }
+                      },
+                    ),
+                    CheckboxListTile(
+                      title: Text('Mareos'),
+                      value: selectedSintomas.contains('Mareos'),
+                      onChanged: (value) {
+                        if (value == true) {
+                          sintomasNotifier.value = List.from(selectedSintomas)..add('Mareos');
+                        } else {
+                          sintomasNotifier.value = List.from(selectedSintomas)..remove('Mareos');
+                        }
+                      },
+                    ),
+                    // Add more CheckboxListTile for other symptoms as needed
+                  ],
+                );
+              },
             ),
           ],
         ),
@@ -78,118 +279,69 @@ class _FichaClinicaFormState extends State<FichaClinicaForm> {
         state: _currentStep > 0 ? StepState.complete : StepState.indexed,
       ),
       Step(
-        title: Text('Historial Clínico'),
+        title: Text('Hábitos y Estilo de Vida'),
         content: Column(
           children: [
-            FormBuilderTextField(
-              name: 'medicamentos',
-              decoration: InputDecoration(labelText: 'Enumere cualquier medicamento que esté tomando (orales, caseros, aspirina, etc)', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
+            ValueListenableBuilder<List<String>>(
+              valueListenable: habitosNotifier,
+              builder: (context, selectedHabitos, child) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Hábitos', style: TextStyle(fontWeight: FontWeight.bold)),
+                    CheckboxListTile(
+                      title: Text('Fumar'),
+                      value: selectedHabitos.contains('Fumar'),
+                      onChanged: (value) {
+                        if (value == true) {
+                          habitosNotifier.value = List.from(selectedHabitos)..add('Fumar');
+                        } else {
+                          habitosNotifier.value = List.from(selectedHabitos)..remove('Fumar');
+                        }
+                      },
+                    ),
+                    CheckboxListTile(
+                      title: Text('Beber alcohol'),
+                      value: selectedHabitos.contains('Beber alcohol'),
+                      onChanged: (value) {
+                        if (value == true) {
+                          habitosNotifier.value = List.from(selectedHabitos)..add('Beber alcohol');
+                        } else {
+                          habitosNotifier.value = List.from(selectedHabitos)..remove('Beber alcohol');
+                        }
+                      },
+                    ),
+                    // Add more CheckboxListTile for other habits as needed
+                  ],
+                );
+              },
+            ),
+            SizedBox(height: 10),
+            TextField(
+              controller: frecuenciaEjercicioController,
+              decoration: InputDecoration(
+                labelText: 'Frecuencia de ejercicio',
+                labelStyle: TextStyle(fontWeight: FontWeight.bold),
+              ),
               maxLines: 3,
             ),
             SizedBox(height: 10),
-            FormBuilderTextField(
-              name: 'alergias',
-              decoration: InputDecoration(labelText: '¿Tiene alergias? Enumérelas', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
+            TextField(
+              controller: horasSuenoController,
+              decoration: InputDecoration(
+                labelText: 'Horas de sueño',
+                labelStyle: TextStyle(fontWeight: FontWeight.bold),
+              ),
               maxLines: 3,
             ),
             SizedBox(height: 10),
-            FormBuilderTextField(
-              name: 'lesiones_cirugias_hospitalizaciones',
-              decoration: InputDecoration(labelText: 'Enumere todas las lesiones importantes, cirugías y/o hospitalizaciones', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
+            TextField(
+              controller: otrosHabitosController,
+              decoration: InputDecoration(
+                labelText: 'Otros hábitos',
+                labelStyle: TextStyle(fontWeight: FontWeight.bold),
+              ),
               maxLines: 3,
-            ),
-            SizedBox(height: 10),
-            FormBuilderCheckbox(
-              name: 'amamantando_embarazada',
-              title: Text('Para las mujeres: ¿Está amamantando o embarazada?', style: TextStyle(fontWeight: FontWeight.bold)),
-            ),
-            SizedBox(height: 10),
-            FormBuilderRadioGroup(
-              name: 'constitucional',
-              decoration: InputDecoration(labelText: 'Constitucional', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-              options: ['Sí', 'No']
-                  .map((opcion) => FormBuilderFieldOption(value: opcion, child: Text(opcion)))
-                  .toList(),
-            ),
-            SizedBox(height: 10),
-            FormBuilderRadioGroup(
-              name: 'integumentaria',
-              decoration: InputDecoration(labelText: 'Integumentaria', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-              options: ['Sí', 'No']
-                  .map((opcion) => FormBuilderFieldOption(value: opcion, child: Text(opcion)))
-                  .toList(),
-            ),
-            SizedBox(height: 10),
-            FormBuilderRadioGroup(
-              name: 'fiebre',
-              decoration: InputDecoration(labelText: 'Fiebre', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-              options: ['Sí', 'No']
-                  .map((opcion) => FormBuilderFieldOption(value: opcion, child: Text(opcion)))
-                  .toList(),
-            ),
-            SizedBox(height: 10),
-            FormBuilderRadioGroup(
-              name: 'perdida_aumento_peso',
-              decoration: InputDecoration(labelText: 'Pérdida / Aumento de Peso', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-              options: ['Sí', 'No']
-                  .map((opcion) => FormBuilderFieldOption(value: opcion, child: Text(opcion)))
-                  .toList(),
-            ),
-            SizedBox(height: 10),
-            FormBuilderRadioGroup(
-              name: 'dolores_cabeza',
-              decoration: InputDecoration(labelText: 'Dolores de Cabeza', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-              options: ['Sí', 'No']
-                  .map((opcion) => FormBuilderFieldOption(value: opcion, child: Text(opcion)))
-                  .toList(),
-            ),
-            SizedBox(height: 10),
-            FormBuilderRadioGroup(
-              name: 'mareos',
-              decoration: InputDecoration(labelText: 'Mareos', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-              options: ['Sí', 'No']
-                  .map((opcion) => FormBuilderFieldOption(value: opcion, child: Text(opcion)))
-                  .toList(),
-            ),
-            SizedBox(height: 10),
-            FormBuilderRadioGroup(
-              name: 'depresion',
-              decoration: InputDecoration(labelText: 'Depresión', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-              options: ['Sí', 'No']
-                  .map((opcion) => FormBuilderFieldOption(value: opcion, child: Text(opcion)))
-                  .toList(),
-            ),
-            SizedBox(height: 10),
-            FormBuilderRadioGroup(
-              name: 'ansiedad',
-              decoration: InputDecoration(labelText: 'Ansiedad', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-              options: ['Sí', 'No']
-                  .map((opcion) => FormBuilderFieldOption(value: opcion, child: Text(opcion)))
-                  .toList(),
-            ),
-            SizedBox(height: 10),
-            FormBuilderRadioGroup(
-              name: 'artritis',
-              decoration: InputDecoration(labelText: 'Artritis', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-              options: ['Sí', 'No']
-                  .map((opcion) => FormBuilderFieldOption(value: opcion, child: Text(opcion)))
-                  .toList(),
-            ),
-            SizedBox(height: 10),
-            FormBuilderRadioGroup(
-              name: 'deficit_atencion',
-              decoration: InputDecoration(labelText: 'Déficit de Atención', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-              options: ['Sí', 'No']
-                  .map((opcion) => FormBuilderFieldOption(value: opcion, child: Text(opcion)))
-                  .toList(),
-            ),
-            SizedBox(height: 10),
-            FormBuilderRadioGroup(
-              name: 'desorden_sangre',
-              decoration: InputDecoration(labelText: 'Desorden de Sangre', labelStyle: TextStyle(fontWeight: FontWeight.bold)),
-              options: ['Sí', 'No']
-                  .map((opcion) => FormBuilderFieldOption(value: opcion, child: Text(opcion)))
-                  .toList(),
             ),
           ],
         ),
@@ -201,57 +353,26 @@ class _FichaClinicaFormState extends State<FichaClinicaForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: FormBuilder(
-        key: _formKey,
-        child: Stepper(
-          type: StepperType.vertical,
-          currentStep: _currentStep,
-          onStepContinue: () {
-            if (_currentStep < _buildSteps().length - 1) {
-              setState(() {
-                _currentStep += 1;
-              });
-            } else {
-              if (_formKey.currentState!.saveAndValidate()) {
-                print(_formKey.currentState!.value);
-              } else {
-                print("Validation failed");
-              }
-            }
-          },
-          onStepCancel: () {
-            if (_currentStep > 0) {
-              setState(() {
-                _currentStep -= 1;
-              });
-            }
-          },
-          onStepTapped: (step) {
-            setState(() {
-              _currentStep = step;
-            });
-          },
-          steps: _buildSteps(),
-          controlsBuilder: (BuildContext context, ControlsDetails details) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                if (_currentStep > 0)
-                  TextButton(
-                    onPressed: details.onStepCancel,
-                    child: const Text('Atrás'),
-                  ),
-                const SizedBox(width: 12),
-                ElevatedButton(
-                  onPressed: details.onStepContinue,
-                  child: const Text('Siguiente'),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
+    return Stepper(
+      physics: ClampingScrollPhysics(), // Evita el desplazamiento excesivo
+      currentStep: _currentStep,
+      onStepContinue: () {
+        if (_currentStep < _buildSteps().length - 1) {
+          setState(() {
+            _currentStep += 1;
+          });
+        } else {
+          _saveToFirestore();
+        }
+      },
+      onStepCancel: () {
+        if (_currentStep > 0) {
+          setState(() {
+            _currentStep -= 1;
+          });
+        }
+      },
+      steps: _buildSteps(),
     );
   }
 }
