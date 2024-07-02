@@ -180,7 +180,7 @@ class HeartbeatPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final rect = Offset.zero & size;
     final gradient = LinearGradient(
-      colors: [Colors.black, Color.fromARGB(255, 69, 90, 100), Colors.black],
+      colors: [Colors.white, Color(0xFF5dc1b9), Colors.white],
     ).createShader(rect);
 
     final paint = Paint()

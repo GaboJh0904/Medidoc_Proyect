@@ -89,7 +89,7 @@ class _CatalogoEspecialidadesState extends State<CatalogoEspecialidades> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue[900],
+                      color: Color(0xFF005954),
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -129,19 +129,19 @@ class _CatalogoEspecialidadesState extends State<CatalogoEspecialidades> {
                     ),
                     child: ListTile(
                       leading: CircleAvatar(
-                        backgroundColor: Colors.blue[100],
-                        child: Icon(Icons.person, color: Colors.blue[900]),
+                        backgroundColor:Color(0xFF338b85),
+                        child: Icon(Icons.person, color: Color(0xFF5dc1b9)),
                       ),
                       title: Text(
                         medicos[index],
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue[900],
+                          color: Color(0xFF005954),
                         ),
                       ),
                       trailing: Icon(Icons.arrow_forward_ios,
-                          color: Colors.blue[900]),
+                          color: Color(0xFF5dc1b9)),
                       onTap: () {
                         Navigator.push(
                           context,
