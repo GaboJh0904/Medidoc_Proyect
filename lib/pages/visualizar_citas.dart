@@ -84,11 +84,11 @@ class _VisualizarCitasState extends State<VisualizarCitas> {
                                 vertical: 10, horizontal: 30),
                             padding: EdgeInsets.all(20),
                             decoration: BoxDecoration(
-                              color: Colors.deepPurple[100], // Dark Blueberry
+                              color: Color.fromARGB(255, 175, 213, 211),
                               borderRadius: BorderRadius.circular(12),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
+                                  color: Colors.teal.shade500.withOpacity(0.5),
                                   spreadRadius: 2,
                                   blurRadius: 5,
                                   offset: Offset(0, 3),
@@ -148,8 +148,10 @@ class _VisualizarCitasState extends State<VisualizarCitas> {
                       });
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          filtroActual == 'fecha' ? Colors.blue : Colors.grey,
+                      backgroundColor: filtroActual == 'fecha'
+                          ? Colors.teal.shade800
+                          : Colors.grey.shade500,
+                      foregroundColor: Colors.white,
                     ),
                     child: Text('Por Fecha'),
                   ),
@@ -160,8 +162,10 @@ class _VisualizarCitasState extends State<VisualizarCitas> {
                       });
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          filtroActual == 'medico' ? Colors.blue : Colors.grey,
+                      backgroundColor: filtroActual == 'medico'
+                          ? Colors.teal.shade800
+                          : Colors.grey.shade500,
+                      foregroundColor: Colors.white,
                     ),
                     child: Text('Por Médico'),
                   ),
@@ -173,8 +177,9 @@ class _VisualizarCitasState extends State<VisualizarCitas> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: filtroActual == 'especialidad'
-                          ? Colors.blue
-                          : Colors.grey,
+                          ? Colors.teal.shade800
+                          : Colors.grey.shade500,
+                      foregroundColor: Colors.white,
                     ),
                     child: Text('Por Especialidad'),
                   ),

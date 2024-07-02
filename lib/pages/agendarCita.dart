@@ -51,20 +51,28 @@ class _AgendarCitaState extends State<AgendarCita> {
           ),
           if (selectedEspecialidad != null) ...[
             Text('Selecciona un médico de $selectedEspecialidad:',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF005954),
+                )),
             Expanded(
               child: ListView.builder(
                 itemCount: medicos.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(medicos[index]),
+                    title: Text(
+                      medicos[index],
+                      style: TextStyle(color: Color(0xFF005954)),
+                    ),
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => AgendarCitaFechaHora(
-                              especialidad: selectedEspecialidad!,
-                              medico: medicos[index]),
+                            especialidad: selectedEspecialidad!,
+                            medico: medicos[index],
+                          ),
                         ),
                       );
                     },

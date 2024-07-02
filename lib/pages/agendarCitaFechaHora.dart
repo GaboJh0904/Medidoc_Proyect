@@ -44,7 +44,7 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color(0xFF005954), // Color 1
+        backgroundColor: Color(0xFF005954), // Dark Blueberry
         elevation: 0,
       ),
       body: Column(
@@ -65,12 +65,11 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
               todayTextStyle: TextStyle(color: Colors.white),
               selectedTextStyle: TextStyle(color: Colors.white),
               selectedDecoration: BoxDecoration(
-                color: Color(0xFF005954), // Dark Blueberry
+                color: Color(0xFF057D77),
                 shape: BoxShape.circle,
               ),
               todayDecoration: BoxDecoration(
-                color: Color.fromARGB(
-                    255, 51, 133, 209), // Color del esquema anterior
+                color: Color(0xFF338b85), // Color del esquema anterior
                 shape: BoxShape.circle,
               ),
               outsideTextStyle: TextStyle(color: Colors.grey),
@@ -81,8 +80,8 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
               leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
               rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white),
               titleCentered: true,
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 52, 123, 230)), // Dark Blueberry
+              decoration:
+                  BoxDecoration(color: Color(0xFF005954)), // Dark Blueberry
             ),
             daysOfWeekStyle: DaysOfWeekStyle(
               weekdayStyle: TextStyle(color: Colors.white),
@@ -108,8 +107,8 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
                   child: Container(
                     decoration: BoxDecoration(
                       color: _selectedTime == horarios[index]
-                          ? Color.fromARGB(255, 36, 83, 153)
-                          : Color.fromARGB(255, 42, 107, 145),
+                          ? Color(0xFF338b85)
+                          : Color(0xff5dc1b9),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(
@@ -135,8 +134,7 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+                backgroundColor: Color(0xFF005954), // Dark Blueberry
               ),
               child: Text(
                 'Confirmar Cita',

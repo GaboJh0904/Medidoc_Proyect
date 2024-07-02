@@ -71,7 +71,8 @@ class rpo extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+            color: Color(0xFF005954), // Color 1
+
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -90,7 +91,7 @@ class rpo extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+            color: Color(0xFF005954),
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -117,8 +118,7 @@ class StatsCard extends StatelessWidget {
       padding: EdgeInsets.all(20),
       margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
-        color: Color.fromARGB(
-            255, 123, 97, 167), // Purple shade from the color panel
+        color: Color(0xFF338b85), // Purple shade from the color panel
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -154,8 +154,7 @@ class OxygenStats extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(30),
       decoration: BoxDecoration(
-        color: Color.fromARGB(
-            255, 123, 97, 167), // Purple shade from the color panel
+        color: Color(0xFF338b85),
         shape: BoxShape.circle,
       ),
       child: Center(
@@ -181,7 +180,7 @@ class HeartbeatPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final rect = Offset.zero & size;
     final gradient = LinearGradient(
-      colors: [Colors.black, Colors.blueGrey, Colors.black],
+      colors: [Colors.black, Color.fromARGB(255, 69, 90, 100), Colors.black],
     ).createShader(rect);
 
     final paint = Paint()

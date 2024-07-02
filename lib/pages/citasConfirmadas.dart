@@ -76,7 +76,7 @@ class CitasConfirmadas extends StatelessWidget {
                         padding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                         decoration: BoxDecoration(
-                          color: Colors.deepPurple[100],
+                          color: Color(0xFF9ce0db),
                           borderRadius: BorderRadius.circular(12),
                           boxShadow: [
                             BoxShadow(
