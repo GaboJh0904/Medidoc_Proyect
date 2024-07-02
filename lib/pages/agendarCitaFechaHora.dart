@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'modeloCita.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'citasConfirmadas.dart';
 
 class AgendarCitaFechaHora extends StatefulWidget {
@@ -44,7 +44,7 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
           ),
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Color(0xFF005954), // Color 1
+        backgroundColor: Color(0xFF005954), // Dark Blueberry
         elevation: 0,
       ),
       body: Column(
@@ -65,12 +65,11 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
               todayTextStyle: TextStyle(color: Colors.white),
               selectedTextStyle: TextStyle(color: Colors.white),
               selectedDecoration: BoxDecoration(
-                color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+                color: Color(0xFF057D77),
                 shape: BoxShape.circle,
               ),
               todayDecoration: BoxDecoration(
-                color: Color.fromARGB(
-                    255, 51, 133, 209), // Color del esquema anterior
+                color: Color(0xFF338b85), // Color del esquema anterior
                 shape: BoxShape.circle,
               ),
               outsideTextStyle: TextStyle(color: Colors.grey),
@@ -81,8 +80,8 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
               leftChevronIcon: Icon(Icons.chevron_left, color: Colors.white),
               rightChevronIcon: Icon(Icons.chevron_right, color: Colors.white),
               titleCentered: true,
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 52, 123, 230)), // Dark Blueberry
+              decoration:
+                  BoxDecoration(color: Color(0xFF005954)), // Dark Blueberry
             ),
             daysOfWeekStyle: DaysOfWeekStyle(
               weekdayStyle: TextStyle(color: Colors.white),
@@ -108,8 +107,8 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
                   child: Container(
                     decoration: BoxDecoration(
                       color: _selectedTime == horarios[index]
-                          ? Color.fromARGB(255, 36, 83, 153)
-                          : Color.fromARGB(255, 42, 107, 145),
+                          ? Color(0xFF338b85)
+                          : Color(0xff5dc1b9),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(
@@ -131,24 +130,11 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
             child: ElevatedButton(
               onPressed: () {
                 if (_selectedTime != null) {
-                  Cita nuevaCita = Cita(
-                    especialidad: widget.especialidad,
-                    fecha: _selectedDay,
-                    hora: _selectedTime!,
-                    paciente: 'Nombre del Paciente',
-                    medico: widget.medico,
-                    direccion: 'Dirección del Consultorio',
-                  );
-                  listaDeCitasGlobal.add(nuevaCita);
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CitasConfirmadas()));
+                  _confirmarCita();
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+                backgroundColor: Color(0xFF005954), // Dark Blueberry
               ),
               child: Text(
                 'Confirmar Cita',
@@ -161,5 +147,44 @@ class _AgendarCitaFechaHoraState extends State<AgendarCitaFechaHora> {
         ],
       ),
     );
+  }
+
+  void _confirmarCita() async {
+    final db = FirebaseFirestore.instance;
+
+    final nuevaCita = {
+      'doctor_id_doctor': widget.medico,
+      'paciente_id_paciente': '1',
+      'direccion': '123 Main St',
+      'estado': 'pendiente',
+      'fecha': _selectedDay,
+      'horario': _selectedTime,
+      'tipocita': widget.especialidad,
+      'id_cita': await _obtenerProximoIdCita(),
+    };
+
+    await db.collection('SolicitudCita').add(nuevaCita);
+
+    // Navegar a la página de confirmación de citas u otra página adecuada.
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CitasConfirmadas()),
+    );
+  }
+
+  Future<int> _obtenerProximoIdCita() async {
+    final db = FirebaseFirestore.instance;
+    final querySnapshot = await db
+        .collection('SolicitudCita')
+        .orderBy('id_cita', descending: true)
+        .limit(1)
+        .get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      final ultimoId = querySnapshot.docs.first.get('id_cita') as int;
+      return ultimoId + 1;
+    } else {
+      return 1; // Si no hay citas, empieza en 1.
+    }
   }
 }

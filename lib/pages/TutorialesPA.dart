@@ -47,7 +47,8 @@ final List<VideoPA> musicVideos = [
   ),
   VideoPA(
     videoId: 'TV3lnITz_Mk',
-    title: 'Primeros Auxilios: RCP (Reanimación cardiopulmonar) en bebés y niños',
+    title:
+        'Primeros Auxilios: RCP (Reanimación cardiopulmonar) en bebés y niños',
   ),
   VideoPA(
     videoId: 'FEayzgNGGBQ',
@@ -59,7 +60,8 @@ final List<VideoPA> musicVideos = [
   ),
   VideoPA(
     videoId: 'aShm8qshKDY',
-    title: 'RCP básica en NIÑOS y BEBÉS. Primeros auxilios en pediatría: reanimación cardiopulmonar',
+    title:
+        'RCP básica en NIÑOS y BEBÉS. Primeros auxilios en pediatría: reanimación cardiopulmonar',
   ),
 ];
 

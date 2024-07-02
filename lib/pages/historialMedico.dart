@@ -21,7 +21,6 @@ class HistorialMedicoPage extends StatelessWidget {
       ),
       drawer: NavbarOptions(),
       backgroundColor: Colors.white,
-
       body: ListView(
         padding: EdgeInsets.all(16.0),
         children: [
@@ -33,7 +32,9 @@ class HistorialMedicoPage extends StatelessWidget {
                   // Navegar a la página de destino al presionar el botón
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ArchivosPage()), // Reemplaza 'NombreDeLaPaginaDestino' con el nombre real de tu página de destino
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ArchivosPage()), // Reemplaza 'NombreDeLaPaginaDestino' con el nombre real de tu página de destino
                   );
                 },
                 child: Text(

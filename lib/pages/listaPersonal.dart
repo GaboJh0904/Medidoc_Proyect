@@ -67,8 +67,10 @@ class DoctorListScreen extends StatelessWidget {
           return Card(
             color: Color(0xFF5dc1b9), // Adaptado al panel de colores utilizado
             child: ListTile(
-              leading: Icon(Icons.person, color: Colors.white), // Ícono del personaje
-              title: Text(doctors[index], style: TextStyle(color: Colors.white)),
+              leading: Icon(Icons.person,
+                  color: Colors.white), // Ícono del personaje
+              title:
+                  Text(doctors[index], style: TextStyle(color: Colors.white)),
               onTap: () {
                 // Acción al hacer tap en un ítem, navegar a una nueva página
                 Navigator.push(
@@ -88,4 +90,3 @@ class DoctorListScreen extends StatelessWidget {
     );
   }
 }
-

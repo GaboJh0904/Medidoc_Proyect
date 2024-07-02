@@ -9,7 +9,8 @@ class RecetaMedica extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pop(context);  // Esto llevará al usuario de vuelta a la página anterior
+            Navigator.pop(
+                context); // Esto llevará al usuario de vuelta a la página anterior
           },
         ),
         title: Text(
@@ -37,8 +38,10 @@ class RecetaMedica extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
+
                   color: Color(0xFF338b85), // Purple shade from the color panel
                   borderRadius: BorderRadius.circular(8), // Bordes redondeados levemente
+
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5),
@@ -99,7 +102,8 @@ class RecetaMedica extends StatelessWidget {
                             ),
                             Text(
                               'Fecha',
-                              style: TextStyle(color: Colors.white, fontSize: 16),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 16),
                             ),
                           ],
                         ),
@@ -112,7 +116,8 @@ class RecetaMedica extends StatelessWidget {
                             ),
                             Text(
                               'Firma',
-                              style: TextStyle(color: Colors.white, fontSize: 16),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 16),
                             ),
                           ],
                         ),

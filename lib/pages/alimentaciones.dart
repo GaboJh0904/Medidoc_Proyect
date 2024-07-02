@@ -10,7 +10,8 @@ class Alimentaciones extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
         textTheme: TextTheme(
-          bodyText2: TextStyle(color: Colors.white),
+          bodyMedium: TextStyle(
+              color: Colors.white), // Cambiado de 'bodyText2' a 'bodyMedium'
         ),
       ),
       home: AlimentacionesPage(),
@@ -37,7 +38,9 @@ class AlimentacionesPage extends StatelessWidget {
         elevation: 0,
       ),
       drawer: NavbarOptions(),
+
       backgroundColor: Color.fromARGB(255, 233, 236, 240), // Blueberry
+
       body: Container(
         color: Color.fromARGB(255, 233, 236, 240),
         child: Column(
@@ -46,7 +49,9 @@ class AlimentacionesPage extends StatelessWidget {
               child: ListView(
                 padding: EdgeInsets.all(16.0),
                 children: <Widget>[
-                  _buildListItem('Pacientes', 'assets/images/alimentacion_1.jpg', onTap: () {
+                  _buildListItem(
+                      'Pacientes', 'assets/images/alimentacion_1.jpg',
+                      onTap: () {
                     //Navigator.push(context, MaterialPageRoute(builder: (context) => Reanimacion()));
                     Navigator.push(
                       context,
@@ -58,7 +63,8 @@ class AlimentacionesPage extends StatelessWidget {
                       ),
                     );
                   }),
-                  _buildListItem('Gluten', 'assets/images/alimentacion_2.jpg', onTap: () {
+                  _buildListItem('Gluten', 'assets/images/alimentacion_2.jpg',
+                      onTap: () {
                     //Navigator.push(context, MaterialPageRoute(builder: (context) => Torniquete()));
                     Navigator.push(
                       context,
@@ -68,8 +74,11 @@ class AlimentacionesPage extends StatelessWidget {
                           diets: glutenDiets,
                         ),
                       ),
-                    );                  }),
-                  _buildListItem('Alergias', 'assets/images/alimentacion_3.jpeg', onTap: () {
+                    );
+                  }),
+                  _buildListItem(
+                      'Alergias', 'assets/images/alimentacion_3.jpeg',
+                      onTap: () {
                     //Navigator.push(context, MaterialPageRoute(builder: (context) => Vendaje()));
                     Navigator.push(
                       context,
@@ -81,7 +90,8 @@ class AlimentacionesPage extends StatelessWidget {
                       ),
                     );
                   }),
-                  _buildListItem('Cáncer', 'assets/images/alimentacion_4.jpg', onTap: () {
+                  _buildListItem('Cáncer', 'assets/images/alimentacion_4.jpg',
+                      onTap: () {
                     //Navigator.push(context, MaterialPageRoute(builder: (context) => Asma()));
                     Navigator.push(
                       context,
@@ -102,7 +112,8 @@ class AlimentacionesPage extends StatelessWidget {
     );
   }
 
-  Widget _buildListItem(String title, String imagePath, {required VoidCallback onTap}) {
+  Widget _buildListItem(String title, String imagePath,
+      {required VoidCallback onTap}) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.transparent,
@@ -126,14 +137,16 @@ class AlimentacionesPage extends StatelessWidget {
               image: DecorationImage(
                 image: AssetImage(imagePath),
                 fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.6), BlendMode.dstATop),
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.6), BlendMode.dstATop),
               ),
             ),
             height: 100.0,
           ),
           // Texto del botón
           ListTile(
-            contentPadding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
+            contentPadding:
+                EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
             title: Text(
               title,
               style: TextStyle(

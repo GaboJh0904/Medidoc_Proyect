@@ -10,7 +10,12 @@ class AgendarCita extends StatefulWidget {
 
 class _AgendarCitaState extends State<AgendarCita> {
   final List<String> especialidades = [
-    'Alergología', 'Cardiología', 'Cirugía plástica', 'Dermatología', 'Endocrinología', 'Fisioterapia',
+    'Alergología',
+    'Cardiología',
+    'Cirugía plástica',
+    'Dermatología',
+    'Endocrinología',
+    'Fisioterapia',
   ];
 
   String? selectedEspecialidad;
@@ -38,25 +43,36 @@ class _AgendarCitaState extends State<AgendarCita> {
                 return ElevatedButton(
                   onPressed: () => _showMedicos(especialidades[index]),
                   child: Text(especialidades[index]),
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.purple),
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.purple),
                 );
               },
             ),
           ),
           if (selectedEspecialidad != null) ...[
             Text('Selecciona un médico de $selectedEspecialidad:',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF005954),
+                )),
             Expanded(
               child: ListView.builder(
                 itemCount: medicos.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(medicos[index]),
+                    title: Text(
+                      medicos[index],
+                      style: TextStyle(color: Color(0xFF005954)),
+                    ),
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AgendarCitaFechaHora(especialidad: selectedEspecialidad!, medico: medicos[index]),
+                          builder: (context) => AgendarCitaFechaHora(
+                            especialidad: selectedEspecialidad!,
+                            medico: medicos[index],
+                          ),
                         ),
                       );
                     },
@@ -73,7 +89,7 @@ class _AgendarCitaState extends State<AgendarCita> {
   void _showMedicos(String especialidad) {
     setState(() {
       selectedEspecialidad = especialidad;
-      medicos = ['Medico 1', 'Medico 2', 'Meedico 3']; 
+      medicos = ['Medico 1', 'Medico 2', 'Meedico 3'];
     });
   }
 }

@@ -60,7 +60,8 @@ class ArchivosPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SubArchivosPage(nombre: archivos[index]["nombre"]),
+                  builder: (context) =>
+                      SubArchivosPage(nombre: archivos[index]["nombre"]),
                 ),
               );
             },
