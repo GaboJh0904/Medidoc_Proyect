@@ -214,7 +214,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     return ListTile(
                       title: Container(
                         decoration: BoxDecoration(
-                          color: Colors.green,
+                          color: Color(0xFF338b85),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         padding: EdgeInsets.all(8),
@@ -229,7 +229,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     return ListTile(
                       title: Container(
                         decoration: BoxDecoration(
-                          color: Colors.blue,
+                          color: Color(0xFF5dc1b9),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         padding: EdgeInsets.all(8),

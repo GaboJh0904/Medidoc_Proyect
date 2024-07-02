@@ -25,7 +25,7 @@ class RecetaMedica extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
       ),
-      backgroundColor: Colors.white, // Fondo general blanco
+      backgroundColor: Color.fromARGB(255, 233, 236, 240), // Fondo general blanco
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20),
@@ -38,10 +38,10 @@ class RecetaMedica extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(
-                      255, 123, 97, 167), // Purple shade from the color panel
-                  borderRadius:
-                      BorderRadius.circular(8), // Bordes redondeados levemente
+
+                  color: Color(0xFF338b85), // Purple shade from the color panel
+                  borderRadius: BorderRadius.circular(8), // Bordes redondeados levemente
+
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5),
@@ -131,7 +131,7 @@ class RecetaMedica extends StatelessWidget {
                 'Estos medicamentos los puedes encontrar en las siguientes farmacéuticas:',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+                  color: const Color(0xFF005954), // Dark Blueberry
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -140,7 +140,7 @@ class RecetaMedica extends StatelessWidget {
                 'Farmacia1, Farmacia2, etc.',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color.fromARGB(255, 36, 83, 153), // Dark Blueberry
+                  color: const Color(0xFF005954), // Dark Blueberry
                 ),
               ),
             ],

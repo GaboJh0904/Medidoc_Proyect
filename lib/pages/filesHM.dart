@@ -72,7 +72,7 @@ class ArchivosPage extends StatelessWidget {
                 Icon(
                   archivos[index]["icono"],
                   size: 64.0, // Tamaño del icono
-                  color: Colors.blue,
+                  color: Color(0xFF338b85),
                 ),
                 SizedBox(height: 8.0), // Espacio entre el icono y el texto
                 Text(

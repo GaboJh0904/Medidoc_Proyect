@@ -15,11 +15,11 @@ class _InicioState extends State<Inicio> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     controladorAnimacion = AnimationController(
-      duration: Duration(seconds: 10),
+      duration: Duration(seconds: 6),
       vsync: this,
     )..repeat();
 
-    Future.delayed(Duration(seconds: 10), () {
+    Future.delayed(Duration(seconds: 6), () {
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (_) => MenuPrincipal()));
     });

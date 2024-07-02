@@ -128,13 +128,13 @@ class MyCustomButtonGrid extends StatelessWidget {
   final List<Map<String, dynamic>> options = [
     {
       "text": "Historial médico",
-      "image": "icons/historial_medico.png",
+      "image": "assets/icons/historial_medico.png",
       "page": HistorialMedicoPage()
     },
-    {"text": "Botón de alerta", "image": "icons/boton_alerta.png", "page": BotonSOS()},
+    {"text": "Botón de alerta", "image": "assets/icons/boton_alerta.png", "page": BotonSOS()},
     {
       "text": "Solicitud de cita",
-      "image": "icons/cita_programable.png",
+      "image": "assets/icons/cita_programable.png",
       "page": CatalogoEspecialidades(
         titulo: "Solicitar Cita",
         numFuncion: 1,
@@ -142,23 +142,23 @@ class MyCustomButtonGrid extends StatelessWidget {
     },
     {
       "text": "Cancelación de cita",
-      "image": "icons/cancelar_cita.png",
+      "image": "assets/icons/cancelar_cita.png",
       "page": CitasConfirmadasEliminar()
     },
     {
       "text": "Mapa de hospitales",
-      "image": "icons/mapa_hospital.png",
+      "image": "assets/icons/mapa_hospital.png",
       "url":
           'https://www.google.com/maps/search/hospital/@-16.5215258,-68.1111076,15z/data=!3m1!4b1?entry=ttu'
     },
     {
       "text": "Cuestionarios médicos",
-      "image": "icons/ficha_clinica.png",
+      "image": "assets/icons/ficha_clinica.png",
       "page": FichaClinica(idPaciente: 1,)
     },
     {
       "text": "Teleconsulta",
-      "image": "icons/teleconsulta.png",
+      "image": "assets/icons/teleconsulta.png",
       "page": CatalogoEspecialidades(
         titulo: "Teleconsulta",
         numFuncion: 2,
@@ -166,29 +166,29 @@ class MyCustomButtonGrid extends StatelessWidget {
     },
     {
       "text": "Ver cita programada",
-      "image": "icons/ver_cita_programable.png",
+      "image": "assets/icons/ver_cita_programable.png",
       "page": VisualizarCitas()
     },
-    {"text": "Receta médica", "image": "icons/receta_medica.png", "page": RecetaMedica()},
+    {"text": "Receta médica", "image": "assets/icons/receta_medica.png", "page": RecetaMedica()},
     {
       "text": "Alimentaciones",
-      "image": "icons/alimentacion.png",
+      "image": "assets/icons/alimentacion.png",
       "page": Alimentaciones()
     },
-    {"text": "RPO", "image": "icons/rpo.png", "page": rpo()},
+    {"text": "RPO", "image": "assets/icons/rpo.png", "page": rpo()},
     {
       "text": "Tutoriales de primeros auxilios",
-      "image": "icons/tutorial_primeros_auxilios.png",
+      "image": "assets/icons/tutorial_primeros_auxilios.png",
       "page": TutorialesPA()
     },
     {
       "text": "Emergencia SOS",
-      "image": "icons/emergencia_sos.png",
+      "image": "assets/icons/emergencia_sos.png",
       "page": EmergenciaSOS()
     },
     {
       "text": "Consulta en casa",
-      "image": "icons/consulta_en_casa.png",
+      "image": "assets/icons/consulta_en_casa.png",
       "page": EspecialidadesCasa(
         titulo: 'Consulta en casa',
         numFuncion: 2,
@@ -196,12 +196,12 @@ class MyCustomButtonGrid extends StatelessWidget {
     },
     {
       "text": "Chat asistente",
-      "image": "icons/chatbot.png",
+      "image": "assets/icons/chatbot.png",
       "page": ChatBot(nombreDoctor: "Asistente Bot", estado: 3)
     },
     {
       "text": "Calendario",
-      "image": "icons/calendario.png",
+      "image": "assets/icons/calendario.png",
       "page": VisualizarCalendario()
     },
   ];

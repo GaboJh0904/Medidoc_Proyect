@@ -8,7 +8,7 @@ class Alimentaciones extends StatelessWidget {
     return MaterialApp(
       title: 'Alimentaciones',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.teal,
         textTheme: TextTheme(
           bodyMedium: TextStyle(
               color: Colors.white), // Cambiado de 'bodyText2' a 'bodyMedium'
@@ -38,9 +38,11 @@ class AlimentacionesPage extends StatelessWidget {
         elevation: 0,
       ),
       drawer: NavbarOptions(),
-      backgroundColor: Color(0xFF6C62B6), // Blueberry
+
+      backgroundColor: Color.fromARGB(255, 233, 236, 240), // Blueberry
+
       body: Container(
-        color: Color.fromARGB(255, 192, 196, 199),
+        color: Color.fromARGB(255, 233, 236, 240),
         child: Column(
           children: <Widget>[
             Expanded(

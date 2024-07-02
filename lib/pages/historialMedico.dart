@@ -37,7 +37,14 @@ class HistorialMedicoPage extends StatelessWidget {
                             ArchivosPage()), // Reemplaza 'NombreDeLaPaginaDestino' con el nombre real de tu página de destino
                   );
                 },
-                child: Text('$year'),
+                child: Text(
+                  '$year',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Color(0xFF338b85),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
         ],
