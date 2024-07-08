@@ -48,9 +48,9 @@ class ArchivosPage extends StatelessWidget {
       body: GridView.builder(
         padding: EdgeInsets.all(16.0),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-          crossAxisSpacing: 24.0, // Espacio horizontal
-          mainAxisSpacing: 30.0, // Espacio vertical
+          crossAxisCount: 3,
+          crossAxisSpacing: 28.0, // Espacio horizontal
+          mainAxisSpacing: 34.0, // Espacio vertical
         ),
         itemCount: archivos.length,
         itemBuilder: (BuildContext context, int index) {
