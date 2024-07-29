@@ -28,7 +28,7 @@ class ArchivosPage extends StatelessWidget {
       {"nombre": "Psiquiatría", "icono": Icons.folder_open},
       {"nombre": "Psicología", "icono": Icons.folder_open},
       {"nombre": "Traumatología", "icono": Icons.folder_open},
-      {"nombre": "Urología", "icono": Icons.folder_open},
+      {"nombre": " Urología", "icono": Icons.folder_open},
     ];
 
     return Scaffold(
