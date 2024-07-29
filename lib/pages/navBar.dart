@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medidoc_proyect/pages/ajustes.dart';
 import 'package:medidoc_proyect/pages/menu_principal.dart';
+import 'package:medidoc_proyect/pages/registroPaciente.dart';
 
 class NavbarOptions extends StatelessWidget {
   @override
@@ -20,7 +21,13 @@ class NavbarOptions extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => MenuPrincipal()));
                 },
               ),
-
+              _buildDrawerOption(
+                title: 'Resgistrarse',
+                onTap: () {
+                  // Actualiza la navegación aquí
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => RegistroPacientePage()));
+                },
+              ),
               _buildDrawerOption(
                 title: 'Ajustes',
                 onTap: () {

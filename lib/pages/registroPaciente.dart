@@ -90,6 +90,8 @@ class _RegistroPacientePageState extends State<RegistroPacientePage> {
               child: Text('Ir al Inicio'),
               onPressed: () {
                 Navigator.of(context).pop(); // Cierra el diálogo
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MenuPrincipal()));
+
               },
             ),
           ],
