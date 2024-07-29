@@ -53,6 +53,7 @@ class _RegistroPacientePageState extends State<RegistroPacientePage> {
     if (_formKey.currentState!.validate() && _selectedLocation != null && _idPaciente != null) {
       try {
         await FirebaseFirestore.instance.collection('Paciente').add({
+          'nombres': nombresController.text,
           'apellidoMaterno': apellidoMaternoController.text,
           'apellidoPaterno': apellidoPaternoController.text,
           'correo': correoController.text,
@@ -62,7 +63,7 @@ class _RegistroPacientePageState extends State<RegistroPacientePage> {
           'latitude': _selectedLocation!.latitude,
           'longitude': _selectedLocation!.longitude,
           'nacimiento': nacimientoController.text,
-          'nombres': nombresController.text,
+
           'telefono': telefonoController.text,
         });
         _mostrarDialogo('Paciente registrado exitosamente', true);
@@ -129,7 +130,17 @@ class _RegistroPacientePageState extends State<RegistroPacientePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Registro de Paciente'),
+        title: const Text(
+          'Registro de Paciente',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Color(0xFF005954), // Color 1
+        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -137,17 +148,38 @@ class _RegistroPacientePageState extends State<RegistroPacientePage> {
           key: _formKey,
           child: ListView(
             children: <Widget>[
+              _buildTextField(nombresController, 'Nombres'),
               _buildTextField(apellidoMaternoController, 'Apellido Materno'),
               _buildTextField(apellidoPaternoController, 'Apellido Paterno'),
-              _buildTextField(correoController, 'Correo', keyboardType: TextInputType.emailAddress),
-              _buildTextField(direccionController, 'Dirección'),
-              SizedBox(height: 20),
-              Text(
+              _buildTextField(telefonoController, 'Teléfono', keyboardType: TextInputType.phone),
+              TextFormField(
+                controller: nacimientoController,
+                decoration: const InputDecoration(
+                  labelText: "Fecha de Nacimiento",
+                  labelStyle: TextStyle(color: Color(0xFF005954)), // Cambia el color de la etiqueta
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF005954)), // Cambia el color de la línea inferior cuando el campo no está enfocado
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF005954)), // Cambia el color de la línea inferior cuando el campo está enfocado
+                  ),
+                ),
+                readOnly: true,
+                onTap: () => _seleccionarFecha(context),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor ingrese la fecha de nacimiento';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 20),
+              const Text(
                 'Género',
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 16, color: Color(0xFF005954)),
               ),
               ListTile(
-                title: const Text('Femenino'),
+                title: const Text('Femenino', style: TextStyle(color: Color(0xFF005954))),
                 leading: Radio<String>(
                   value: 'Femenino',
                   groupValue: _generoSeleccionado,
@@ -159,7 +191,7 @@ class _RegistroPacientePageState extends State<RegistroPacientePage> {
                 ),
               ),
               ListTile(
-                title: const Text('Masculino'),
+                title: const Text('Masculino', style: TextStyle(color: Color(0xFF005954))),
                 leading: Radio<String>(
                   value: 'Masculino',
                   groupValue: _generoSeleccionado,
@@ -170,45 +202,34 @@ class _RegistroPacientePageState extends State<RegistroPacientePage> {
                   },
                 ),
               ),
-              SizedBox(height: 10),
-              TextFormField(
-                controller: nacimientoController,
-                decoration: InputDecoration(
-                  labelText: 'Fecha de Nacimiento',
-                  border: UnderlineInputBorder(),
-                ),
-                readOnly: true,
-                onTap: () => _seleccionarFecha(context),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor ingrese la fecha de nacimiento';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 10),
-              _buildTextField(nombresController, 'Nombres'),
-              _buildTextField(telefonoController, 'Teléfono', keyboardType: TextInputType.phone),
-              SizedBox(height: 20),
+              _buildTextField(correoController, 'Correo', keyboardType: TextInputType.emailAddress),
+              _buildTextField(direccionController, 'Dirección'),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _seleccionarUbicacion,
-                child: Text(_selectedLocation == null ? 'Seleccionar Ubicación' : 'Ubicación Seleccionada'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: const Color(0xFF5dc1b9),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
+                child: Text(
+                    _selectedLocation == null ? 'Seleccionar Ubicación' : 'Ubicación Seleccionada',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _registrarPaciente,
-                child: Text('Registrar Paciente'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
+                  backgroundColor: const Color(0xFF005954),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
+                ),
+                child: const Text(
+                  'Registrar Paciente',
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             ],
@@ -225,7 +246,13 @@ class _RegistroPacientePageState extends State<RegistroPacientePage> {
         controller: controller,
         decoration: InputDecoration(
           labelText: labelText,
-          border: UnderlineInputBorder(),
+          labelStyle: const TextStyle(color: Color(0xFF005954)), // Cambia el color de la etiqueta
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF005954)), // Cambia el color de la línea inferior cuando el campo no está enfocado
+          ),
+          focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF005954)), // Cambia el color de la línea inferior cuando el campo está enfocado
+          ),
         ),
         keyboardType: keyboardType,
         validator: (value) {
@@ -237,4 +264,5 @@ class _RegistroPacientePageState extends State<RegistroPacientePage> {
       ),
     );
   }
+
 }

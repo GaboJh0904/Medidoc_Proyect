@@ -19,7 +19,17 @@ class _MapaSeleccionPageState extends State<MapaSeleccionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Selecciona una Ubicación'),
+        title: Text(
+          'Selecciona tu ubicación',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Color(0xFF005954), // Color 1
+        elevation: 0,
       ),
       body: GoogleMap(
         onMapCreated: (controller) {
@@ -55,7 +65,10 @@ class _MapaSeleccionPageState extends State<MapaSeleccionPage> {
             );
           }
         },
+        backgroundColor: Color(0xFF005954),
+        foregroundColor: Colors.white,
       ),
+
     );
   }
 }
